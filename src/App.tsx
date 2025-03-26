@@ -1,36 +1,32 @@
 import { useState } from 'react';
 
-import './App.css';
+import { Button } from '@/shared/ui/button';
 
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-4">
+      <p>Count is {count}</p>
+      <div className="flex justify-center items-center gap-2">
+        <Button
+          onClick={() => {
+            setCount((prev) => prev - 1);
+          }}
+        >
+          -
+        </Button>
+        <Button
+          onClick={() => {
+            setCount((prev) => prev + 1);
+          }}
+        >
+          +
+        </Button>
       </div>
-      <h1>Treffly</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
