@@ -3,4 +3,6 @@ export const routes = {
   main: '/main',
   login: '/login',
   register: '/register',
+  terms: '/terms',
+  privacy: '/privacy',
 };
