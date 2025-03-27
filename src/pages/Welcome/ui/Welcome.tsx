@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 
 import { routes } from '@/shared/router';
 import { AuthLayout } from '@/shared/ui/AuthLayout';
-import { Button } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/button';
 
 export const Welcome = () => {
   return (

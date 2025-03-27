@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import { Back } from '@/shared/icons/Back';
 import { Title } from '@/shared/icons/Title';
-import { Button } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/button';
 
 interface AuthLayout extends PropsWithChildren {
   withBackBtn?: boolean;
