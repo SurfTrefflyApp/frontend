@@ -5,6 +5,8 @@ import { z } from "zod";
 
 import { formSchema } from "@/pages/Register/model/formSchema";
 
+import { Mail } from "@/shared/icons/Mail";
+import { Person } from "@/shared/icons/Person";
 import { routes } from "@/shared/router";
 import { AuthLayout } from "@/shared/ui/AuthLayout";
 import { Button } from "@/shared/ui/button";
@@ -55,7 +57,21 @@ export const Register = () => {
             name="email"
             render={({ field }) => (
               <FormControl>
-                <Input placeholder="Почта" {...field} />
+                <Input
+                  id="email"
+                  placeholder="Почта"
+                  startIcon={Mail}
+                  iconProps={{
+                    className: "w-6",
+                  }}
+                  error={
+                    !!(
+                      form.formState.errors["email"] &&
+                      form.formState.touchedFields["email"]
+                    )
+                  }
+                  {...field}
+                />
               </FormControl>
             )}
           />
@@ -64,7 +80,22 @@ export const Register = () => {
             name="username"
             render={({ field }) => (
               <FormControl>
-                <Input placeholder="Имя" {...field} />
+                <Input
+                  id="username"
+                  placeholder="Имя"
+                  autoComplete="name"
+                  startIcon={Person}
+                  iconProps={{
+                    className: "w-7",
+                  }}
+                  error={
+                    !!(
+                      form.formState.errors["username"] &&
+                      form.formState.touchedFields["username"]
+                    )
+                  }
+                  {...field}
+                />
               </FormControl>
             )}
           />
@@ -74,9 +105,16 @@ export const Register = () => {
             render={({ field }) => (
               <FormControl>
                 <Input
+                  id="password"
                   autoComplete="new-password"
                   placeholder="Пароль"
                   type="password"
+                  error={
+                    !!(
+                      form.formState.errors["password"] &&
+                      form.formState.touchedFields["password"]
+                    )
+                  }
                   {...field}
                 />
               </FormControl>
