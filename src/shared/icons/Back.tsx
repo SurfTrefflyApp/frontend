@@ -11,8 +11,8 @@ export const Back = () => {
         <path
           d="M21 2L5.61538 9.69231V9.69231C3.71374 10.6431 3.71374 13.3569 5.61538 14.3077V14.3077L21 22"
           stroke="#4B6A51"
-          stroke-width="3"
-          stroke-linecap="round"
+          strokeWidth="3"
+          strokeLinecap="round"
         />
       </g>
       <defs>
@@ -23,9 +23,9 @@ export const Back = () => {
           width="23.8112"
           height="27.0006"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
