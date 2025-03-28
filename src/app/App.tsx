@@ -1,9 +1,43 @@
-import { AppRouter } from '@/app/router/AppRouter';
+import { RootProvider } from "@/app/providers/RootProvider";
+import { RouterProvider, createBrowserRouter } from "react-router";
 
-import './index.css';
+import { Register } from "@/pages/Register";
+import { Welcome } from "@/pages/Welcome";
 
-function App() {
-  return <AppRouter />;
-}
+import { routes } from "@/shared/router";
 
+import "./index.css";
+
+const router = createBrowserRouter([
+  {
+    path: routes.welcome,
+    element: <Welcome />,
+  },
+  {
+    path: routes.main,
+    element: <>Main</>,
+  },
+  {
+    path: routes.login,
+    element: <>Login</>,
+  },
+  {
+    path: routes.register,
+    element: <Register />,
+  },
+  {
+    path: routes.terms,
+    element: <>Terms</>,
+  },
+  {
+    path: routes.privacy,
+    element: <>Privacy</>,
+  },
+]);
+
+const App = () => (
+  <RootProvider>
+    <RouterProvider router={router} />
+  </RootProvider>
+);
 export default App;
