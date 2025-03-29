@@ -26,6 +26,16 @@ export const Register = () => {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.debug(values);
+    // toast.error("Ошибка!", {
+    //   icon: null,
+    //   position: "top-center",
+    //   description: "Девочки, мы упали...",
+    //   duration: 100000,
+    //   cancel: {
+    //     label: <Close />,
+    //     onClick: () => {},
+    //   },
+    // });
   };
 
   return (

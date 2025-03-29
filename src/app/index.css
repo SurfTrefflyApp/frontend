@@ -5,6 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --error: #dc2626;
+  --error-foreground: #fee2e2;
+  --white: #ffffff;
   --green: #adcfb1;
   --normal: #e8e8e4;
   --outline-variant: #c2c8c0;
@@ -82,6 +85,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  --color-white: var(--white);
   --color-green: var(--green);
   --color-normal: var(--normal);
   --color-outline-variant: var(--outline-variant);
@@ -124,5 +130,51 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.toast[data-sonner-toast] {
+  background: #e3e3df;
+  border: none;
+  border-radius: 20px;
+  padding: 16px 20px;
+
+  div[data-content] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  div[data-title] {
+    line-height: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  div[data-description] {
+    font-size: 14px;
+    line-height: 1rem;
+  }
+
+  button[data-cancel="true"] {
+    background: none;
+  }
+}
+
+.toast[data-sonner-toast].centered {
+  justify-content: center;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.toast[data-rich-colors="true"][data-sonner-toast][data-type="error"] {
+  background-color: var(--color-error);
+
+  div[data-title] {
+    color: var(--error-foreground);
+  }
+
+  div[data-description] {
+    color: var(--error-foreground);
   }
 }
