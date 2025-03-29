@@ -1,10 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { formSchema } from "@/pages/Register/model/formSchema";
 
+import { Close } from "@/shared/icons/Close";
 import { Mail } from "@/shared/icons/Mail";
 import { Person } from "@/shared/icons/Person";
 import { routes } from "@/shared/router";
@@ -32,16 +34,15 @@ export const Register = () => {
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.debug(values);
-    // toast.error("Ошибка!", {
-    //   icon: null,
-    //   position: "top-center",
-    //   description: "Девочки, мы упали...",
-    //   duration: 100000,
-    //   cancel: {
-    //     label: <Close />,
-    //     onClick: () => {},
-    //   },
-    // });
+    toast.error("Ошибка!", {
+      icon: null,
+      position: "top-center",
+      description: "Девочки, мы упали...",
+      cancel: {
+        label: <Close />,
+        onClick: () => {},
+      },
+    });
   };
 
   return (
