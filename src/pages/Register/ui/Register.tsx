@@ -29,7 +29,7 @@ export const Register = () => {
       username: "",
       password: "",
     },
-    mode: "onChange",
+    mode: "all",
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {

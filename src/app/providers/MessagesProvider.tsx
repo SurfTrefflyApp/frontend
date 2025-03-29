@@ -8,7 +8,7 @@ export const MessagesProvider = ({ children }: PropsWithChildren) => {
       <Toaster
         position="top-center"
         richColors
-        swipeDirections={["left", "right", "top", "bottom"]}
+        swipeDirections={["top"]}
         visibleToasts={1}
         toastOptions={{ className: "toast" }}
       />
