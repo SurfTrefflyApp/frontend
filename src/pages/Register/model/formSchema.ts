@@ -1,27 +1,29 @@
+import emojiRegex from "emoji-regex";
 import { z } from "zod";
 
-const emojiRegex = /\p{Emoji}/u;
+const emojiReg = emojiRegex();
 
 export const formSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "Заполните почту " })
+    .min(1, { message: "Поле не может быть пустым" })
     .refine((email) => {
       const regex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/u;
-      return regex.test(email) && !emojiRegex.test(email);
-    }, "Неверный формат почты"),
+      return regex.test(email) && !emojiReg.test(email);
+    }, "Некорректный формат почты"),
   username: z
     .string()
-    .min(2, { message: "Минимальная длина 2 символа" })
-    .max(20, { message: "Максимальная длина 20 символов" })
+    .min(1, { message: "Поле не может быть пустым" })
+    .min(2, { message: "Длина ввода должна быть от 2 до 20 символов" })
+    .max(20, { message: "Длина ввода должна быть от 2 до 20 символов" })
     .refine((username) => {
-      const regex = /^[^\d\W_]*$/u;
-      return regex.test(username) && !emojiRegex.test(username);
-    }, "Допустимы только буквы, дефис и цифры,"),
+      const regex = /^[\p{L}-]+$/u;
+      return regex.test(username) && !emojiReg.test(username);
+    }, "Введены некорректные символы"),
   password: z
     .string()
-    .min(6, { message: "Пароль должен быть не менее 6 символов" })
-    .refine((password) => !emojiRegex.test(password), {
-      message: "Пароль не должен содержать эмодзи",
+    .min(6, { message: "Длина ввода должна быть от 6 символов" })
+    .refine((password) => !emojiReg.test(password), {
+      message: "Введены некорректные символы",
     }),
 });

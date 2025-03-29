@@ -34,7 +34,7 @@ export const AuthLayout = ({
         <header>
           <Title />
         </header>
-        <main>{children}</main>
+        <main className="w-full">{children}</main>
         <footer className="w-full md:w-fit">{footer}</footer>
       </div>
     </div>
