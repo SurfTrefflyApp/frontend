@@ -46,7 +46,7 @@ export const AuthLayout = ({
             navigate(routes.main, { replace: true });
           }}
         >
-          <Close color="#4B6A51" className="size-[20px]" />
+          <Close color="var(--primary)" className="size-[20px]" />
         </Button>
         <header>
           <Title />

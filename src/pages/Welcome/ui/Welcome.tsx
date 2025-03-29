@@ -20,7 +20,7 @@ export const Welcome = () => {
       }
     >
       <div className="flex flex-col items-center gap-5 md:gap-6">
-        <h1 className="font-semibold text-4xl md:text-7xl text-center">
+        <h1 className="font-semibold text-4xl md:text-5xl text-center">
           Привет, давай познакомимся!
         </h1>
         <Button variant="outline" asChild>
