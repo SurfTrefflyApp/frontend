@@ -133,7 +133,7 @@
   }
 }
 
-.toast[data-sonner-toast] {
+.toast[data-sonner-toast][data-styled="true"] {
   background: #e3e3df;
   border: none;
   border-radius: 20px;
