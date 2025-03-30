@@ -2,6 +2,7 @@ import { RootProvider } from "@/app/providers/RootProvider";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
 import { Register } from "@/pages/Register";
+import { Terms } from "@/pages/Terms";
 import { Welcome } from "@/pages/Welcome";
 
 import { routes } from "@/shared/router";
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
   },
   {
     path: routes.terms,
-    element: <>Terms</>,
+    element: <Terms />,
   },
   {
     path: routes.privacy,
