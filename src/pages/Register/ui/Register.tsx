@@ -104,7 +104,7 @@ export const Register = () => {
                     autoComplete="name"
                     startIcon={Person}
                     iconProps={{
-                      className: "w-7",
+                      className: "w-5",
                     }}
                     error={!!formState.errors.username}
                     {...field}
