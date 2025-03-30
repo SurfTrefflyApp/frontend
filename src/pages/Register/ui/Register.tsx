@@ -38,6 +38,7 @@ export const Register = () => {
       icon: null,
       position: "top-center",
       description: "Девочки, мы упали...",
+      duration: 500000,
       cancel: {
         label: <Close />,
         onClick: () => {},
@@ -104,7 +105,7 @@ export const Register = () => {
                     autoComplete="name"
                     startIcon={Person}
                     iconProps={{
-                      className: "w-7",
+                      className: "w-5",
                     }}
                     error={!!formState.errors.username}
                     {...field}
