@@ -62,7 +62,7 @@ export const Register = () => {
   return (
     <AuthLayout
       footer={
-        <small className="text-center w-full block text-xs text-outline-variant">
+        <small className="text-center w-full max-w-md block text-xs text-outline-variant">
           Используя Treffly вы соглашаетесь с нашими{" "}
           <Link to={routes.terms} className="text-primary">
             Условиями
@@ -155,6 +155,7 @@ export const Register = () => {
             type="submit"
             className="w-fit mx-auto"
             disabled={!formState.isValid}
+            loading={formState.isSubmitting}
           >
             Зарегистрироваться
           </Button>
