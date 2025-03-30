@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import useFormPersist from "react-hook-form-persist";
 import { Link } from "react-router";
 import { toast } from "sonner";
 
@@ -11,6 +10,7 @@ import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
 import { Close } from "@/shared/icons/Close";
 import { Mail } from "@/shared/icons/Mail";
 import { Person } from "@/shared/icons/Person";
+import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 import { AuthLayout } from "@/shared/ui/AuthLayout";
 import { Button } from "@/shared/ui/button";
@@ -38,6 +38,7 @@ export const Register = () => {
     watch: form.watch,
     setValue: form.setValue,
     validate: true,
+    validateEmpty: false,
   });
 
   const onSubmit = async (values: RegisterSchema) => {
