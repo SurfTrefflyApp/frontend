@@ -27,3 +27,5 @@ export const formSchema = z.object({
       message: "Введены некорректные символы",
     }),
 });
+
+export type RegisterSchema = z.infer<typeof formSchema>;

@@ -1,11 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import useFormPersist from "react-hook-form-persist";
 import { Link } from "react-router";
 import { toast } from "sonner";
-import { z } from "zod";
 
-import { formSchema } from "@/pages/Register/model/formSchema";
+import { ErrorResponse, register } from "@/pages/Register/api/register";
+import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
 
 import { Close } from "@/shared/icons/Close";
 import { Mail } from "@/shared/icons/Mail";
@@ -23,7 +24,7 @@ import {
 import { Input } from "@/shared/ui/input";
 
 export const Register = () => {
-  const { formState, ...form } = useForm<z.infer<typeof formSchema>>({
+  const { formState, ...form } = useForm<RegisterSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
@@ -39,17 +40,22 @@ export const Register = () => {
     validate: true,
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.debug(values);
-    toast.error("Ошибка!", {
-      icon: null,
-      position: "top-center",
-      description: "Девочки, мы упали...",
-      cancel: {
-        label: <Close />,
-        onClick: () => {},
-      },
-    });
+  const onSubmit = async (values: RegisterSchema) => {
+    try {
+      await register(values);
+    } catch (error) {
+      if (axios.isAxiosError<ErrorResponse>(error)) {
+        toast.error(error.response?.data.title, {
+          icon: null,
+          position: "top-center",
+          description: error.response?.data.subtitle,
+          cancel: {
+            label: <Close />,
+            onClick: () => {},
+          },
+        });
+      }
+    }
   };
 
   return (
