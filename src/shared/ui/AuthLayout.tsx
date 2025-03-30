@@ -24,7 +24,7 @@ export const AuthLayout = ({
     <div className="h-svh w-screen flex items-center justify-center">
       <div
         className={cn(
-          "relative h-full max-w-3xl flex flex-col gap-5 justify-between items-center p-5 pt-[20%]",
+          "relative h-full w-full max-w-3xl flex flex-col gap-5 justify-between items-center p-5 pt-[20%]",
           "md:pt-5 md:max-h-[600px] md:background-red-100 md:bg-white md:rounded-xl md:shadow-md",
         )}
       >

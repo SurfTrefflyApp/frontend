@@ -1,15 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
-import useFormPersist from "react-hook-form-persist";
 import { Link } from "react-router";
 import { toast } from "sonner";
-import { z } from "zod";
 
-import { formSchema } from "@/pages/Register/model/formSchema";
+import { ErrorResponse, register } from "@/pages/Register/api/register";
+import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
 
+import { auth } from "@/shared/auth";
 import { Close } from "@/shared/icons/Close";
 import { Mail } from "@/shared/icons/Mail";
 import { Person } from "@/shared/icons/Person";
+import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 import { AuthLayout } from "@/shared/ui/AuthLayout";
 import { Button } from "@/shared/ui/button";
@@ -23,7 +26,9 @@ import {
 import { Input } from "@/shared/ui/input";
 
 export const Register = () => {
-  const { formState, ...form } = useForm<z.infer<typeof formSchema>>({
+  const authEvent = useUnit(auth);
+
+  const { formState, ...form } = useForm<RegisterSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
@@ -37,25 +42,32 @@ export const Register = () => {
     watch: form.watch,
     setValue: form.setValue,
     validate: true,
+    validateEmpty: false,
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.debug(values);
-    toast.error("Ошибка!", {
-      icon: null,
-      position: "top-center",
-      description: "Девочки, мы упали...",
-      cancel: {
-        label: <Close />,
-        onClick: () => {},
-      },
-    });
+  const onSubmit = async (values: RegisterSchema) => {
+    try {
+      await register(values);
+      authEvent();
+    } catch (error) {
+      if (axios.isAxiosError<ErrorResponse>(error)) {
+        toast.error(error.response?.data.title, {
+          icon: null,
+          position: "top-center",
+          description: error.response?.data.subtitle,
+          cancel: {
+            label: <Close />,
+            onClick: () => {},
+          },
+        });
+      }
+    }
   };
 
   return (
     <AuthLayout
       footer={
-        <small className="text-center w-full block text-xs text-outline-variant">
+        <small className="text-center w-full max-w-md block text-xs text-outline-variant">
           Используя Treffly вы соглашаетесь с нашими{" "}
           <Link to={routes.terms} className="text-primary">
             Условиями
@@ -148,6 +160,7 @@ export const Register = () => {
             type="submit"
             className="w-fit mx-auto"
             disabled={!formState.isValid}
+            loading={formState.isSubmitting}
           >
             Зарегистрироваться
           </Button>
