@@ -38,7 +38,6 @@ export const Register = () => {
       icon: null,
       position: "top-center",
       description: "Девочки, мы упали...",
-      duration: 500000,
       cancel: {
         label: <Close />,
         onClick: () => {},
