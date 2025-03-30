@@ -1,4 +1,4 @@
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
@@ -60,7 +60,7 @@ function Button({
       {...props}
     >
       {loading && <LoadingSpinner />}
-      {children}
+      <Slottable>{children}</Slottable>
     </Comp>
   );
 }

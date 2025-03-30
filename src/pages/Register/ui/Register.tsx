@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { toast } from "sonner";
@@ -7,6 +8,7 @@ import { toast } from "sonner";
 import { ErrorResponse, register } from "@/pages/Register/api/register";
 import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
 
+import { auth } from "@/shared/auth";
 import { Close } from "@/shared/icons/Close";
 import { Mail } from "@/shared/icons/Mail";
 import { Person } from "@/shared/icons/Person";
@@ -24,6 +26,8 @@ import {
 import { Input } from "@/shared/ui/input";
 
 export const Register = () => {
+  const authEvent = useUnit(auth);
+
   const { formState, ...form } = useForm<RegisterSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,6 +48,7 @@ export const Register = () => {
   const onSubmit = async (values: RegisterSchema) => {
     try {
       await register(values);
+      authEvent();
     } catch (error) {
       if (axios.isAxiosError<ErrorResponse>(error)) {
         toast.error(error.response?.data.title, {

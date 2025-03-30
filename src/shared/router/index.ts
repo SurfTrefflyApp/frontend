@@ -1,8 +1,9 @@
 export const routes = {
-  welcome: '/',
-  main: '/main',
-  login: '/login',
-  register: '/register',
-  terms: '/terms',
-  privacy: '/privacy',
+  welcome: "/",
+  main: "/main",
+  login: "/login",
+  register: "/register",
+  terms: "/terms",
+  privacy: "/privacy",
+  profile: "/profile",
 };
