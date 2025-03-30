@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import useFormPersist from "react-hook-form-persist";
 import { Link } from "react-router";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -30,6 +31,12 @@ export const Register = () => {
       password: "",
     },
     mode: "all",
+  });
+
+  useFormPersist("register", {
+    watch: form.watch,
+    setValue: form.setValue,
+    validate: true,
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
