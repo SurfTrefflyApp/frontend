@@ -13,7 +13,10 @@ export const Splash = () => {
 
   return (
     <>
-      <img src={Left} className="absolute left-0 bottom-0 select-none" />
+      <img
+        src={Left}
+        className="absolute left-[-4px] bottom-[-4px] select-none"
+      />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <motion.div
           initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
@@ -26,7 +29,10 @@ export const Splash = () => {
           <Title className="w-[300px] h-full" />
         </motion.div>
       </div>
-      <img src={Right} className="absolute right-0 top-0 select-none" />
+      <img
+        src={Right}
+        className="absolute right-[-4px] top-[-4px] select-none"
+      />
     </>
   );
 };

@@ -27,14 +27,14 @@ const router = createBrowserRouter([
             element: <Register />,
           },
           {
+            path: routes.welcome,
+            element: <Welcome />,
+          },
+          {
             path: routes.passwordReset,
             element: <>Reset</>,
           },
         ],
-      },
-      {
-        path: routes.welcome,
-        element: <Welcome />,
       },
       {
         path: routes.profile,
