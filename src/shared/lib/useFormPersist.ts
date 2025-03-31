@@ -57,7 +57,6 @@ const useFormPersist = (
         const shouldSet =
           !exclude.includes(key) &&
           (validateEmpty || (!validateEmpty && values[key]));
-        console.debug(shouldSet, key, values[key]);
         if (shouldSet) {
           dataRestored[key] = values[key];
           setValue(key, values[key], {

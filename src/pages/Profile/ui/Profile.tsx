@@ -1,7 +1,7 @@
 import { useUnit } from "effector-react";
 import { Link } from "react-router";
 
-import { $isAuth, logout } from "@/shared/auth";
+import { $isAuth, logoutEvent as logout } from "@/shared/auth";
 import { routes } from "@/shared/router";
 import { Button } from "@/shared/ui/button";
 

@@ -5,14 +5,13 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { toast } from "sonner";
 
-import { register } from "@/pages/Register/api/register";
-import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
+import { login } from "@/pages/Login/api/login";
+import { LoginSchema, formSchema } from "@/pages/Login/model/formSchema";
 
 import { auth } from "@/shared/auth";
 import { ErrorResponse } from "@/shared/auth/types";
 import { Close } from "@/shared/icons/Close";
 import { Mail } from "@/shared/icons/Mail";
-import { Person } from "@/shared/icons/Person";
 import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 import { AuthLayout } from "@/shared/ui/AuthLayout";
@@ -26,29 +25,28 @@ import {
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
 
-export const Register = () => {
+export const Login = () => {
   const authEvent = useUnit(auth);
 
-  const { formState, ...form } = useForm<RegisterSchema>({
+  const { formState, ...form } = useForm<LoginSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      username: "",
       password: "",
     },
     mode: "all",
   });
 
-  const { clear } = useFormPersist("register", {
+  const { clear } = useFormPersist("login", {
     watch: form.watch,
     setValue: form.setValue,
     validate: true,
     validateEmpty: false,
   });
 
-  const onSubmit = async (values: RegisterSchema) => {
+  const onSubmit = async (values: LoginSchema) => {
     try {
-      await register(values);
+      await login(values);
       authEvent();
       clear();
     } catch (error) {
@@ -72,22 +70,12 @@ export const Register = () => {
   };
 
   return (
-    <AuthLayout
-      footer={
-        <small className="text-center w-full max-w-md block text-xs text-outline-variant">
-          Используя Treffly вы соглашаетесь с нашими{" "}
-          <Link to={routes.terms} className="text-primary">
-            Условиями
-          </Link>{" "}
-          и{" "}
-          <Link to={routes.privacy} className="text-primary">
-            Политикой конфиденциальности
-          </Link>
-        </small>
-      }
-    >
+    <AuthLayout>
       <div className="text-center mb-8 pb-4 border-b-2 border-outline-variant">
-        <h1 className="text-3xl font-semibold">Создание аккаунта</h1>
+        <h1 className="text-3xl font-semibold">С возвращением!</h1>
+        <h2 className="text-xl">
+          Введи свой логин и пароль для того, чтобы войти
+        </h2>
       </div>
       <Form {...form} formState={formState}>
         <form
@@ -120,30 +108,6 @@ export const Register = () => {
           />
           <FormField
             control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    id="username"
-                    placeholder="Имя"
-                    autoComplete="name"
-                    startIcon={Person}
-                    iconProps={{
-                      className: "w-5",
-                    }}
-                    error={!!formState.errors.username}
-                    {...field}
-                  />
-                </FormControl>
-                {formState.errors.username && (
-                  <FormMessage>{formState.errors.username.message}</FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
             name="password"
             render={({ field }) => (
               <FormItem>
@@ -165,13 +129,19 @@ export const Register = () => {
           />
           <Button
             type="submit"
-            className="w-fit mx-auto"
+            className="w-fit mx-auto px-10"
             disabled={!formState.isValid}
             loading={formState.isSubmitting}
           >
-            Зарегистрироваться
+            Войти
           </Button>
         </form>
+        <Link
+          to={routes.passwordReset}
+          className="block mt-4 text-center text-primary text-sm font-medium"
+        >
+          Забыли пароль?
+        </Link>
       </Form>
     </AuthLayout>
   );

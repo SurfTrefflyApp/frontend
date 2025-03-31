@@ -1,1 +1,1 @@
-export { $isAuth, auth, logout, checkAuthFx } from "./model";
+export { $isAuth, auth, logoutEvent, checkAuthFx } from "./model";
