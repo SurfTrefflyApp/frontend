@@ -2,6 +2,7 @@ import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
+import { Login } from "@/pages/Login";
 import { Privacy } from "@/pages/Privacy";
 import { Profile } from "@/pages/Profile";
 import { Register } from "@/pages/Register";
@@ -19,11 +20,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: routes.login,
-            element: <>Login</>,
+            element: <Login />,
           },
           {
             path: routes.register,
             element: <Register />,
+          },
+          {
+            path: routes.passwordReset,
+            element: <>Reset</>,
           },
         ],
       },
