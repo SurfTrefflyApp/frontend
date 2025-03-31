@@ -114,7 +114,7 @@ export const Login = () => {
                 <FormControl>
                   <Input
                     id="password"
-                    autoComplete="new-password"
+                    autoComplete="current-password"
                     placeholder="Пароль"
                     type="password"
                     error={!!formState.errors.password}
