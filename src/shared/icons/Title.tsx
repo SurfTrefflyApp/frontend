@@ -1,4 +1,6 @@
-export const Title = () => {
+import { SVGProps } from "react";
+
+export const Title = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="134"
@@ -6,6 +8,7 @@ export const Title = () => {
       viewBox="0 0 134 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g filter="url(#filter0_d_694_281)">
         <path
