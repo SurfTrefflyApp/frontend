@@ -1,3 +1,4 @@
+import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
@@ -11,37 +12,42 @@ import { routes } from "@/shared/router";
 
 const router = createBrowserRouter([
   {
-    element: <PrivateRoutes navigateHref="/profile" />,
+    element: <AppLoader />,
     children: [
       {
-        path: routes.login,
-        element: <>Login</>,
+        element: <PrivateRoutes navigateHref="/profile" />,
+        children: [
+          {
+            path: routes.login,
+            element: <>Login</>,
+          },
+          {
+            path: routes.register,
+            element: <Register />,
+          },
+        ],
       },
       {
-        path: routes.register,
-        element: <Register />,
+        path: routes.welcome,
+        element: <Welcome />,
+      },
+      {
+        path: routes.profile,
+        element: <Profile />,
+      },
+      {
+        path: routes.main,
+        element: <>Main</>,
+      },
+      {
+        path: routes.terms,
+        element: <Terms />,
+      },
+      {
+        path: routes.privacy,
+        element: <Privacy />,
       },
     ],
-  },
-  {
-    path: routes.welcome,
-    element: <Welcome />,
-  },
-  {
-    path: routes.profile,
-    element: <Profile />,
-  },
-  {
-    path: routes.main,
-    element: <>Main</>,
-  },
-  {
-    path: routes.terms,
-    element: <Terms />,
-  },
-  {
-    path: routes.privacy,
-    element: <Privacy />,
   },
 ]);
 
