@@ -3,14 +3,13 @@ import axios from "axios";
 import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
-import { toast } from "sonner";
 
 import { register } from "@/pages/Register/api/register";
 import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
 
+import { setMessageEvent } from "@/shared/api";
 import { auth } from "@/shared/auth";
-import { ErrorResponse } from "@/shared/auth/types";
-import { Close } from "@/shared/icons/Close";
+import { ErrorResponse } from "@/shared/auth";
 import { Mail } from "@/shared/icons/Mail";
 import { Person } from "@/shared/icons/Person";
 import useFormPersist from "@/shared/lib/useFormPersist";
@@ -28,6 +27,7 @@ import { Input } from "@/shared/ui/input";
 
 export const Register = () => {
   const authEvent = useUnit(auth);
+  const setMessage = useUnit(setMessageEvent);
 
   const { formState, ...form } = useForm<RegisterSchema>({
     resolver: zodResolver(formSchema),
@@ -52,22 +52,12 @@ export const Register = () => {
       authEvent();
       clear();
     } catch (error) {
-      let toastTitle = "Не отловили";
-      let toastSubtitle = "Девочки, мы упали...";
       if (axios.isAxiosError<ErrorResponse>(error)) {
-        toastTitle = error.response?.data.title || toastTitle;
-        toastSubtitle = error.response?.data.subtitle || toastSubtitle;
+        setMessage({
+          title: error.response?.data.title,
+          subtitle: error.response?.data.subtitle,
+        });
       }
-
-      toast.error(toastTitle, {
-        icon: null,
-        position: "top-center",
-        description: toastSubtitle,
-        cancel: {
-          label: <Close />,
-          onClick: () => {},
-        },
-      });
     }
   };
 
@@ -103,6 +93,7 @@ export const Register = () => {
                   <Input
                     id="email"
                     placeholder="Почта"
+                    autoComplete="email"
                     startIcon={Mail}
                     iconProps={{
                       className: "w-6",

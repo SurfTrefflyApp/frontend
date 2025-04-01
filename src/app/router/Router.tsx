@@ -1,4 +1,5 @@
 import { AppLoader } from "@/app/router/AppLoader";
+import { ErrorPagesProvider } from "@/app/router/ErrorPagesProvider";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
@@ -7,13 +8,18 @@ import { Privacy } from "@/pages/Privacy";
 import { Profile } from "@/pages/Profile";
 import { Register } from "@/pages/Register";
 import { Terms } from "@/pages/Terms";
+import { Timeout } from "@/pages/Timeout";
 import { Welcome } from "@/pages/Welcome";
 
 import { routes } from "@/shared/router";
 
 const router = createBrowserRouter([
   {
-    element: <AppLoader />,
+    element: (
+      <ErrorPagesProvider>
+        <AppLoader />
+      </ErrorPagesProvider>
+    ),
     children: [
       {
         element: <PrivateRoutes navigateHref="/profile" />,
@@ -51,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: routes.privacy,
         element: <Privacy />,
+      },
+      {
+        path: routes.timeout,
+        element: <Timeout />,
       },
     ],
   },

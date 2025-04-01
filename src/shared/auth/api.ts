@@ -7,3 +7,7 @@ export function checkAuth() {
 export function logout() {
   return api.post("/logout");
 }
+
+export function refresh() {
+  return api.post("/auth/refresh");
+}

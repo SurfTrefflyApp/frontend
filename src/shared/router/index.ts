@@ -7,4 +7,5 @@ export const routes = {
   terms: "/terms",
   privacy: "/privacy",
   profile: "/profile",
+  timeout: "/timeout",
 };
