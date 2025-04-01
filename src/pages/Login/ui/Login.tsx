@@ -3,14 +3,13 @@ import axios from "axios";
 import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
-import { toast } from "sonner";
 
 import { login } from "@/pages/Login/api/login";
 import { LoginSchema, formSchema } from "@/pages/Login/model/formSchema";
 
+import { setMessageEvent } from "@/shared/api";
 import { auth } from "@/shared/auth";
-import { ErrorResponse } from "@/shared/auth/types";
-import { Close } from "@/shared/icons/Close";
+import { ErrorResponse } from "@/shared/auth";
 import { Mail } from "@/shared/icons/Mail";
 import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
@@ -27,6 +26,7 @@ import { Input } from "@/shared/ui/input";
 
 export const Login = () => {
   const authEvent = useUnit(auth);
+  const setMessage = useUnit(setMessageEvent);
 
   const { formState, ...form } = useForm<LoginSchema>({
     resolver: zodResolver(formSchema),
@@ -50,22 +50,12 @@ export const Login = () => {
       authEvent();
       clear();
     } catch (error) {
-      let toastTitle = "Не отловили";
-      let toastSubtitle = "Девочки, мы упали...";
       if (axios.isAxiosError<ErrorResponse>(error)) {
-        toastTitle = error.response?.data.title || toastTitle;
-        toastSubtitle = error.response?.data.subtitle || toastSubtitle;
+        setMessage({
+          title: error.response?.data.title,
+          subtitle: error.response?.data.subtitle,
+        });
       }
-
-      toast.error(toastTitle, {
-        icon: null,
-        position: "top-center",
-        description: toastSubtitle,
-        cancel: {
-          label: <Close />,
-          onClick: () => {},
-        },
-      });
     }
   };
 
@@ -91,6 +81,7 @@ export const Login = () => {
                   <Input
                     id="email"
                     placeholder="Почта"
+                    autoComplete="email"
                     startIcon={Mail}
                     iconProps={{
                       className: "w-6",

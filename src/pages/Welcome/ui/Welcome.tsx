@@ -9,11 +9,11 @@ export const Welcome = () => {
     <AuthLayout
       withBackBtn={false}
       footer={
-        <div className="flex flex-col items-stretch w-full gap-4">
+        <div className="flex flex-col items-stretch w-full gap-2">
           <Button asChild>
             <Link to={routes.register}>Зарегистрироваться</Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="ghost" className="text-primary">
             <Link to={routes.login}>Уже знакомы? Войти</Link>
           </Button>
         </div>
