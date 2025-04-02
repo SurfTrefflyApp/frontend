@@ -1,3 +1,4 @@
+import { AppLayout } from "@/app/router/AppLayout";
 import { AppLoader } from "@/app/router/AppLoader";
 import { ErrorPagesProvider } from "@/app/router/ErrorPagesProvider";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
@@ -43,24 +44,29 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: routes.profile,
-        element: <Profile />,
-      },
-      {
-        path: routes.main,
-        element: <>Main</>,
-      },
-      {
-        path: routes.terms,
-        element: <Terms />,
-      },
-      {
-        path: routes.privacy,
-        element: <Privacy />,
-      },
-      {
-        path: routes.timeout,
-        element: <Timeout />,
+        element: <AppLayout />,
+        children: [
+          {
+            path: routes.profile,
+            element: <Profile />,
+          },
+          {
+            path: routes.main,
+            element: <>Main</>,
+          },
+          {
+            path: routes.terms,
+            element: <Terms />,
+          },
+          {
+            path: routes.privacy,
+            element: <Privacy />,
+          },
+          {
+            path: routes.timeout,
+            element: <Timeout />,
+          },
+        ],
       },
     ],
   },
