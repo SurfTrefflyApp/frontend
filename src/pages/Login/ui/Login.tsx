@@ -56,6 +56,8 @@ export const Login = () => {
       })
       .catch((error) => {
         if (axios.isAxiosError<ErrorResponse>(error)) {
+          form.setError("email", {});
+          form.setError("password", {});
           setMessage({
             title: error.response?.data.title,
             subtitle: error.response?.data.subtitle,

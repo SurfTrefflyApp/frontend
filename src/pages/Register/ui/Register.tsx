@@ -57,6 +57,9 @@ export const Register = () => {
         navigate(routes.profile);
       })
       .catch((error) => {
+        form.setError("email", {});
+        form.setError("username", {});
+        form.setError("password", {});
         if (axios.isAxiosError<ErrorResponse>(error)) {
           setMessage({
             title: error.response?.data.title,
