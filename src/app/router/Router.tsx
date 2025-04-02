@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        element: <PrivateRoutes navigateHref="/profile" />,
+        element: <PrivateRoutes navigateHref={routes.main} />,
         children: [
           {
             path: routes.login,
