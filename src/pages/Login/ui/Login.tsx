@@ -64,7 +64,7 @@ export const Login = () => {
       <div className="text-center mb-8 pb-4 border-b-2 border-outline-variant">
         <h1 className="text-3xl font-semibold">С возвращением!</h1>
         <h2 className="text-xl">
-          Введи свой логин и пароль для того, чтобы войти
+          Введи свою почту и пароль для того, чтобы войти
         </h2>
       </div>
       <Form {...form} formState={formState}>
