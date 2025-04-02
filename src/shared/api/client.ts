@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { init } from "@/shared/api/interceptors";
+import { initResponseInterceptors } from "@/shared/api/interceptors/response";
 
 export const api = axios.create({
   baseURL: "/api/",
@@ -10,4 +10,4 @@ export const api = axios.create({
   },
 });
 
-init();
+initResponseInterceptors();

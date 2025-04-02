@@ -12,12 +12,14 @@ const logoutFx = createEffect(async () => {
 
 export const auth = createEvent();
 export const logoutEvent = createEvent();
+export const logoutWithoutApiEvent = createEvent();
 const startApp = createEvent();
 
 export const $isAuth = createStore(false)
   .on(checkAuthFx.done, () => true)
   .on(auth, () => true)
   .on(logoutFx.done, () => false)
+  .on(logoutWithoutApiEvent, () => false)
   .reset(checkAuthFx.fail);
 
 sample({

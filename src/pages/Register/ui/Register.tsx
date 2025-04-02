@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import { register } from "@/pages/Register/api/register";
 import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
@@ -28,6 +28,7 @@ import { Input } from "@/shared/ui/input";
 export const Register = () => {
   const authEvent = useUnit(auth);
   const setMessage = useUnit(setMessageEvent);
+  const navigate = useNavigate();
 
   const { formState, ...form } = useForm<RegisterSchema>({
     resolver: zodResolver(formSchema),
@@ -47,18 +48,22 @@ export const Register = () => {
   });
 
   const onSubmit = async (values: RegisterSchema) => {
-    try {
-      await register(values);
-      authEvent();
-      clear();
-    } catch (error) {
-      if (axios.isAxiosError<ErrorResponse>(error)) {
-        setMessage({
-          title: error.response?.data.title,
-          subtitle: error.response?.data.subtitle,
-        });
-      }
-    }
+    register(values)
+      .then(() => {
+        authEvent();
+        clear();
+      })
+      .then(() => {
+        navigate(routes.profile);
+      })
+      .catch((error) => {
+        if (axios.isAxiosError<ErrorResponse>(error)) {
+          setMessage({
+            title: error.response?.data.title,
+            subtitle: error.response?.data.subtitle,
+          });
+        }
+      });
   };
 
   return (
