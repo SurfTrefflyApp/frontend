@@ -6,6 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --surface-container-low: #f4f4f0;
   --error: #dc2626;
   --error-foreground: #fee2e2;
   --white: #ffffff;
@@ -87,6 +88,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-surface-container-low: var(--surface-container-low);
   --color-error: var(--error);
   --color-error-foreground: var(--error-foreground);
   --color-white: var(--white);
@@ -99,11 +101,11 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-secondary-container: var(--secondary-container);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-container: var(--secondary-container);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
@@ -133,7 +135,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    overflow: hidden;
   }
 
   #root {
