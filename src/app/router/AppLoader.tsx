@@ -9,7 +9,5 @@ export const AppLoader = () => {
   const isAuthChecking = useUnit(checkAuthFx.pending);
   const isAnimating = useUnit($animating);
 
-  return <Splash />;
-
   return isAuthChecking || isAnimating ? <Splash /> : <Outlet />;
 };
