@@ -1,6 +1,6 @@
 export const Privacy = () => {
   return (
-    <main className="max-w-4xl mx-auto px-4 py-8 text-gray-800">
+    <main className="h-svh max-w-4xl mx-auto px-4 py-8 text-gray-800 overflow-y-auto">
       <h1 className="text-3xl font-bold mb-6 text-indigo-700 border-b pb-2">
         Политика конфиденциальности
       </h1>
