@@ -3,6 +3,7 @@ import { User } from "@/entities/user";
 import { useUnit } from "effector-react";
 import { Link } from "react-router";
 
+import { $user, setUserEvent } from "@/pages/Profile/model/user";
 import { ProfileHeader } from "@/pages/Profile/ui/ProfileHeader";
 
 import { $isAuth } from "@/shared/auth";
@@ -23,11 +24,13 @@ const tags: TagModel[] = [
 
 export const Profile = () => {
   const isAuth = useUnit($isAuth);
+  const user = useUnit($user);
+  const setUser = useUnit(setUserEvent);
 
-  const { data: user } = useFetch<User>("/users/me", true);
+  useFetch<User>("/users/me", true, setUser);
 
   return (
-    <main className="mx-auth flex flex-col h-full">
+    <main className="mx-auto flex flex-col h-full max-w-[800px]">
       <ProfileHeader isAuth={isAuth} user={user} />
       <div className="flex-1 flex flex-col justify-center gap-6 p-6">
         {isAuth ? (

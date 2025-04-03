@@ -44,11 +44,10 @@ export const Register = () => {
     watch: form.watch,
     setValue: form.setValue,
     validate: true,
-    validateEmpty: false,
   });
 
   const onSubmit = async (values: RegisterSchema) => {
-    register(values)
+    return register(values)
       .then(() => {
         authEvent();
         clear();

@@ -3,7 +3,11 @@ import { useCallback, useEffect, useState } from "react";
 
 import { api } from "@/shared/api";
 
-export const useFetch = <T>(url: string, shouldFetch = true) => {
+export const useFetch = <T>(
+  url: string,
+  shouldFetch = true,
+  onSuccess?: (user: T) => void,
+) => {
   const [data, setData] = useState<T | undefined>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<AxiosError>();
@@ -17,13 +21,14 @@ export const useFetch = <T>(url: string, shouldFetch = true) => {
       });
 
       setData(response.data);
+      onSuccess?.(response.data);
       return response.data;
     } catch (error: unknown) {
       setError(error as AxiosError);
     } finally {
       setLoading(false);
     }
-  }, [url]);
+  }, [url, onSuccess]);
 
   useEffect(() => {
     console.debug(shouldFetch);

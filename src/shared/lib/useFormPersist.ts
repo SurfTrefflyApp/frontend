@@ -30,7 +30,7 @@ const useFormPersist = (
     touch = false,
     onTimeout,
     timeout,
-    validateEmpty = true,
+    validateEmpty = false,
   }: FormPersistConfig,
 ) => {
   const watchedValues = watch();

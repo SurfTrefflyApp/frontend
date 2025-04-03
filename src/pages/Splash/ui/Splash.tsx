@@ -12,7 +12,7 @@ export const Splash = () => {
   const stop = useUnit(endAnimation);
 
   return (
-    <>
+    <div className="w-svw h-svh overflow-hidden relative">
       <img
         src={Left}
         className="absolute left-[-4px] bottom-[-4px] select-none"
@@ -33,6 +33,6 @@ export const Splash = () => {
         src={Right}
         className="absolute right-[-4px] top-[-4px] select-none"
       />
-    </>
+    </div>
   );
 };

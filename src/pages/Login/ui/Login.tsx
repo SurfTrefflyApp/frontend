@@ -42,11 +42,10 @@ export const Login = () => {
     watch: form.watch,
     setValue: form.setValue,
     validate: true,
-    validateEmpty: false,
   });
 
   const onSubmit = (values: LoginSchema) => {
-    login(values)
+    return login(values)
       .then(() => {
         authEvent();
         clear();

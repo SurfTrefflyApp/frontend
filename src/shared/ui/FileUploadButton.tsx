@@ -12,7 +12,7 @@ interface FileUploadButton extends Button {
 export const FileUploadButton = ({
   label = "Загрузить фото",
   handleChange,
-  allowedExtensions = ["jpg, jpeg", "png"],
+  allowedExtensions = ["jpg", "jpeg", "png"],
   multiple = false,
   ...props
 }: FileUploadButton) => {

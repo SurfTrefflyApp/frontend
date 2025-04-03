@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { PropsWithChildren, ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -38,7 +37,7 @@ export const AdaptivePopover = ({
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className={clsx("sm:max-w-[425px]", contentClassname)}>
+        <DialogContent className={contentClassname}>
           <DialogHeader>{header}</DialogHeader>
           {children}
           <DialogFooter>{footer}</DialogFooter>

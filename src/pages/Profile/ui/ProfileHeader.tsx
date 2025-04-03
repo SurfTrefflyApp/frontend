@@ -12,7 +12,7 @@ import { Button } from "@/shared/ui/button";
 
 interface ProfileHeader {
   isAuth: boolean;
-  user?: User;
+  user?: User | null;
 }
 
 export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
