@@ -27,12 +27,12 @@ export const Profile = () => {
   const user = useUnit($user);
   const setUser = useUnit(setUserEvent);
 
-  useFetch<User>("/users/me", true, setUser);
+  useFetch<User>("/users/me", isAuth, setUser);
 
   return (
     <main className="mx-auto flex flex-col h-full max-w-[800px]">
       <ProfileHeader isAuth={isAuth} user={user} />
-      <div className="flex-1 flex flex-col justify-center gap-6 p-6">
+      <div className="flex-1 flex flex-col justify-center md:justify-start gap-6 p-6 md:px-0">
         {isAuth ? (
           <div className="flex flex-col gap-8">
             <UserTags tags={tags} />
