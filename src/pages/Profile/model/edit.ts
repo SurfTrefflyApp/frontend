@@ -1,0 +1,18 @@
+import emojiRegex from "emoji-regex";
+import { z } from "zod";
+
+const emojiReg = emojiRegex();
+
+export const schema = z.object({
+  username: z
+    .string()
+    .min(1, { message: "Поле не может быть пустым" })
+    .min(2, { message: "Длина ввода должна быть от 2 до 20 символов" })
+    .max(20, { message: "Длина ввода должна быть от 2 до 20 символов" })
+    .refine((username) => {
+      const regex = /^[\p{L}-]+$/u;
+      return regex.test(username) && !emojiReg.test(username);
+    }, "Введены некорректные символы"),
+});
+
+export type Schema = z.infer<typeof schema>;

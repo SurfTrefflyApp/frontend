@@ -1,44 +1,43 @@
+import { Tag as TagModel } from "@/entities/tag";
+import { User } from "@/entities/user";
 import { useUnit } from "effector-react";
 import { Link } from "react-router";
 
-import { $isAuth, logoutEvent as logout } from "@/shared/auth";
-import { DefaultUser } from "@/shared/icons/DefaultUser";
+import { $user, setUserEvent } from "@/pages/Profile/model/user";
+import { ProfileHeader } from "@/pages/Profile/ui/ProfileHeader";
+
+import { $isAuth } from "@/shared/auth";
 import { Edit } from "@/shared/icons/Edit";
-import { Exit } from "@/shared/icons/Exit";
+import { Plus } from "@/shared/icons/Plus";
+import { useFetch } from "@/shared/lib/useFetch";
 import { routes } from "@/shared/router";
+import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
+
+const tags: TagModel[] = [
+  { id: 1, name: "Музыка" },
+  { id: 2, name: "Кино" },
+  { id: 3, name: "Наука и технологии" },
+  { id: 4, name: "Спорт" },
+  { id: 5, name: "Юмор" },
+];
 
 export const Profile = () => {
   const isAuth = useUnit($isAuth);
-  const logoutEvent = useUnit(logout);
-  const username = "Name";
+  const user = useUnit($user);
+  const setUser = useUnit(setUserEvent);
+
+  useFetch<User>("/users/me", true, setUser);
 
   return (
-    <main className="mx-auth flex flex-col h-full">
-      <div className="p-6 pt-10 bg-secondary-container flex flex-col items-center gap-4 rounded-b-3xl">
-        <div className="flex justify-between items-center w-full">
-          {isAuth && (
-            <Button variant="ghost">
-              <Edit className="size-[22px]" />
-            </Button>
-          )}
-          <h1 className="text-3xl text-primary text-center font-semibold w-full">
-            Профиль
-          </h1>
-          {isAuth && (
-            <Button variant="ghost" onClick={logoutEvent}>
-              <Exit className="size-[20px]" />
-            </Button>
-          )}
-        </div>
-        <DefaultUser />
-        <h2 className="text-primary text-xl font-medium">
-          {isAuth ? username : "Гость"}
-        </h2>
-      </div>
+    <main className="mx-auto flex flex-col h-full max-w-[800px]">
+      <ProfileHeader isAuth={isAuth} user={user} />
       <div className="flex-1 flex flex-col justify-center gap-6 p-6">
         {isAuth ? (
-          <p>Здесь будут теги и мероприятия</p>
+          <div className="flex flex-col gap-8">
+            <UserTags tags={tags} />
+            <UserEvents />
+          </div>
         ) : (
           <>
             <p className="text-center text-xl font-medium">
@@ -53,5 +52,45 @@ export const Profile = () => {
         )}
       </div>
     </main>
+  );
+};
+
+const UserTags = ({ tags }: { tags: TagModel[] }) => {
+  return (
+    <div className="bg-surface-container-low rounded-3xl p-4 drop-shadow-lg">
+      <div className="relative mb-4">
+        <h3 className="text-center text-base font-semibold">Мои интересы</h3>
+        <Button
+          className="absolute top-1 right-0 p-0! h-[22px]"
+          variant="ghost"
+        >
+          <Edit className="size-[22px]" />
+        </Button>
+      </div>
+      <div className="text-center flex justify-center items-center flex-wrap gap-2 gap-x-6">
+        {tags.length ? (
+          tags.map(({ id, name }) => <Tag key={id} name={name} />)
+        ) : (
+          <p>Теги пока не выбраны</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const UserEvents = () => {
+  return (
+    <div className="bg-surface-container-low rounded-3xl p-4 drop-shadow-lg">
+      <div className="relative mb-4">
+        <h3 className="text-center text-base font-semibold">Мои события</h3>
+        <Button
+          className="absolute top-1 right-0 p-0! h-[22px]"
+          variant="ghost"
+        >
+          <Plus />
+        </Button>
+      </div>
+      <div className="text-center">Пока не нашлось Ваших мероприятий</div>
+    </div>
   );
 };
