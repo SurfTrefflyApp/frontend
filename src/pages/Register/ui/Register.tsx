@@ -1,10 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUnit } from "effector-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 
 import { register } from "@/pages/Register/api/register";
-import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
+import {
+  RegisterSchema,
+  RegisterServerErrors,
+  formSchema,
+} from "@/pages/Register/model/formSchema";
 
 import { setErrorEvent } from "@/shared/api";
 import { auth } from "@/shared/auth";
@@ -27,6 +32,9 @@ export const Register = () => {
   const authEvent = useUnit(auth);
   const setError = useUnit(setErrorEvent);
   const navigate = useNavigate();
+  const [serverErrors, setServerErrors] = useState<RegisterServerErrors | null>(
+    null,
+  );
 
   const { formState, ...form } = useForm<RegisterSchema>({
     resolver: zodResolver(formSchema),
@@ -37,6 +45,13 @@ export const Register = () => {
     },
     mode: "all",
   });
+
+  const watchEmail = form.watch("email");
+  const watchUsername = form.watch("username");
+  const watchPassword = form.watch("password");
+  useEffect(() => {
+    setServerErrors(null);
+  }, [watchEmail, watchUsername, watchPassword]);
 
   const { clear } = useFormPersist("register", {
     watch: form.watch,
@@ -54,9 +69,7 @@ export const Register = () => {
         navigate(routes.profile);
       })
       .catch((error) => {
-        form.setError("email", {});
-        form.setError("username", {});
-        form.setError("password", {});
+        setServerErrors({ email: true, username: true, password: true });
         setError(error);
       });
   };
@@ -99,7 +112,7 @@ export const Register = () => {
                       className: "w-6",
                     }}
                     className="w-full"
-                    error={!!formState.errors.email}
+                    error={!!formState.errors.email || !!serverErrors?.email}
                     {...field}
                   />
                 </FormControl>
@@ -123,7 +136,9 @@ export const Register = () => {
                     iconProps={{
                       className: "w-5",
                     }}
-                    error={!!formState.errors.username}
+                    error={
+                      !!formState.errors.username || !!serverErrors?.username
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -144,7 +159,9 @@ export const Register = () => {
                     autoComplete="new-password"
                     placeholder="Пароль"
                     type="password"
-                    error={!!formState.errors.password}
+                    error={
+                      !!formState.errors.password || !!serverErrors?.password
+                    }
                     {...field}
                   />
                 </FormControl>

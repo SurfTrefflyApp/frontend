@@ -1,14 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useUnit } from "effector-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 
 import { login } from "@/pages/Login/api/login";
-import { LoginSchema, formSchema } from "@/pages/Login/model/formSchema";
+import {
+  LoginSchema,
+  LoginServerErrors,
+  formSchema,
+} from "@/pages/Login/model/formSchema";
 
 import { setErrorEvent } from "@/shared/api";
-import { ErrorResponse } from "@/shared/api";
 import { auth } from "@/shared/auth";
 import { Mail } from "@/shared/icons/Mail";
 import useFormPersist from "@/shared/lib/useFormPersist";
@@ -28,6 +31,9 @@ export const Login = () => {
   const authEvent = useUnit(auth);
   const setError = useUnit(setErrorEvent);
   const navigate = useNavigate();
+  const [serverErrors, setServerErrors] = useState<LoginServerErrors | null>(
+    null,
+  );
 
   const { formState, ...form } = useForm<LoginSchema>({
     resolver: zodResolver(formSchema),
@@ -37,6 +43,12 @@ export const Login = () => {
     },
     mode: "all",
   });
+
+  const watchEmail = form.watch("email");
+  const watchPassword = form.watch("password");
+  useEffect(() => {
+    setServerErrors(null);
+  }, [watchEmail, watchPassword]);
 
   const { clear } = useFormPersist("login", {
     watch: form.watch,
@@ -54,11 +66,8 @@ export const Login = () => {
         navigate(routes.profile);
       })
       .catch((error) => {
-        if (axios.isAxiosError<ErrorResponse>(error)) {
-          form.setError("email", {});
-          form.setError("password", {});
-          setError(error);
-        }
+        setError(error);
+        setServerErrors({ email: true, password: true });
       });
   };
 
@@ -90,7 +99,7 @@ export const Login = () => {
                       className: "w-6",
                     }}
                     className="w-full"
-                    error={!!formState.errors.email}
+                    error={!!formState.errors.email || !!serverErrors?.email}
                     {...field}
                   />
                 </FormControl>
@@ -111,7 +120,9 @@ export const Login = () => {
                     autoComplete="current-password"
                     placeholder="Пароль"
                     type="password"
-                    error={!!formState.errors.password}
+                    error={
+                      !!formState.errors.password || !!serverErrors?.password
+                    }
                     {...field}
                   />
                 </FormControl>
