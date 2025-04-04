@@ -20,3 +20,6 @@ export const formSchema = z.object({
 });
 
 export type LoginSchema = z.infer<typeof formSchema>;
+export type LoginServerErrors = {
+  [K in keyof LoginSchema]?: boolean;
+};

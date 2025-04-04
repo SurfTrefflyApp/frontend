@@ -29,3 +29,6 @@ export const formSchema = z.object({
 });
 
 export type RegisterSchema = z.infer<typeof formSchema>;
+export type RegisterServerErrors = {
+  [K in keyof RegisterSchema]?: boolean;
+};
