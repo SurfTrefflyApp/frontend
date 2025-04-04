@@ -1,11 +1,36 @@
-interface Tag {
-  name: string;
-}
+import { type VariantProps, cva } from "class-variance-authority";
+import { ButtonHTMLAttributes } from "react";
 
-export const Tag = ({ name }: Tag) => {
+import { cn } from "@/shared/lib/utils";
+import { Button } from "@/shared/ui/button";
+
+const tagVariants = cva(
+  "rounded-xl p-3 leading-none text-white font-semibold",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-base",
+        selected:
+          "bg-primary-container text-primary hover:bg-primary-container hover:text-primary/80 active:text-primary/80",
+        static: "hover:bg-primary active:bg-primary cursor-text select-text",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+type Tag = VariantProps<typeof tagVariants> &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "name" | "id"> & {
+    name: string;
+    className?: string;
+  };
+
+export const Tag = ({ name, variant, className, ...props }: Tag) => {
   return (
-    <div className="bg-primary rounded-xl p-3 leading-none text-white text-base font-semibold">
+    <Button className={cn(tagVariants({ variant, className }))} {...props}>
       {name}
-    </div>
+    </Button>
   );
 };

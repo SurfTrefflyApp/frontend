@@ -7,9 +7,9 @@ import { Link, useNavigate } from "react-router";
 import { login } from "@/pages/Login/api/login";
 import { LoginSchema, formSchema } from "@/pages/Login/model/formSchema";
 
-import { setMessageEvent } from "@/shared/api";
+import { setErrorEvent } from "@/shared/api";
+import { ErrorResponse } from "@/shared/api";
 import { auth } from "@/shared/auth";
-import { ErrorResponse } from "@/shared/auth";
 import { Mail } from "@/shared/icons/Mail";
 import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
@@ -26,7 +26,7 @@ import { Input } from "@/shared/ui/input";
 
 export const Login = () => {
   const authEvent = useUnit(auth);
-  const setMessage = useUnit(setMessageEvent);
+  const setError = useUnit(setErrorEvent);
   const navigate = useNavigate();
 
   const { formState, ...form } = useForm<LoginSchema>({
@@ -57,10 +57,7 @@ export const Login = () => {
         if (axios.isAxiosError<ErrorResponse>(error)) {
           form.setError("email", {});
           form.setError("password", {});
-          setMessage({
-            title: error.response?.data.title,
-            subtitle: error.response?.data.subtitle,
-          });
+          setError(error);
         }
       });
   };

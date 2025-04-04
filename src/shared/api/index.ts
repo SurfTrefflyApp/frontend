@@ -3,6 +3,7 @@ export {
   $error,
   setErrorEvent,
   errorPages,
-  $message,
-  setMessageEvent,
+  $errorCode,
+  setErrorCodeEvent,
 } from "./model.ts";
+export type { ErrorResponse } from "./types.ts";

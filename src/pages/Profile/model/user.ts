@@ -1,8 +1,10 @@
+import { Tag } from "@/entities/tag";
 import { User } from "@/entities/user";
 import { createEvent, createStore } from "effector";
 
 export const setUserEvent = createEvent<User | null>();
 export const setUsernameEvent = createEvent<string>();
+export const setTagsEvent = createEvent<Tag[]>();
 
 export const $user = createStore<User | null>(null)
   .on(setUserEvent, (_, user) => user)
@@ -10,4 +12,9 @@ export const $user = createStore<User | null>(null)
     if (!state) return;
 
     return { ...state, username };
+  })
+  .on(setTagsEvent, (state, tags) => {
+    if (!state) return;
+
+    return { ...state, tags };
   });

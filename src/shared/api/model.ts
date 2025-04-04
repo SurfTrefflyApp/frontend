@@ -1,6 +1,7 @@
+import axios from "axios";
 import { createEvent, createStore } from "effector";
 
-import { ErrorResponse } from "@/shared/auth";
+import { ErrorResponse } from "@/shared/api";
 import { routes } from "@/shared/router";
 
 export const errorPages: {
@@ -13,25 +14,31 @@ export const errorPages: {
 export type errorsKeys = keyof typeof errorPages;
 export type errorValues = (typeof errorPages)[errorsKeys];
 
-export const setMessageEvent = createEvent<ErrorResponse>();
+export const setErrorEvent = createEvent<unknown>();
 
 const defaultTitle = "Ошибка сервера";
 const defaultSubtitle = "Что-то пошло не так. Попробуйте позже";
 
-export const $message = createStore<ErrorResponse | null>(null).on(
-  setMessageEvent,
-  (_, message) => {
-    if (!message) return null;
+export const $error = createStore<ErrorResponse | null>(null).on(
+  setErrorEvent,
+  (_, error) => {
+    if (!error) return null;
+    if (axios.isAxiosError<ErrorResponse>(error)) {
+      return {
+        title: error.response?.data.title,
+        subtitle: error.response?.data.subtitle,
+      };
+    }
     return {
-      title: message.title ?? defaultTitle,
-      subtitle: message.subtitle ?? defaultSubtitle,
+      title: defaultTitle,
+      subtitle: defaultSubtitle,
     };
   },
 );
 
-export const setErrorEvent = createEvent<errorsKeys | null>();
+export const setErrorCodeEvent = createEvent<errorsKeys | null>();
 
-export const $error = createStore<errorValues | null>(null).on(
-  setErrorEvent,
-  (_, error) => (error ? errorPages[error] : null),
+export const $errorCode = createStore<errorValues | null>(null).on(
+  setErrorCodeEvent,
+  (_, code) => (code ? errorPages[code] : null),
 );
