@@ -43,7 +43,7 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
             </Button>
           )}
         </div>
-        <DefaultUser />
+        <DefaultUser className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]" />
         <h2 className="text-primary text-xl font-medium">
           {isAuth ? user?.username : "Гость"}
         </h2>

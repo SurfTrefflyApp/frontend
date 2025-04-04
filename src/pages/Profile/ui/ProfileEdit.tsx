@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -8,8 +7,7 @@ import { updateUsername } from "@/pages/Profile/api/profile";
 import { Schema, schema } from "@/pages/Profile/model/edit";
 import { $user, setUserEvent } from "@/pages/Profile/model/user";
 
-import { setMessageEvent } from "@/shared/api";
-import { ErrorResponse } from "@/shared/auth";
+import { setErrorEvent } from "@/shared/api";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
 import { usePhotoUploader } from "@/shared/lib/usePhotoUploader";
 import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
@@ -32,7 +30,7 @@ interface ProfileEdit {
 export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
   const user = useUnit($user);
   const setUser = useUnit(setUserEvent);
-  const setMessage = useUnit(setMessageEvent);
+  const setError = useUnit(setErrorEvent);
 
   const { previewUrl, handleFileChange, resetPhoto } = usePhotoUploader();
 
@@ -54,12 +52,7 @@ export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
       setUser(res.data);
       setOpen(false);
     } catch (error) {
-      if (axios.isAxiosError<ErrorResponse>(error)) {
-        setMessage({
-          title: error.response?.data.title,
-          subtitle: error.response?.data.subtitle,
-        });
-      }
+      setError(error);
     }
   };
 

@@ -5,4 +5,3 @@ export {
   logoutWithoutApiEvent,
   checkAuthFx,
 } from "./model";
-export type { ErrorResponse } from "./types";

@@ -22,6 +22,7 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: #47654d;
   --primary-foreground: oklch(0.985 0 0);
+  --primary-container: #c6e9ca;
   --secondary: #556256;
   --secondary-foreground: oklch(0.985 0 0);
   --secondary-container: #d8e6d7;
@@ -103,6 +104,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-container: var(--primary-container);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary-container: var(--secondary-container);
@@ -143,5 +145,17 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }

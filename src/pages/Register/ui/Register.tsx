@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
@@ -7,9 +6,8 @@ import { Link, useNavigate } from "react-router";
 import { register } from "@/pages/Register/api/register";
 import { RegisterSchema, formSchema } from "@/pages/Register/model/formSchema";
 
-import { setMessageEvent } from "@/shared/api";
+import { setErrorEvent } from "@/shared/api";
 import { auth } from "@/shared/auth";
-import { ErrorResponse } from "@/shared/auth";
 import { Mail } from "@/shared/icons/Mail";
 import { Person } from "@/shared/icons/Person";
 import useFormPersist from "@/shared/lib/useFormPersist";
@@ -27,7 +25,7 @@ import { Input } from "@/shared/ui/input";
 
 export const Register = () => {
   const authEvent = useUnit(auth);
-  const setMessage = useUnit(setMessageEvent);
+  const setError = useUnit(setErrorEvent);
   const navigate = useNavigate();
 
   const { formState, ...form } = useForm<RegisterSchema>({
@@ -59,12 +57,7 @@ export const Register = () => {
         form.setError("email", {});
         form.setError("username", {});
         form.setError("password", {});
-        if (axios.isAxiosError<ErrorResponse>(error)) {
-          setMessage({
-            title: error.response?.data.title,
-            subtitle: error.response?.data.subtitle,
-          });
-        }
+        setError(error);
       });
   };
 

@@ -31,7 +31,6 @@ export const useFetch = <T>(
   }, [url, onSuccess]);
 
   useEffect(() => {
-    console.debug(shouldFetch);
     if (shouldFetch) {
       execute();
     }

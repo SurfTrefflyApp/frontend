@@ -1,7 +1,7 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 
 import { api } from "@/shared/api/client";
-import { setErrorEvent, setMessageEvent } from "@/shared/api/model";
+import { setErrorCodeEvent, setErrorEvent } from "@/shared/api/model";
 import { logoutWithoutApiEvent } from "@/shared/auth";
 import { refresh } from "@/shared/auth/api";
 
@@ -17,13 +17,8 @@ export class RefreshInterceptor {
         return api(originalRequest);
       } catch (refreshError) {
         logoutWithoutApiEvent();
-        setErrorEvent(401);
-        if (axios.isAxiosError(refreshError)) {
-          setMessageEvent({
-            title: refreshError.response?.data.title,
-            subtitle: refreshError.response?.data.subtitle,
-          });
-        }
+        setErrorCodeEvent(401);
+        setErrorEvent(refreshError);
         return Promise.reject(refreshError);
       } finally {
         this.isRefreshing = false;

@@ -5,35 +5,35 @@ import { toast } from "sonner";
 
 import { Offline } from "@/pages/Offline/ui/Offline";
 
-import { $error, $message, setErrorEvent } from "@/shared/api";
+import { $error, $errorCode, setErrorCodeEvent } from "@/shared/api";
 import { Close } from "@/shared/icons/Close";
 
 export const ErrorPagesProvider = ({ children }: PropsWithChildren) => {
-  const error = useUnit($error);
-  const setError = useUnit(setErrorEvent);
+  const errorCode = useUnit($errorCode);
+  const setErrorCode = useUnit(setErrorCodeEvent);
   const navigate = useNavigate();
-  const message = useUnit($message);
+  const error = useUnit($error);
 
   useEffect(() => {
-    if (error) {
-      navigate(error);
-      setError(null);
+    if (errorCode) {
+      navigate(errorCode);
+      setErrorCode(null);
     }
-  }, [error, navigate, setError]);
+  }, [errorCode, navigate, setErrorCode]);
 
   useEffect(() => {
-    if (message && message.title) {
-      toast.error(message.title, {
+    if (error && error.title) {
+      toast.error(error.title, {
         icon: null,
         position: "top-center",
-        description: message.subtitle,
+        description: error.subtitle,
         cancel: {
           label: <Close />,
           onClick: () => {},
         },
       });
     }
-  }, [message]);
+  }, [error]);
 
   if (!navigator.onLine) {
     return <Offline />;
