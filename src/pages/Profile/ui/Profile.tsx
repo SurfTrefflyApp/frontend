@@ -22,7 +22,7 @@ export const Profile = () => {
   return (
     <main className="mx-auto flex flex-col h-full max-w-[800px]">
       <ProfileHeader isAuth={isAuth} user={user} />
-      <div className="flex-1 md:justify-start p-6 md:px-0 overflow-y-auto no-scrollbar">
+      <div className="flex-1 md:justify-start p-6 mb-2 md:px-0 overflow-y-auto no-scrollbar">
         {isAuth ? (
           <>
             <ProfileTags tags={user?.tags ?? []} />

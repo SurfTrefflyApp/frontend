@@ -1,4 +1,4 @@
-import { Tabbar } from "@/windgets/Tabbar";
+import { Tabbar } from "@/widgets/Tabbar";
 import { Outlet } from "react-router";
 
 export const AppLayout = () => {
