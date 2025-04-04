@@ -141,12 +141,12 @@ export const Login = () => {
             Войти
           </Button>
         </form>
-        <Link
-          to={routes.passwordReset}
-          className="block mt-4 text-center text-primary text-sm font-medium"
+        <Button
+          variant="ghost"
+          className="mx-auto mt-4 block text-center text-primary text-sm font-medium p-0"
         >
-          Забыли пароль?
-        </Link>
+          <Link to={routes.passwordReset}>Забыли пароль?</Link>
+        </Button>
       </Form>
     </AuthLayout>
   );
