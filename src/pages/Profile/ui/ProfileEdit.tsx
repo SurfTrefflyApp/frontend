@@ -1,10 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { useUnit } from "effector-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+import { updateUsername } from "@/pages/Profile/api/profile";
 import { Schema, schema } from "@/pages/Profile/model/edit";
-import { $user, setUsernameEvent } from "@/pages/Profile/model/user";
+import { $user, setUserEvent } from "@/pages/Profile/model/user";
 
+import { setMessageEvent } from "@/shared/api";
+import { ErrorResponse } from "@/shared/auth";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
 import { usePhotoUploader } from "@/shared/lib/usePhotoUploader";
 import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
@@ -26,21 +31,36 @@ interface ProfileEdit {
 
 export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
   const user = useUnit($user);
-  const setUsername = useUnit(setUsernameEvent);
+  const setUser = useUnit(setUserEvent);
+  const setMessage = useUnit(setMessageEvent);
 
   const { previewUrl, handleFileChange, resetPhoto } = usePhotoUploader();
 
   const form = useForm<Schema>({
     resolver: zodResolver(schema),
     defaultValues: {
-      username: user?.username || "Kfsdf",
+      username: user?.username || "",
     },
     mode: "all",
   });
 
-  const onSubmit = (values: Schema) => {
-    setUsername(values.username);
-    setOpen(false);
+  useEffect(() => {
+    form.setValue("username", user?.username || "");
+  }, [user?.username, form]);
+
+  const onSubmit = async (values: Schema) => {
+    try {
+      const res = await updateUsername(values.username);
+      setUser(res.data);
+      setOpen(false);
+    } catch (error) {
+      if (axios.isAxiosError<ErrorResponse>(error)) {
+        setMessage({
+          title: error.response?.data.title,
+          subtitle: error.response?.data.subtitle,
+        });
+      }
+    }
   };
 
   const handleClose = () => {
