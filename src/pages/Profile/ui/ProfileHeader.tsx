@@ -1,4 +1,4 @@
-import { User } from "@/entities/user";
+import { User } from "@/entities/User";
 import { useUnit } from "effector-react";
 import { useState } from "react";
 

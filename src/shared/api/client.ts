@@ -1,4 +1,5 @@
 import axios from "axios";
+import { camelizeKeys } from "humps";
 
 import { initResponseInterceptors } from "@/shared/api/interceptors/response";
 
@@ -8,6 +9,18 @@ export const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  transformResponse: [
+    (data) => {
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return data;
+        }
+      }
+      return camelizeKeys(data);
+    },
+  ],
 });
 
 initResponseInterceptors();

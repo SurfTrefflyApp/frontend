@@ -1,5 +1,5 @@
-import { Tag } from "@/entities/tag";
-import { User } from "@/entities/user";
+import { Tag } from "@/entities/Tag";
+import { User } from "@/entities/User";
 
 import { api } from "@/shared/api";
 

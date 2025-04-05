@@ -1,4 +1,4 @@
-import { Tag as TagModel } from "@/entities/tag";
+import { Tag as TagModel } from "@/entities/Tag";
 
 import { Back } from "@/shared/icons/Back";
 import { LoadingSpinner } from "@/shared/icons/LoadingSpinner";
