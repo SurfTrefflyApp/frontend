@@ -1,13 +1,12 @@
 import { User } from "@/entities/User";
 import { useUnit } from "effector-react";
+import { LogOut, Pencil } from "lucide-react";
 import { useState } from "react";
 
 import { ProfileEdit } from "@/pages/Profile/ui/ProfileEdit";
 
 import { logoutEvent as logout } from "@/shared/auth";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
-import { Edit } from "@/shared/icons/Edit";
-import { Exit } from "@/shared/icons/Exit";
 import { Button } from "@/shared/ui/button";
 
 interface ProfileHeader {
@@ -31,7 +30,7 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
                 setEditOpen(true);
               }}
             >
-              <Edit className="size-[24px]" />
+              <Pencil className="text-primary size-[22px]" />
             </Button>
           )}
           <h1 className="text-3xl text-primary text-center font-semibold w-full">
@@ -39,7 +38,7 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
           </h1>
           {isAuth && (
             <Button variant="ghost" onClick={logoutEvent}>
-              <Exit className="size-[20px]" />
+              <LogOut className="text-primary size-[22px]" />
             </Button>
           )}
         </div>

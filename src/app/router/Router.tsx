@@ -1,12 +1,13 @@
+import { ErrorPagesProvider } from "@/app/providers/ErrorPagesProvider";
 import { AppLayout } from "@/app/router/AppLayout";
 import { AppLoader } from "@/app/router/AppLoader";
-import { ErrorPagesProvider } from "@/app/router/ErrorPagesProvider";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
 import { Event } from "@/pages/Event";
 import { Login } from "@/pages/Login";
 import { Main } from "@/pages/Main";
+import { NotFound } from "@/pages/NotFound";
 import { Privacy } from "@/pages/Privacy";
 import { Profile } from "@/pages/Profile";
 import { Register } from "@/pages/Register";
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
         <AppLoader />
       </ErrorPagesProvider>
     ),
+    errorElement: <NotFound />,
     children: [
       {
         element: <PrivateRoutes navigateHref={routes.main} />,

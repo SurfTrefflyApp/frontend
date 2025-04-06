@@ -1,13 +1,13 @@
 import { Tag as TagModel } from "@/entities/Tag";
 import { TagsPicker } from "@/widgets/TagsPicker";
 import { useUnit } from "effector-react";
+import { Pencil } from "lucide-react";
 import { useState } from "react";
 
 import { selectTag, unselectTag } from "@/pages/Profile/api/profile";
 import { setTagsEvent } from "@/pages/Profile/model/user";
 
 import { setErrorEvent } from "@/shared/api";
-import { Edit } from "@/shared/icons/Edit";
 import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
 
@@ -58,7 +58,7 @@ export const ProfileTags = ({ tags }: { tags: TagModel[] }) => {
               setTagsOpen(true);
             }}
           >
-            <Edit className="size-[22px]" />
+            <Pencil className="text-primary size-[18px]" />
           </Button>
         </div>
         <div className="text-center flex justify-center items-center flex-wrap gap-2 gap-x-6">
