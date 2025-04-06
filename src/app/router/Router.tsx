@@ -4,7 +4,9 @@ import { ErrorPagesProvider } from "@/app/router/ErrorPagesProvider";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
+import { Event } from "@/pages/Event";
 import { Login } from "@/pages/Login";
+import { Main } from "@/pages/Main";
 import { Privacy } from "@/pages/Privacy";
 import { Profile } from "@/pages/Profile";
 import { Register } from "@/pages/Register";
@@ -52,7 +54,7 @@ const router = createBrowserRouter([
           },
           {
             path: routes.main,
-            element: <>Main</>,
+            element: <Main />,
           },
           {
             path: routes.terms,
@@ -66,7 +68,19 @@ const router = createBrowserRouter([
             path: routes.timeout,
             element: <Timeout />,
           },
+          {
+            path: routes.events,
+            element: <>Events</>,
+          },
+          {
+            path: "/myEvents",
+            element: <>My events</>,
+          },
         ],
+      },
+      {
+        path: routes.event,
+        element: <Event />,
       },
     ],
   },

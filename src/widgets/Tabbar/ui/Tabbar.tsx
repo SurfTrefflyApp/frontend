@@ -1,16 +1,22 @@
+import { CalendarRange, House, Map, User } from "lucide-react";
 import { Link } from "react-router";
 
-import { Home } from "@/shared/icons/Home";
 import { routes } from "@/shared/router";
 
 export const Tabbar = () => {
   return (
     <nav className="w-full py-4 px-10 bg-[#F4F4F0] rounded-t-xl flex justify-between">
       <Link to={routes.main}>
-        <Home />
+        <House className="text-primary w-[40px] h-[40px]" />
+      </Link>
+      <Link to={routes.events}>
+        <Map className="text-primary w-[40px] h-[40px]" />
+      </Link>
+      <Link to="/myEvents">
+        <CalendarRange className="text-primary w-[40px] h-[40px]" />
       </Link>
       <Link to={routes.profile}>
-        <p>Profile</p>
+        <User className="text-primary w-[40px] h-[40px]" />
       </Link>
     </nav>
   );

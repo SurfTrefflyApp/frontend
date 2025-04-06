@@ -1,4 +1,4 @@
-import { Tag as TagModel } from "@/entities/tag";
+import { Tag as TagModel } from "@/entities/Tag";
 import { TagsPicker } from "@/widgets/TagsPicker";
 import { useUnit } from "effector-react";
 import { useState } from "react";

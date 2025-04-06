@@ -8,4 +8,6 @@ export const routes = {
   privacy: "/privacy",
   profile: "/profile",
   timeout: "/timeout",
+  events: "/events",
+  event: "/events/:id",
 };
