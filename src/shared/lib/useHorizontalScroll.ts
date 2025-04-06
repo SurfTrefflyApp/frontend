@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export const useHorizontalScroll = (speed = 1) => {
+export const useHorizontalScroll = () => {
   const elRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -10,9 +10,8 @@ export const useHorizontalScroll = (speed = 1) => {
     const handleWheel = (e: WheelEvent) => {
       if (e.deltaY === 0) return;
       e.preventDefault();
-      el.scrollTo({
-        left: el.scrollLeft + e.deltaY * speed,
-        behavior: "smooth",
+      el.scrollBy({
+        left: e.deltaY < 0 ? -30 : 30,
       });
     };
 
@@ -21,7 +20,7 @@ export const useHorizontalScroll = (speed = 1) => {
     return () => {
       el.removeEventListener("wheel", handleWheel);
     };
-  }, [speed]);
+  }, []);
 
   return elRef;
 };

@@ -68,6 +68,14 @@ const router = createBrowserRouter([
             path: routes.timeout,
             element: <Timeout />,
           },
+          {
+            path: routes.events,
+            element: <>Events</>,
+          },
+          {
+            path: "/myEvents",
+            element: <>My events</>,
+          },
         ],
       },
       {
