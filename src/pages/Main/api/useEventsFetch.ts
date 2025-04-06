@@ -10,7 +10,5 @@ interface MainResponse {
 }
 
 export const useEventsFetch = () => {
-  return useFetch<MainResponse>(
-    "https://run.mocky.io/v3/317b945e-d979-4f7c-9236-4772e8a8831a",
-  );
+  return useFetch<MainResponse>("/events/home");
 };
