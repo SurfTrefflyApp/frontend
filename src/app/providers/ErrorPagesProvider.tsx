@@ -3,16 +3,19 @@ import { PropsWithChildren, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
-import { Offline } from "@/pages/Offline/ui/Offline";
+import { Offline } from "@/pages/Offline";
 
 import { $error, $errorCode, setErrorCodeEvent } from "@/shared/api";
 import { Close } from "@/shared/icons/Close";
 
+import useNetworkStatus from "../lib/useNetworkStatus";
+
 export const ErrorPagesProvider = ({ children }: PropsWithChildren) => {
   const errorCode = useUnit($errorCode);
   const setErrorCode = useUnit(setErrorCodeEvent);
-  const navigate = useNavigate();
   const error = useUnit($error);
+  const navigate = useNavigate();
+  const isOnline = useNetworkStatus();
 
   useEffect(() => {
     if (errorCode) {
@@ -35,7 +38,7 @@ export const ErrorPagesProvider = ({ children }: PropsWithChildren) => {
     }
   }, [error]);
 
-  if (!navigator.onLine) {
+  if (!isOnline) {
     return <Offline />;
   }
 
