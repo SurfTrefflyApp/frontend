@@ -3,6 +3,8 @@ import { camelizeKeys } from "humps";
 
 import { initResponseInterceptors } from "@/shared/api/interceptors/response";
 
+import { startApp } from "../auth";
+
 export const api = axios.create({
   baseURL: "/api/",
   withCredentials: true,
@@ -24,3 +26,4 @@ export const api = axios.create({
 });
 
 initResponseInterceptors();
+startApp();

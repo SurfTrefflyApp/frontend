@@ -13,7 +13,7 @@ const logoutFx = createEffect(async () => {
 export const auth = createEvent();
 export const logoutEvent = createEvent();
 export const logoutWithoutApiEvent = createEvent();
-const startApp = createEvent();
+export const startApp = createEvent();
 
 export const $isAuth = createStore(false)
   .on(checkAuthFx.done, () => true)
@@ -31,5 +31,3 @@ sample({
   clock: startApp,
   target: checkAuthFx,
 });
-
-startApp();

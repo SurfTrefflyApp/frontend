@@ -6,7 +6,7 @@ import { RefreshInterceptor } from "@/shared/api/interceptors/refresh";
 const notInterceptedURLs = ["/login", "/auth", "/users"];
 
 export function initResponseInterceptors() {
-  const refreshInterceptor = new RefreshInterceptor();
+  const refreshInterceptor = new RefreshInterceptor(api);
   api.interceptors.response.use(
     (response) => response,
     async (error) => {

@@ -9,5 +9,7 @@ export const routes = {
   profile: "/profile",
   timeout: "/timeout",
   events: "/events",
+  eventsSearch: "/events-search",
   event: "/events/:id",
+  eventNew: "/events/new",
 };

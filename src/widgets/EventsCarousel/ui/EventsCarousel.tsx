@@ -7,11 +7,11 @@ import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/carousel";
 import { Event } from "./Event";
 
 interface EventsCarousel {
-  events: EventModel[];
+  events?: EventModel[];
   isLoading: boolean;
 }
 
-export const EventsCarousel = ({ events, isLoading }: EventsCarousel) => {
+export const EventsCarousel = ({ events = [], isLoading }: EventsCarousel) => {
   if (isLoading) {
     return <EventsSkeleton />;
   }

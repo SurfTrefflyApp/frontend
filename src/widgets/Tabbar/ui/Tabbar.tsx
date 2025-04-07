@@ -9,10 +9,10 @@ export const Tabbar = () => {
       <Link to={routes.main}>
         <House className="text-primary w-[40px] h-[40px]" />
       </Link>
-      <Link to={routes.events}>
+      <Link to={routes.eventsSearch}>
         <Map className="text-primary w-[40px] h-[40px]" />
       </Link>
-      <Link to="/myEvents">
+      <Link to={routes.events}>
         <CalendarRange className="text-primary w-[40px] h-[40px]" />
       </Link>
       <Link to={routes.profile}>
