@@ -4,4 +4,5 @@ export {
   logoutEvent,
   logoutWithoutApiEvent,
   checkAuthFx,
+  startApp,
 } from "./model";

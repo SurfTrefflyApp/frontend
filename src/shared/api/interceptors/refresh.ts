@@ -1,20 +1,23 @@
-import { AxiosRequestConfig } from "axios";
+import { AxiosInstance, AxiosRequestConfig } from "axios";
 
-import { api } from "@/shared/api/client";
 import { setErrorCodeEvent, setErrorEvent } from "@/shared/api/model";
 import { logoutWithoutApiEvent } from "@/shared/auth";
 import { refresh } from "@/shared/auth/api";
 
 export class RefreshInterceptor {
   private isRefreshing = false;
+  private axiosInstance: AxiosInstance;
+
+  constructor(axiosInstance: AxiosInstance) {
+    this.axiosInstance = axiosInstance;
+  }
 
   public async refresh(error: unknown, originalRequest: AxiosRequestConfig) {
     if (!this.isRefreshing) {
       try {
         this.isRefreshing = true;
         await refresh();
-
-        return api(originalRequest);
+        return this.axiosInstance(originalRequest);
       } catch (refreshError) {
         logoutWithoutApiEvent();
         setErrorCodeEvent(401);

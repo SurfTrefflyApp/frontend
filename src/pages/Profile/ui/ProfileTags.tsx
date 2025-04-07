@@ -1,61 +1,34 @@
 import { Tag as TagModel } from "@/entities/Tag";
-import { TagsPicker } from "@/widgets/TagsPicker";
-import { useUnit } from "effector-react";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 
-import { selectTag, unselectTag } from "@/pages/Profile/api/profile";
-import { setTagsEvent } from "@/pages/Profile/model/user";
-
-import { setErrorEvent } from "@/shared/api";
 import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
 
+import { ProfileTagsPicker } from "./ProfileTagsPicker";
+
 export const ProfileTags = ({ tags }: { tags: TagModel[] }) => {
-  const setError = useUnit(setErrorEvent);
-  const setTags = useUnit(setTagsEvent);
-
-  const [tagsOpen, setTagsOpen] = useState(false);
-
-  const handleSelect = async (tag: TagModel) => {
-    try {
-      const tags = (await selectTag(tag.id)).data;
-      setTags(tags);
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  const handleUnselect = async (tag: TagModel) => {
-    try {
-      const tags = (await unselectTag(tag.id)).data;
-      setTags(tags);
-    } catch (error) {
-      setError(error);
-    }
-  };
+  const [pickerOpen, setPickerOpen] = useState(false);
 
   return (
     <>
-      {tagsOpen && (
-        <TagsPicker
-          title="Расскажите нам о Ваших интересах"
-          description="Мы будем формировать список рекомендаций на основе вашего выбора"
-          open={tagsOpen}
-          setOpen={setTagsOpen}
-          selectedTags={tags}
-          onSelect={handleSelect}
-          onUnselect={handleUnselect}
+      {pickerOpen && (
+        <ProfileTagsPicker
+          open={pickerOpen}
+          setOpen={setPickerOpen}
+          tags={tags}
         />
       )}
       <div className="bg-surface-container-low rounded-3xl p-4 drop-shadow-lg mb-4">
-        <div className="relative mb-4">
-          <h3 className="text-center text-base font-semibold">Мои интересы</h3>
+        <div className="relative mb-4 grid grid-cols-3">
+          <h3 className="text-center text-base font-semibold self-center col-2">
+            Мои интересы
+          </h3>
           <Button
-            className="absolute top-1 right-0 p-0! h-[22px]"
+            className="h-[22px] w-fit ml-auto"
             variant="ghost"
             onClick={() => {
-              setTagsOpen(true);
+              setPickerOpen(true);
             }}
           >
             <Pencil className="text-primary size-[18px]" />
@@ -67,7 +40,7 @@ export const ProfileTags = ({ tags }: { tags: TagModel[] }) => {
               <Tag key={id} name={name} variant="static" />
             ))
           ) : (
-            <p>Теги пока не выбраны</p>
+            <p>Тут пока что пусто...</p>
           )}
         </div>
       </div>

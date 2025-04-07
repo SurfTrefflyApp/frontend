@@ -20,7 +20,8 @@ export const useHorizontalScroll = () => {
     return () => {
       el.removeEventListener("wheel", handleWheel);
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [elRef.current]);
 
   return elRef;
 };

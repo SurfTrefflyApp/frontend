@@ -6,15 +6,17 @@ import { useHorizontalScroll } from "@/shared/lib/useHorizontalScroll";
 import { cn } from "@/shared/lib/utils";
 
 interface EventsHorizontalList {
-  title: string;
-  events: EventModel[];
+  title?: string;
+  events?: EventModel[];
   isLoading: boolean;
+  emptyMessage?: string;
 }
 
 export const EventsHorizontalList = ({
   title,
-  events,
+  events = [],
   isLoading,
+  emptyMessage = "Пока не нашлось подходящих мероприятий",
 }: EventsHorizontalList) => {
   const scrollRef = useHorizontalScroll();
 
@@ -24,7 +26,7 @@ export const EventsHorizontalList = ({
 
   return (
     <div className="h-fit w-full bg-surface-container-low rounded-3xl p-3 [&>*]:select-none">
-      <h3 className="ml-4 mb-2 font-semibold">{title}</h3>
+      {title && <h3 className="ml-4 mb-2 font-semibold">{title}</h3>}
       <div
         className={cn(
           "h-full w-full flex flex-none gap-4 overflow-x-scroll no-scrollbar",
@@ -34,9 +36,7 @@ export const EventsHorizontalList = ({
         {events.length ? (
           events.map((event) => <Event key={event.id} event={event} />)
         ) : (
-          <h4 className="text-center w-full">
-            Пока не нашлось подходящих мероприятий
-          </h4>
+          <h4 className="text-center w-full">{emptyMessage}</h4>
         )}
       </div>
     </div>
