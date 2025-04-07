@@ -78,15 +78,15 @@ const router = createBrowserRouter([
             path: routes.eventsSearch,
             element: <>Search events</>,
           },
-          {
-            path: routes.eventNew,
-            element: <>New event</>,
-          },
         ],
       },
       {
         path: routes.event,
         element: <Event />,
+      },
+      {
+        path: routes.eventNew,
+        element: <>New event</>,
       },
     ],
   },

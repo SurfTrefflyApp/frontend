@@ -17,7 +17,7 @@ export const ErrorLayout = ({
   titleIconClassName,
 }: ErrorLayout) => {
   return (
-    <main className="grid grid-rows-3 h-full items-center justify-center">
+    <main className="grid grid-rows-3 h-full items-center justify-center p-4">
       <Title className={cn("mx-auto", titleIconClassName)} />
       <div className="flex flex-col gap-2 justify-center items-center">
         {icon}
