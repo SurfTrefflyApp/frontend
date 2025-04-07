@@ -9,6 +9,7 @@ export const errorPages: {
 } = {
   504: routes.timeout,
   401: routes.login,
+  400: routes.getError,
 } as const;
 
 export type errorsKeys = keyof typeof errorPages;
@@ -38,7 +39,7 @@ export const $error = createStore<ErrorResponse | null>(null).on(
 
 export const setErrorCodeEvent = createEvent<errorsKeys | null>();
 
-export const $errorCode = createStore<errorValues | null>(null).on(
+export const $errorPageURL = createStore<errorValues | null>(null).on(
   setErrorCodeEvent,
   (_, code) => (code ? errorPages[code] : null),
 );

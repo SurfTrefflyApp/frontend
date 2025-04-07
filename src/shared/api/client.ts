@@ -23,6 +23,7 @@ export const api = axios.create({
       return camelizeKeys(data);
     },
   ],
+  timeout: 50000,
 });
 
 initResponseInterceptors();
