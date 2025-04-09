@@ -11,7 +11,6 @@ export const useEventNewController = () => {
     defaultValues: {
       tags: [],
       eventType: "public",
-      description: "",
     },
     mode: "all",
     shouldUnregister: false,

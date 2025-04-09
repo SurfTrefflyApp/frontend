@@ -1,3 +1,5 @@
+import { parse } from "date-fns";
+import { ru } from "date-fns/locale";
 import emojiRegex from "emoji-regex";
 import { z } from "zod";
 
@@ -12,16 +14,20 @@ export const formSchema = z.object({
     .max(50, { message: "Длина ввода должна быть от 5 до 50 символов" })
     .refine((title) => !emojiReg.test(title)),
   dateTime: z
-    .date({
-      required_error: "Поле не может быть пустым",
-      invalid_type_error: "Некорректный формат даты и времени",
-    })
-    .min(new Date(), {
-      message: "Дата проведения не может быть в прошлом",
-    }),
+    .string()
+    .refine((dateTime) => /^\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}$/.test(dateTime))
+    .refine(
+      (dateTime) =>
+        parse(dateTime, "dd.MM.yyyy HH:mm", new Date(), { locale: ru }) >
+        new Date(),
+      {
+        message: "Дата не должна быть в прошлом",
+      },
+    ),
   participantsCount: z
     .number({
       required_error: "Поле не может быть пустым",
+      invalid_type_error: "Поле не может быть пустым",
     })
     .min(1, { message: "Длина ввода должна быть от 1 до 500 символов" })
     .max(500, { message: "Длина ввода должна быть от 1 до 500 символов" })

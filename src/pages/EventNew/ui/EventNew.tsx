@@ -1,5 +1,6 @@
 import { ContentHeader } from "@/widgets/ContentHeader";
 
+import { DateTimePicker } from "@/shared/ui/DateTimePicker";
 import { InfoIconWithTooltip } from "@/shared/ui/InfoIconWithTooltip";
 import { Button } from "@/shared/ui/button";
 import {
@@ -21,7 +22,7 @@ export const EventNew = () => {
   const { formState, form, onSubmit } = useEventNewController();
 
   return (
-    <main>
+    <main className="md:w-1/3 md:mx-auto">
       <ContentHeader title="Новое мероприятие" />
       <Form {...form} formState={formState}>
         <form
@@ -45,6 +46,31 @@ export const EventNew = () => {
                 </FormControl>
                 {formState.errors.title && (
                   <FormMessage>{formState.errors.title.message}</FormMessage>
+                )}
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="dateTime"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Дата и время</FormLabel>
+                <FormControl>
+                  <DateTimePicker
+                    {...field}
+                    onError={(error) => {
+                      if (error) {
+                        form.setError("dateTime", { message: error });
+                      } else {
+                        form.clearErrors("dateTime");
+                      }
+                    }}
+                    error={!!formState.errors.dateTime}
+                  />
+                </FormControl>
+                {formState.errors.dateTime && (
+                  <FormMessage>{formState.errors.dateTime.message}</FormMessage>
                 )}
               </FormItem>
             )}

@@ -4,6 +4,7 @@ import { Edit2 } from "lucide-react";
 import { useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
+import { cn } from "@/shared/lib/utils";
 import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
 import {
@@ -65,7 +66,15 @@ export const EventNewTags = ({ form }: EventNewTags) => {
             </Button>
           </div>
           <FormControl>
-            <div className="flex justify-center items-center flex-wrap gap-2 gap-x-6 bg-surface-container p-4 shadow-lg rounded-3xl">
+            <div
+              className={cn(
+                "flex justify-center items-center flex-wrap gap-2 gap-x-6 bg-surface-container p-4 shadow-lg rounded-3xl",
+                {
+                  "text-destructive border-destructive focus-visible:ring-destructive placeholder:text-destructive":
+                    form.formState.errors.tags,
+                },
+              )}
+            >
               {field.value.length ? (
                 field.value.map((tag) => <Tag key={tag.id} name={tag.name} />)
               ) : (
