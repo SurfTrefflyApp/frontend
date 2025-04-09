@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import { useNavigate } from "react-router";
 
 import { Back } from "@/shared/icons/Back";
@@ -10,7 +10,7 @@ import { Button } from "@/shared/ui/button";
 
 interface AuthLayout extends PropsWithChildren {
   withBackBtn?: boolean;
-  footer?: ReactElement;
+  footer?: ReactNode;
 }
 
 export const AuthLayout = ({

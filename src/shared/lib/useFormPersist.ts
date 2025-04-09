@@ -17,6 +17,30 @@ export interface FormPersistConfig {
   validateEmpty?: boolean;
 }
 
+function checkIsValueNotEmpty(value: any): boolean {
+  if (typeof value === "object" && value !== null) {
+    if (Array.isArray(value)) {
+      return value.length > 0;
+    } else {
+      return Object.keys(value).length > 0;
+    }
+  } else {
+    return Boolean(value);
+  }
+}
+
+function getShouldCheck(
+  exclude: FormPersistConfig["exclude"],
+  key: string,
+  validateEmpty: boolean,
+  value: any,
+): boolean {
+  return !!(
+    !exclude?.includes(key) &&
+    (validateEmpty || (!validateEmpty && checkIsValueNotEmpty(value)))
+  );
+}
+
 const useFormPersist = (
   name: string,
   {
@@ -54,9 +78,12 @@ const useFormPersist = (
       }
 
       Object.keys(values).forEach((key) => {
-        const shouldSet =
-          !exclude.includes(key) &&
-          (validateEmpty || (!validateEmpty && values[key]));
+        const shouldSet = getShouldCheck(
+          exclude,
+          key,
+          validateEmpty,
+          values[key],
+        );
         if (shouldSet) {
           dataRestored[key] = values[key];
           setValue(key, values[key], {

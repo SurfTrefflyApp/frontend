@@ -1,3 +1,4 @@
+import { VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
 import { EyeClose } from "@/shared/icons/EyeClose";
@@ -7,17 +8,47 @@ import { Icon, IconProps } from "@/shared/icons/type";
 import mergeRefs from "@/shared/lib/mergeRefs";
 import { cn } from "@/shared/lib/utils";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  startIcon?: Icon;
-  endIcon?: Icon;
-  iconProps?: IconProps;
-  error?: boolean;
-}
+const inputVariants = cva(
+  cn(
+    "w-full focus-visible:ring-blue focus-visible:ring-ring/25 focus-visible:ring-2 md:text-xl",
+    "shadow-md border text-sm ring-offset-background outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  ),
+  {
+    variants: {
+      variant: {
+        default: cn(
+          "rounded-[20px] border-input bg-white py-4 px-12 file:border-0 placeholder:text-muted-foreground",
+          "text-green text-center text-base placeholder:text-green placeholder:opacity-100 focus:placeholder:opacity-0",
+        ),
+        secondary: cn("bg-surface-container rounded-xl p-4 px-6"),
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
+  VariantProps<typeof inputVariants> & {
+    startIcon?: Icon;
+    endIcon?: Icon;
+    iconProps?: IconProps;
+    error?: boolean;
+  };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    { className, type, startIcon, endIcon, iconProps, error, ...props },
+    {
+      className,
+      type,
+      startIcon,
+      endIcon,
+      iconProps,
+      error,
+      variant,
+      ...props
+    },
     ref,
   ) => {
     const [show, setShow] = React.useState(false);
@@ -36,17 +67,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       }, 0);
     };
 
-    const inputClassname = cn(
-      "flex h-10 w-full rounded-[20px] shadow-md border border-input bg-white py-8 px-12 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground outline-none disabled:cursor-not-allowed disabled:opacity-50",
-      "focus-visible:ring-blue focus-visible:ring-ring/25 focus-visible:ring-2",
-      "text-green text-center text-base placeholder:text-green placeholder:opacity-100 focus:placeholder:opacity-0",
-      "md:text-xl",
-      className,
-      {
-        "text-destructive border-destructive focus-visible:ring-destructive placeholder:text-destructive":
-          error,
-      },
-    );
+    const inputClassname = cn(inputVariants({ variant, className }), {
+      "text-destructive border-destructive focus-visible:ring-destructive placeholder:text-destructive":
+        error,
+    });
 
     const iconClassname = cn(iconProps?.className, {
       "text-destructive": error,

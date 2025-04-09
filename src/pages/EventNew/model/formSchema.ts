@@ -1,0 +1,73 @@
+import emojiRegex from "emoji-regex";
+import { z } from "zod";
+
+const emojiReg = emojiRegex();
+
+export const formSchema = z.object({
+  title: z
+    .string({
+      required_error: "Поле не может быть пустым",
+    })
+    .min(5, { message: "Длина ввода должна быть от 5 до 50 символов" })
+    .max(50, { message: "Длина ввода должна быть от 5 до 50 символов" })
+    .refine((title) => !emojiReg.test(title)),
+  dateTime: z
+    .date({
+      required_error: "Поле не может быть пустым",
+      invalid_type_error: "Некорректный формат даты и времени",
+    })
+    .min(new Date(), {
+      message: "Дата проведения не может быть в прошлом",
+    }),
+  participantsCount: z
+    .number({
+      required_error: "Поле не может быть пустым",
+    })
+    .min(1, { message: "Длина ввода должна быть от 1 до 500 символов" })
+    .max(500, { message: "Длина ввода должна быть от 1 до 500 символов" })
+    .transform(String)
+    .refine((count) => /^\d+$/.test(count), {
+      message: "Введены некорректные символы",
+    }),
+  description: z
+    .string({
+      message: "Поле не может быть пустым",
+    })
+    .min(1, { message: "Поле не может быть пустым" })
+    .min(50, { message: "Длина ввода должна быть от 50 до 1000 символов" })
+    .max(1000, { message: "Длина ввода должна быть от 50 до 1000 символов" }),
+  location: z.object({
+    address: z
+      .string({
+        required_error: "Поле не может быть пустым",
+      })
+      .min(1, {
+        message: "Поле не может быть пустым",
+      }),
+    coordinates: z.tuple([z.number(), z.number()], {
+      message: "Введены некорректные символы",
+    }),
+  }),
+  eventType: z.enum(["public", "private"], {
+    required_error: "Выберите тип мероприятия",
+    invalid_type_error: "Некорректный тип мероприятия",
+  }),
+  tags: z
+    .array(
+      z.object({
+        id: z.number(),
+        name: z.string(),
+      }),
+    )
+    .min(1, {
+      message: "Добавьте хотя бы один тег",
+    })
+    .max(3, {
+      message: "Можно добавить не более 3 тегов",
+    }),
+});
+
+export type EventSchema = z.infer<typeof formSchema>;
+export type EventServerErrors = {
+  [K in keyof EventSchema]?: boolean;
+};
