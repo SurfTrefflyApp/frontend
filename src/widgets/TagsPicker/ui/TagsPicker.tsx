@@ -22,6 +22,7 @@ interface TagsPicker {
   selectedTags: TagModel[];
   onSelect: (tag: TagModel) => void;
   onUnselect: (tag: TagModel) => void;
+  maxSelectedCount?: number;
 }
 
 export const TagsPicker = ({
@@ -32,6 +33,7 @@ export const TagsPicker = ({
   selectedTags,
   onSelect,
   onUnselect,
+  maxSelectedCount,
 }: TagsPicker) => {
   const { data: tags, loading } = useFetch<{ tags: TagModel[] }>("/tags");
 
@@ -39,11 +41,15 @@ export const TagsPicker = ({
     const selected = selectedTags.find((value) => value.id === tag.id);
     return (
       <Tag
+        key={tag.id}
         {...tag}
         onClick={() => {
           if (selected) {
             onUnselect(tag);
           } else {
+            if (maxSelectedCount && selectedTags.length >= maxSelectedCount) {
+              return;
+            }
             onSelect(tag);
           }
         }}

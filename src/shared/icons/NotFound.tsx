@@ -16,23 +16,23 @@ export const NotFound = (props: SVGProps<SVGSVGElement>) => {
           cy="82"
           r="74"
           fill="white"
-          fill-opacity="0.8"
-          shape-rendering="crispEdges"
+          fillOpacity="0.8"
+          shapeRendering="crispEdges"
         />
         <circle
           cx="85.5752"
           cy="82"
           r="74"
           stroke="#4B6A51"
-          stroke-width="15"
-          shape-rendering="crispEdges"
+          strokeWidth="15"
+          shapeRendering="crispEdges"
         />
       </g>
       <path
         d="M157.575 144L229.575 218"
         stroke="#4B6A51"
-        stroke-width="20"
-        stroke-linecap="round"
+        strokeWidth="20"
+        strokeLinecap="round"
       />
       <line
         x1="142.111"
@@ -40,7 +40,7 @@ export const NotFound = (props: SVGProps<SVGSVGElement>) => {
         x2="166.111"
         y2="152.464"
         stroke="#4B6A51"
-        stroke-width="10"
+        strokeWidth="10"
       />
       <line
         x1="221.839"
@@ -48,7 +48,7 @@ export const NotFound = (props: SVGProps<SVGSVGElement>) => {
         x2="206.989"
         y2="210.263"
         stroke="#2F312E"
-        stroke-width="4"
+        strokeWidth="4"
       />
       <line
         x1="226.839"
@@ -56,7 +56,7 @@ export const NotFound = (props: SVGProps<SVGSVGElement>) => {
         x2="211.989"
         y2="215.263"
         stroke="#2F312E"
-        stroke-width="4"
+        strokeWidth="4"
       />
       <line
         x1="231.839"
@@ -64,7 +64,7 @@ export const NotFound = (props: SVGProps<SVGSVGElement>) => {
         x2="216.989"
         y2="220.263"
         stroke="#2F312E"
-        stroke-width="4"
+        strokeWidth="4"
       />
       <defs>
         <filter
@@ -74,9 +74,9 @@ export const NotFound = (props: SVGProps<SVGSVGElement>) => {
           width="171"
           height="171"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"

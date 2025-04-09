@@ -5,6 +5,7 @@ import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
 import { Event } from "@/pages/Event";
+import { EventNew } from "@/pages/EventNew";
 import { Login } from "@/pages/Login";
 import { Main } from "@/pages/Main";
 import { NotFound } from "@/pages/NotFound";
@@ -48,6 +49,15 @@ const router = createBrowserRouter([
         ],
       },
       {
+        element: <PrivateRoutes navigateHref={routes.profile} forAuth />,
+        children: [
+          {
+            path: routes.eventNew,
+            element: <EventNew />,
+          },
+        ],
+      },
+      {
         element: <AppLayout />,
         children: [
           {
@@ -83,10 +93,6 @@ const router = createBrowserRouter([
       {
         path: routes.event,
         element: <Event />,
-      },
-      {
-        path: routes.eventNew,
-        element: <>New event</>,
       },
     ],
   },
