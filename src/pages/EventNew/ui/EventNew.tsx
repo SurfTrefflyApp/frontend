@@ -16,6 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/shared/ui/radio-group";
 import { Textarea } from "@/shared/ui/textarea";
 
 import { useEventNewController } from "../controller/useEventNewController";
+import { EventNewAddress } from "./EventNewAddress";
 import { EventNewTags } from "./EventNewTags";
 
 export const EventNew = () => {
@@ -126,6 +127,7 @@ export const EventNew = () => {
               </FormItem>
             )}
           />
+          <EventNewAddress form={{ ...form, formState }} />
           <FormField
             control={form.control}
             name="eventType"

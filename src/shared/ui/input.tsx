@@ -20,7 +20,7 @@ const inputVariants = cva(
           "rounded-[20px] border-input bg-white py-4 px-12 file:border-0 placeholder:text-muted-foreground",
           "text-green text-center text-base placeholder:text-green placeholder:opacity-100 focus:placeholder:opacity-0",
         ),
-        secondary: cn("bg-surface-container rounded-xl p-4 px-6"),
+        secondary: "bg-surface-container rounded-xl p-4 px-6",
       },
     },
     defaultVariants: {

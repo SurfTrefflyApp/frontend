@@ -1,5 +1,8 @@
 import { ChevronLeft } from "lucide-react";
 import { ReactNode } from "react";
+import { useNavigate } from "react-router";
+
+import { Button } from "@/shared/ui/button";
 
 interface ContentHeader {
   withBackArrow?: boolean;
@@ -11,9 +14,21 @@ export const ContentHeader = ({
   title,
   rightContent,
 }: ContentHeader) => {
+  const navigate = useNavigate();
+
   return (
     <header className="grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-3 rounded-b-3xl shadow-md">
-      {withBackArrow && <ChevronLeft className="text-secondary size-[30px]" />}
+      {withBackArrow && (
+        <Button
+          variant="ghost"
+          onClick={() => {
+            navigate(-1);
+          }}
+          className="p-0!"
+        >
+          <ChevronLeft className="text-secondary size-[30px]" />
+        </Button>
+      )}
       {title && (
         <h1 className="font-semibold truncate whitespace-nowrap">{title}</h1>
       )}
