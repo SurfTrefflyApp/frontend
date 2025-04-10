@@ -24,7 +24,7 @@ export const EventNewAddress = ({
         <FormItem>
           <FormLabel>Место проведения</FormLabel>
           <FormControl>
-            <AddressPicker address={field.value} />
+            <AddressPicker setAddress={field.onChange} />
           </FormControl>
           {form.formState.errors.location && (
             <FormMessage>{form.formState.errors.location.message}</FormMessage>
