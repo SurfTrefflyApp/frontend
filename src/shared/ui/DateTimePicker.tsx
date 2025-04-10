@@ -50,14 +50,18 @@ export function DateTimePicker({
 
   const handleHourChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!value) return;
-    const updated = new Date(value);
+    const updated = parse(value, "dd.MM.yyyy HH:mm", new Date(), {
+      locale: ru,
+    });
     updated.setHours(parseInt(e.target.value));
     onChange(format(updated, "dd.MM.yyyy HH:mm"));
   };
 
   const handleMinuteChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!value) return;
-    const updated = new Date(value);
+    const updated = parse(value, "dd.MM.yyyy HH:mm", new Date(), {
+      locale: ru,
+    });
     updated.setMinutes(parseInt(e.target.value));
     onChange(format(updated, "dd.MM.yyyy HH:mm"));
   };
@@ -88,9 +92,12 @@ export function DateTimePicker({
       </InputMask>
 
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger className="absolute right-1 top-1/2 -translate-y-1/2 text-muted-foreground">
+        <PopoverTrigger
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+          asChild
+        >
           <Button variant="ghost" size="icon" type="button">
-            <CalendarIcon className="h-4 w-4" />
+            <CalendarIcon className="h-[24px] w-[24px] size-1 text-primary" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-2" align="start">
