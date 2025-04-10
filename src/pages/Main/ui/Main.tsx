@@ -23,7 +23,7 @@ export const Main = () => {
       />
       <EventsHorizontalList
         title="Самые новые"
-        events={data?.new}
+        events={data?.latest}
         isLoading={loading}
       />
     </main>

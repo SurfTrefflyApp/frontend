@@ -1,11 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
+import { setErrorEvent } from "@/shared/api";
 import useFormPersist from "@/shared/lib/useFormPersist";
+import { routes } from "@/shared/router";
 
+import { createEvent } from "../api";
 import { EventSchema, formSchema } from "../model/formSchema";
 
 export const useEventNewController = () => {
+  const navigate = useNavigate();
+  const setError = useUnit(setErrorEvent);
+
   const { formState, ...form } = useForm<EventSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -16,14 +24,20 @@ export const useEventNewController = () => {
     shouldUnregister: false,
   });
 
-  useFormPersist("newEvent", {
+  const { clear } = useFormPersist("newEvent", {
     watch: form.watch,
     setValue: form.setValue,
     validate: true,
   });
 
   const onSubmit = async (values: EventSchema) => {
-    console.debug(values);
+    try {
+      await createEvent(values);
+      clear();
+      navigate(routes.profile);
+    } catch (error) {
+      setError(error);
+    }
   };
 
   return { formState, form, onSubmit };
