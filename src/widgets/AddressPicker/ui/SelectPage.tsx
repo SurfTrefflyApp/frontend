@@ -22,9 +22,9 @@ export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
         className={cn(
-          "[&>button:last-child]:hidden w-full max-w-full h-full max-h-full",
+          "[&>button:last-child]:hidden w-full min-w-full h-full max-h-full",
           "rounded-none flex flex-col p-0 pb-4",
-          "md:max-h-fit md:rounded-2xl",
+          "md:min-w-1/2",
         )}
       >
         <DialogHeader className="flex flex-row justify-between gap-2 items-center bg-surface-container p-2 pr-8 rounded-b-3xl shadow-md">
@@ -39,13 +39,11 @@ export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
           </Button>
           <h1 className="text-xl font-semibold">Место проведения</h1>
         </DialogHeader>
-        <div className="px-4">
-          <div>
-            <p className="font-semibold mb-2 text-sm">Выбранный адресс:</p>
-            <p className="font-semibold text-sm">
-              {address?.address ? address.address : "Место не выбрано"}
-            </p>
-          </div>
+        <div className="px-4 md:flex md:gap-4">
+          <p className="font-semibold mb-2 text-sm">Выбранный адресс:</p>
+          <p className="font-semibold text-sm">
+            {address?.address ? address.address : "Место не выбрано"}
+          </p>
         </div>
         <MapWithSearch />
         <Button
