@@ -23,7 +23,7 @@ export const EventNew = () => {
   const { formState, form, onSubmit } = useEventNewController();
 
   return (
-    <main className="md:w-1/3 md:mx-auto">
+    <main className="lg:w-2/4 md:mx-auto overflow-y-auto no-scrollbar">
       <ContentHeader title="Новое мероприятие" />
       <Form {...form} formState={formState}>
         <form

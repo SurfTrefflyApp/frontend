@@ -1,27 +1,33 @@
 import { Address } from "@/entities/Address";
+import { useUnit } from "effector-react";
 import { ChevronLeft } from "lucide-react";
 
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
 import { Dialog, DialogContent, DialogHeader } from "@/shared/ui/dialog";
 
+import { $address } from "../model";
+import { MapWithSearch } from "./MapWithSearch";
+
 interface SelectPage {
   open: boolean;
   setOpen: (state: boolean) => void;
-  address?: Address;
+  setAddress: (address: Address) => void;
 }
 
-export const SelectPage = ({ open, setOpen, address }: SelectPage) => {
+export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
+  const address = useUnit($address);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
         className={cn(
-          "[&>button]:hidden w-full max-w-full h-full max-h-full",
-          "rounded-none flex flex-col p-0",
+          "[&>button:last-child]:hidden w-full max-w-full h-full max-h-full",
+          "rounded-none flex flex-col p-0 pb-4",
           "md:max-h-fit md:rounded-2xl",
         )}
       >
-        <DialogHeader className="flex flex-row justify-between gap-2 items-center bg-surface-container p-3 pr-8 rounded-b-3xl shadow-md">
+        <DialogHeader className="flex flex-row justify-between gap-2 items-center bg-surface-container p-2 pr-8 rounded-b-3xl shadow-md">
           <Button
             variant="ghost"
             onClick={() => {
@@ -41,6 +47,16 @@ export const SelectPage = ({ open, setOpen, address }: SelectPage) => {
             </p>
           </div>
         </div>
+        <MapWithSearch />
+        <Button
+          className="mx-4"
+          onClick={() => {
+            setAddress(address);
+            setOpen(false);
+          }}
+        >
+          Использовать
+        </Button>
       </DialogContent>
     </Dialog>
   );

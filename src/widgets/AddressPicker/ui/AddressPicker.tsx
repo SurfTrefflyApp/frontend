@@ -1,20 +1,31 @@
 import { Address } from "@/entities/Address";
-import { useState } from "react";
+import { useUnit } from "effector-react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/shared/ui/button";
 
+import { $address } from "../model";
 import { SelectPage } from "./SelectPage";
 
 interface AddressPicker {
-  address?: Address;
+  setAddress: (address: Address) => void;
   error?: boolean;
 }
-export const AddressPicker = ({ address }: AddressPicker) => {
-  const [selectPageOpen, setSelectPageOpen] = useState(true);
+export const AddressPicker = ({ setAddress }: AddressPicker) => {
+  const [selectPageOpen, setSelectPageOpen] = useState(false);
+  const address = useUnit($address);
+
+  useEffect(() => {
+    setAddress(address);
+  }, [address, setAddress]);
 
   return (
     <>
-      <SelectPage open={selectPageOpen} setOpen={setSelectPageOpen} />
+      <SelectPage
+        open={selectPageOpen}
+        setOpen={setSelectPageOpen}
+        setAddress={setAddress}
+      />
       <div className="bg-surface-container rounded-xl p-4 px-6 flex justify-between items-center overflow-hidden gap-2">
         <p className="text-black/50 text-sm leading-none truncate">
           {address?.address ? address.address : "Введите место проведения"}
