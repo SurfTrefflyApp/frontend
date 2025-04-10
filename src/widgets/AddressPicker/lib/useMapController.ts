@@ -1,12 +1,17 @@
-import axios from "axios";
 import { useUnit } from "effector-react";
 import { useCallback, useState } from "react";
 
+import { setErrorEvent } from "@/shared/api";
+
+import { geocode } from "../api";
+import { geocodeMapper } from "../mapper/geocode";
 import { $address, setAddressEvent } from "../model";
 
 export const useMapController = () => {
   const address = useUnit($address);
   const setAddress = useUnit(setAddressEvent);
+  const setError = useUnit(setErrorEvent);
+
   const [coordinates, setCoordinates] = useState(address.coordinates);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,24 +23,16 @@ export const useMapController = () => {
       setIsLoading(true);
 
       try {
-        const { data } = await axios.get(
-          `https://geocode-maps.yandex.ru/1.x/?apikey=${import.meta.env.VITE_Y_API}&format=json&geocode=${coords[1]},${coords[0]}`,
-        );
-
-        const foundAddress: string =
-          data.response.GeoObjectCollection.featureMember[0]?.GeoObject
-            ?.metaDataProperty?.GeocoderMetaData?.text || "Адрес не определен";
-        setAddress({
-          address: foundAddress,
-          coordinates: [coords[0], coords[1]],
-        });
+        const { data } = await geocode(coords[0], coords[1]);
+        const address = geocodeMapper(data);
+        setAddress(address);
       } catch (error) {
-        console.error("Ошибка при получении адреса:", error);
+        setError(error);
       } finally {
         setIsLoading(false);
       }
     },
-    [setAddress],
+    [setAddress, setError],
   );
 
   return {

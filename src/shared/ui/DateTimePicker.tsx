@@ -92,14 +92,17 @@ export function DateTimePicker({
       </InputMask>
 
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+        <Button
+          variant="ghost"
+          size="icon"
+          type="button"
           asChild
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground"
         >
-          <Button variant="ghost" size="icon" type="button">
+          <PopoverTrigger>
             <CalendarIcon className="h-[24px] w-[24px] size-1 text-primary" />
-          </Button>
-        </PopoverTrigger>
+          </PopoverTrigger>
+        </Button>
         <PopoverContent className="w-auto p-2" align="start">
           <Calendar
             mode="single"
