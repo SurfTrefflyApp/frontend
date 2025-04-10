@@ -9,7 +9,7 @@ export const useFetch = <T>(
   onSuccess?: (user: T) => void,
 ) => {
   const [data, setData] = useState<T | undefined>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(shouldFetch);
   const [error, setError] = useState<AxiosError>();
 
   const execute = useCallback(async () => {

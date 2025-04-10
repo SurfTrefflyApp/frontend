@@ -30,11 +30,7 @@ export const formSchema = z.object({
       invalid_type_error: "Поле не может быть пустым",
     })
     .min(1, { message: "Длина ввода должна быть от 1 до 500 символов" })
-    .max(500, { message: "Длина ввода должна быть от 1 до 500 символов" })
-    .transform(String)
-    .refine((count) => /^\d+$/.test(count), {
-      message: "Введены некорректные символы",
-    }),
+    .max(500, { message: "Длина ввода должна быть от 1 до 500 символов" }),
   description: z
     .string({
       message: "Поле не может быть пустым",
