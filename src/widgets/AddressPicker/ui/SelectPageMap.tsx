@@ -4,15 +4,26 @@ import Pin from "@/shared/icons/pin.svg";
 
 import { useMapController } from "../lib/useMapController";
 
-export const MapWithSearch = () => {
+export const SelectPageMap = () => {
   const { coordinates, handleMapClick } = useMapController();
 
   return (
-    <div className="px-4 pb-4 h-full overflow-hidden">
-      <YMaps query={{ lang: "ru_RU" }}>
-        <div className="relative w-full h-full min-h-[500px]">
+    <div className="relative w-full h-full flex-1 px-4">
+      <YMaps
+        query={{
+          lang: "ru_RU",
+        }}
+      >
+        <div
+          className="relative w-full h-full"
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
+        >
           <Map
-            state={{ center: coordinates, zoom: 10 }}
+            state={{
+              center: coordinates,
+              zoom: 10,
+              behaviors: ["default", "scrollZoom"],
+            }}
             modules={["control.FullscreenControl", "control.TypeSelector"]}
             width="100%"
             height="100%"
@@ -20,6 +31,7 @@ export const MapWithSearch = () => {
             options={{
               suppressMapOpenBlock: true,
               yandexMapDisablePoiInteractivity: true,
+              suppressObsoleteBrowserNotifier: true,
             }}
           >
             <Placemark

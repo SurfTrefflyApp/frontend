@@ -12,7 +12,7 @@ export const Main = () => {
         <EventsCarousel events={data?.premium} isLoading={loading} />
       </div>
       <EventsHorizontalList
-        title="Популярные мероприятий"
+        title="Популярные мероприятия"
         events={data?.popular}
         isLoading={loading}
       />

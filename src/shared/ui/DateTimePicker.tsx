@@ -23,6 +23,10 @@ export function DateTimePicker({
   const [open, setOpen] = React.useState(false);
   const [inputValue, setInputValue] = React.useState(value ?? "");
 
+  const parsedValue = value
+    ? parse(value, "dd.MM.yyyy HH:mm", new Date())
+    : undefined;
+
   React.useEffect(() => {
     if (value) {
       setInputValue(value);
@@ -43,6 +47,10 @@ export function DateTimePicker({
 
   const handleDateSelect = (date: Date | undefined) => {
     if (!date) return;
+    if (parsedValue) {
+      date.setHours(parsedValue.getHours());
+      date.setMinutes(parsedValue.getMinutes());
+    }
     const formattedDate = format(date, "dd.MM.yyyy");
     const newDateTime = `${formattedDate} ${format(date, "HH:mm")}`;
     onChange(newDateTime);
@@ -106,20 +114,15 @@ export function DateTimePicker({
         <PopoverContent className="w-auto p-2" align="start">
           <Calendar
             mode="single"
-            selected={
-              value ? parse(value, "dd.MM.yyyy HH:mm", new Date()) : undefined
-            }
+            selected={parsedValue}
+            month={parsedValue ? parsedValue : new Date()}
             onSelect={handleDateSelect}
             initialFocus
             locale={ru}
           />
           <div className="flex gap-2 mt-2">
             <select
-              value={
-                value
-                  ? format(parse(value, "dd.MM.yyyy HH:mm", new Date()), "HH")
-                  : ""
-              }
+              value={parsedValue ? format(parsedValue, "HH") : ""}
               onChange={handleHourChange}
               className="border rounded-md p-1 text-sm"
             >
@@ -131,11 +134,7 @@ export function DateTimePicker({
             </select>
             <span className="text-muted-foreground">:</span>
             <select
-              value={
-                value
-                  ? format(parse(value, "dd.MM.yyyy HH:mm", new Date()), "mm")
-                  : ""
-              }
+              value={parsedValue ? format(parsedValue, "mm") : ""}
               onChange={handleMinuteChange}
               className="border rounded-md p-1 text-sm"
             >

@@ -34,6 +34,7 @@ export const useEventNewController = () => {
     try {
       await createEvent(values);
       clear();
+      form.reset();
       navigate(routes.profile);
     } catch (error) {
       setError(error);
