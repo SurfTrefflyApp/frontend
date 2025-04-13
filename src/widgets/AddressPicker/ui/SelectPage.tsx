@@ -7,7 +7,8 @@ import { Button } from "@/shared/ui/button";
 import { Dialog, DialogContent, DialogHeader } from "@/shared/ui/dialog";
 
 import { $address } from "../model";
-import { MapWithSearch } from "./MapWithSearch";
+import { SelectPageMap } from "./SelectPageMap";
+import { SelectPageSearch } from "./SelectPageSearch";
 
 interface SelectPage {
   open: boolean;
@@ -45,7 +46,8 @@ export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
             {address?.address ? address.address : "Место не выбрано"}
           </p>
         </div>
-        <MapWithSearch />
+        <SelectPageSearch />
+        <SelectPageMap />
         <Button
           className="mx-4"
           onClick={() => {
