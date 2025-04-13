@@ -2,7 +2,14 @@ import { Event as EventModel } from "@/entities/Event";
 import { EventsSkeleton } from "@/widgets/EventsCarousel/ui/EventsSkeleton";
 import Autoplay from "embla-carousel-autoplay";
 
-import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/carousel";
+import { cn } from "@/shared/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/shared/ui/carousel";
 
 import { Event } from "./Event";
 
@@ -18,7 +25,7 @@ export const EventsCarousel = ({ events = [], isLoading }: EventsCarousel) => {
 
   return (
     <Carousel
-      className="w-full max-w-full"
+      className="w-full max-w-full group"
       opts={{
         align: "center",
         loop: true,
@@ -37,6 +44,20 @@ export const EventsCarousel = ({ events = [], isLoading }: EventsCarousel) => {
           </CarouselItem>
         ))}
       </CarouselContent>
+      <CarouselPrevious
+        className={cn(
+          "absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity",
+          "duration-200 hover:bg-surface-container-high hidden md:block",
+        )}
+        size="sm"
+      />
+      <CarouselNext
+        className={cn(
+          "absolute -right-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity",
+          "duration-200 hover:bg-surface-container-high hidden md:block",
+        )}
+        size="sm"
+      />
     </Carousel>
   );
 };

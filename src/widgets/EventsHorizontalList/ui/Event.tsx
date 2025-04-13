@@ -11,7 +11,7 @@ export const Event = ({ event }: { event: EventModel }) => {
 
   return (
     <Link to={routes.event.replace(":id", event.id.toString())}>
-      <figure className="w-48 gap-1 flex-shrink-0 bg-surface-container p-2 rounded-2xl flex flex-col">
+      <figure className="w-48 gap-1 bg-surface-container p-3 rounded-2xl flex flex-col">
         <div className="flex-1 mb-1">
           <EventImagePreview
             className="aspect-video"
