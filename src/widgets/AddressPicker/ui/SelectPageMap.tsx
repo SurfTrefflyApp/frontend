@@ -8,7 +8,7 @@ export const SelectPageMap = () => {
   const { coordinates, handleMapClick } = useMapController();
 
   return (
-    <div className="relative w-full h-full flex-1">
+    <div className="relative w-full h-full flex-1 px-4">
       <YMaps
         query={{
           lang: "ru_RU",
