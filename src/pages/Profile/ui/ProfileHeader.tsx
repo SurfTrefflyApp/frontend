@@ -1,12 +1,13 @@
 import { User } from "@/entities/User";
 import { useUnit } from "effector-react";
-import { LogOut, Pencil } from "lucide-react";
 import { useState } from "react";
 
 import { ProfileEdit } from "@/pages/Profile/ui/ProfileEdit";
 
 import { logoutEvent as logout } from "@/shared/auth";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
+import { Edit } from "@/shared/icons/Edit";
+import { Exit } from "@/shared/icons/Exit";
 import { Button } from "@/shared/ui/button";
 
 interface ProfileHeader {
@@ -21,7 +22,7 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
   return (
     <>
       <ProfileEdit open={editOpen} setOpen={setEditOpen} />
-      <div className="p-6 pt-10 bg-secondary-container flex flex-col items-center gap-4 rounded-b-3xl">
+      <div className="mx-6 p-6 pt-10 bg-secondary-container flex flex-col items-center gap-4 rounded-b-3xl">
         <div className="flex justify-between items-center w-full">
           {isAuth && (
             <Button
@@ -30,7 +31,7 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
                 setEditOpen(true);
               }}
             >
-              <Pencil className="text-primary size-[22px]" />
+              <Edit className="text-primary size-[20px]" />
             </Button>
           )}
           <h1 className="text-3xl text-primary text-center font-semibold w-full">
@@ -38,7 +39,7 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
           </h1>
           {isAuth && (
             <Button variant="ghost" onClick={logoutEvent}>
-              <LogOut className="text-primary size-[22px]" />
+              <Exit className="text-primary size-[20px]" />
             </Button>
           )}
         </div>

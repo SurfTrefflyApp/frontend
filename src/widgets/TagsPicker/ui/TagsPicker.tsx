@@ -10,6 +10,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog";
@@ -91,6 +92,9 @@ export const TagsPicker = ({
             {tagsComponents}
           </div>
         )}
+        <DialogFooter>
+          <Button>Сохранить</Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
