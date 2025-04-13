@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/shared/ui/radio-group";
+import { RadioGroup } from "@/shared/ui/radio-group";
 import { Textarea } from "@/shared/ui/textarea";
 
 import { useEventNewController } from "../controller/useEventNewController";
@@ -151,24 +151,32 @@ export const EventNew = () => {
                         }
                       />
                     </div>
-                    <FormItem className="flex items-center space-x-1 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem
-                          value="public"
-                          checked={field.value === "public"}
-                        />
-                      </FormControl>
-                      <FormLabel className="font-normal">Открытое</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-1 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem
-                          value="private"
-                          checked={field.value === "private"}
-                        />
-                      </FormControl>
-                      <FormLabel className="font-normal">Приватное</FormLabel>
-                    </FormItem>
+                    <div className="flex justify-between gap-3">
+                      <Button
+                        className="flex-1"
+                        type="button"
+                        variant={
+                          field.value === "public" ? "default" : "outline"
+                        }
+                        onClick={() => {
+                          form.setValue("eventType", "public");
+                        }}
+                      >
+                        Открытое
+                      </Button>
+                      <Button
+                        className="flex-1"
+                        type="button"
+                        variant={
+                          field.value === "private" ? "default" : "outline"
+                        }
+                        onClick={() => {
+                          form.setValue("eventType", "private");
+                        }}
+                      >
+                        Приватное
+                      </Button>
+                    </div>
                   </RadioGroup>
                 </FormControl>
                 {formState.errors.eventType && (
