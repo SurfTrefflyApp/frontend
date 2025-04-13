@@ -16,7 +16,11 @@ export const SelectPageMap = () => {
       >
         <div className="relative w-full h-full min-h-[500px]">
           <Map
-            state={{ center: coordinates, zoom: 10 }}
+            state={{
+              center: coordinates,
+              zoom: 10,
+              behaviors: ["default", "scrollZoom"],
+            }}
             modules={["control.FullscreenControl", "control.TypeSelector"]}
             width="100%"
             height="100%"
@@ -24,6 +28,7 @@ export const SelectPageMap = () => {
             options={{
               suppressMapOpenBlock: true,
               yandexMapDisablePoiInteractivity: true,
+              suppressObsoleteBrowserNotifier: true,
             }}
           >
             <Placemark
