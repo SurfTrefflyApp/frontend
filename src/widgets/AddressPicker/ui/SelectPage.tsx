@@ -24,7 +24,7 @@ export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
       <DialogContent
         className={cn(
           "[&>button:last-child]:hidden w-full min-w-full h-full max-h-full",
-          "rounded-none flex flex-col p-0 pb-4",
+          "rounded-none flex flex-col p-0 pb-4 overflow-hidden",
           "md:min-w-1/2",
         )}
       >
@@ -46,8 +46,12 @@ export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
             {address?.address ? address.address : "Место не выбрано"}
           </p>
         </div>
-        <SelectPageSearch />
-        <SelectPageMap />
+        <div className="flex flex-col flex-1 overflow-hidden gap-4">
+          <SelectPageSearch />
+          <div className="flex-1 overflow-hidden">
+            <SelectPageMap />
+          </div>
+        </div>
         <Button
           className="mx-4"
           onClick={() => {

@@ -16,6 +16,9 @@ export const SelectPageSearch = () => {
 
   const handleSearch = useCallback(
     (value: string) => {
+      if (!value) {
+        return;
+      }
       setLoading(true);
       suggest(value)
         .then((response) => {

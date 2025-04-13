@@ -8,13 +8,16 @@ export const SelectPageMap = () => {
   const { coordinates, handleMapClick } = useMapController();
 
   return (
-    <div className="px-4 pb-4 h-full overflow-hidden">
+    <div className="relative w-full h-full flex-1">
       <YMaps
         query={{
           lang: "ru_RU",
         }}
       >
-        <div className="relative w-full h-full min-h-[500px]">
+        <div
+          className="relative w-full h-full"
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
+        >
           <Map
             state={{
               center: coordinates,
