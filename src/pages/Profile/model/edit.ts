@@ -1,8 +1,6 @@
 import emojiRegex from "emoji-regex";
 import { z } from "zod";
 
-const emojiReg = emojiRegex();
-
 export const schema = z.object({
   username: z
     .string()
@@ -11,7 +9,7 @@ export const schema = z.object({
     .max(20, { message: "Длина ввода должна быть от 2 до 20 символов" })
     .refine((username) => {
       const regex = /^[\p{L}-]+$/u;
-      return regex.test(username) && !emojiReg.test(username);
+      return regex.test(username) && !emojiRegex().test(username);
     }, "Введены некорректные символы"),
 });
 

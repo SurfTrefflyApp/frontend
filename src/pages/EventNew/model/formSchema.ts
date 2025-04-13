@@ -3,8 +3,6 @@ import { ru } from "date-fns/locale";
 import emojiRegex from "emoji-regex";
 import { z } from "zod";
 
-const emojiReg = emojiRegex();
-
 export const formSchema = z.object({
   title: z
     .string({
@@ -12,7 +10,7 @@ export const formSchema = z.object({
     })
     .min(5, { message: "Длина ввода должна быть от 5 до 50 символов" })
     .max(50, { message: "Длина ввода должна быть от 5 до 50 символов" })
-    .refine((title) => !emojiReg.test(title)),
+    .refine((title) => !emojiRegex().test(title)),
   dateTime: z
     .string()
     .refine((dateTime) => /^\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}$/.test(dateTime))
