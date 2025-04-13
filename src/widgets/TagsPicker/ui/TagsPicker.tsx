@@ -1,6 +1,6 @@
 import { Tag as TagModel } from "@/entities/Tag";
 
-import { Back } from "@/shared/icons/Back";
+import { Close } from "@/shared/icons/Close";
 import { LoadingSpinner } from "@/shared/icons/LoadingSpinner";
 import { useFetch } from "@/shared/lib/useFetch";
 import { cn } from "@/shared/lib/utils";
@@ -68,18 +68,20 @@ export const TagsPicker = ({
           "md:max-h-fit md:rounded-2xl",
         )}
       >
-        <DialogHeader className="h-[20px]">
+        <DialogHeader className="flex flex-row justify-between gap-4">
+          <DialogTitle className="text-xl font-semibold text-left">
+            {title}
+          </DialogTitle>
           <Button
-            className="h-[20px] w-[20px] p-0 px-0!"
+            className="p-0 px-0!"
             variant="ghost"
             onClick={() => {
               setOpen(false);
             }}
           >
-            <Back />
+            <Close className="text-primary min-h-[30px] min-w-[30px] " />
           </Button>
         </DialogHeader>
-        <DialogTitle className="text-xl font-semibold">{title}</DialogTitle>
         <DialogDescription className="text-sm">{description}</DialogDescription>
         {loading ? (
           <LoadingSpinner />
