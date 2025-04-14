@@ -10,7 +10,7 @@ export const ProfileEvents = () => {
   return (
     <>
       <div className="bg-surface-container-low rounded-3xl drop-shadow-lg">
-        <div className="relative grid grid-cols-[1fr_3fr_1fr] items-center p-4">
+        <div className="relative grid grid-cols-[1fr_3fr_1fr] items-center">
           <h3 className="text-center text-base font-semibold col-2">
             Мои события
           </h3>

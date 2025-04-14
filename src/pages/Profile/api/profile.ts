@@ -9,10 +9,8 @@ export function updateUsername(username: string) {
   return api.put<User>(profileURL, { username });
 }
 
-export function selectTag(tagId: number) {
-  return api.post<Tag[]>(`${profileURL}/tags/${tagId}`);
-}
-
-export function unselectTag(tagId: number) {
-  return api.delete<Tag[]>(`${profileURL}/tags/${tagId}`);
+export function updateTags(tagsIds: number[]) {
+  return api.put<Tag[]>(`${profileURL}/tags`, {
+    tag_ids: tagsIds,
+  });
 }

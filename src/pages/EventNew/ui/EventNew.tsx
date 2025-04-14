@@ -12,7 +12,6 @@ import {
   FormMessage,
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
-import { RadioGroup } from "@/shared/ui/radio-group";
 import { Textarea } from "@/shared/ui/textarea";
 
 import { useEventNewController } from "../controller/useEventNewController";
@@ -133,51 +132,43 @@ export const EventNew = () => {
             name="eventType"
             render={({ field }) => (
               <FormItem>
+                <div className="flex items-center gap-2">
+                  <FormLabel>Тип мероприятия</FormLabel>
+                  <InfoIconWithTooltip
+                    content={
+                      <p className="text-sm text-center">
+                        Приватные мероприятия не отображаются при поиске.
+                        <br />
+                        Участников можно пригласить по специальной ссылке
+                      </p>
+                    }
+                  />
+                </div>
                 <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex flex-col space-y-1"
-                  >
-                    <div className="flex items-center gap-2">
-                      <FormLabel>Тип мероприятия</FormLabel>
-                      <InfoIconWithTooltip
-                        content={
-                          <p className="text-sm text-center">
-                            Приватные мероприятия не отображаются при поиске.
-                            <br />
-                            Участников можно пригласить по специальной ссылке
-                          </p>
-                        }
-                      />
-                    </div>
-                    <div className="flex justify-between gap-3">
-                      <Button
-                        className="flex-1"
-                        type="button"
-                        variant={
-                          field.value === "public" ? "default" : "outline"
-                        }
-                        onClick={() => {
-                          form.setValue("eventType", "public");
-                        }}
-                      >
-                        Открытое
-                      </Button>
-                      <Button
-                        className="flex-1"
-                        type="button"
-                        variant={
-                          field.value === "private" ? "default" : "outline"
-                        }
-                        onClick={() => {
-                          form.setValue("eventType", "private");
-                        }}
-                      >
-                        Приватное
-                      </Button>
-                    </div>
-                  </RadioGroup>
+                  <div className="flex justify-between gap-3">
+                    <Button
+                      className="flex-1"
+                      type="button"
+                      variant={field.value === "public" ? "default" : "outline"}
+                      onClick={() => {
+                        form.setValue("eventType", "public");
+                      }}
+                    >
+                      Открытое
+                    </Button>
+                    <Button
+                      className="flex-1"
+                      type="button"
+                      variant={
+                        field.value === "private" ? "default" : "outline"
+                      }
+                      onClick={() => {
+                        form.setValue("eventType", "private");
+                      }}
+                    >
+                      Приватное
+                    </Button>
+                  </div>
                 </FormControl>
                 {formState.errors.eventType && (
                   <FormMessage>
@@ -188,7 +179,12 @@ export const EventNew = () => {
             )}
           />
           <EventNewTags form={{ formState, ...form }} />
-          <Button>Создать мероприятие</Button>
+          <Button
+            loading={formState.isSubmitting}
+            disabled={!formState.isValid}
+          >
+            Создать мероприятие
+          </Button>
         </form>
       </Form>
     </main>

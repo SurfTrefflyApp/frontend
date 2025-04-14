@@ -22,7 +22,7 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
   return (
     <>
       <ProfileEdit open={editOpen} setOpen={setEditOpen} />
-      <div className="mx-6 p-6 pt-10 bg-secondary-container flex flex-col items-center gap-4 rounded-b-3xl">
+      <div className="md:mx-6 p-6 pt-10 bg-secondary-container flex flex-col items-center gap-4 rounded-b-3xl">
         <div className="flex justify-between items-center w-full">
           {isAuth && (
             <Button

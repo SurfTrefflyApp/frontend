@@ -21,7 +21,7 @@ const tagVariants = cva(
   },
 );
 
-type Tag = VariantProps<typeof tagVariants> &
+export type Tag = VariantProps<typeof tagVariants> &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, "name" | "id"> & {
     name: string;
     className?: string;
@@ -29,7 +29,11 @@ type Tag = VariantProps<typeof tagVariants> &
 
 export const Tag = ({ name, variant, className, ...props }: Tag) => {
   return (
-    <Button className={cn(tagVariants({ variant, className }))} {...props}>
+    <Button
+      type="button"
+      className={cn(tagVariants({ variant, className }))}
+      {...props}
+    >
       {name}
     </Button>
   );
