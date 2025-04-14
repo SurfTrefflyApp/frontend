@@ -31,7 +31,12 @@ export const EventsHorizontalList = ({
   return (
     <div className="group h-fit w-full bg-surface-container-low rounded-3xl py-3 [&>*]:select-none relative">
       {title && <h3 className="ml-4 mb-2 font-semibold">{title}</h3>}
-      <Carousel className="w-full">
+      <Carousel
+        className="w-full"
+        opts={{
+          dragFree: true,
+        }}
+      >
         <CarouselContent>
           {events.length ? (
             events.map((event) => (
