@@ -1,8 +1,7 @@
 import { Tag as TagModel } from "@/entities/Tag";
 
-import { Back } from "@/shared/icons/Back";
+import { Close } from "@/shared/icons/Close";
 import { LoadingSpinner } from "@/shared/icons/LoadingSpinner";
-import { useFetch } from "@/shared/lib/useFetch";
 import { cn } from "@/shared/lib/utils";
 import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
@@ -10,9 +9,12 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/shared/ui/dialog";
+
+import { useTagsPickerController } from "../controller/useTagsPickerController";
 
 interface TagsPicker {
   title: string;
@@ -20,8 +22,8 @@ interface TagsPicker {
   open?: boolean;
   setOpen: (state: boolean) => void;
   selectedTags: TagModel[];
-  onSelect: (tag: TagModel) => void;
-  onUnselect: (tag: TagModel) => void;
+  onSave: (tags: TagModel[]) => void;
+  saving?: boolean;
   maxSelectedCount?: number;
 }
 
@@ -31,29 +33,22 @@ export const TagsPicker = ({
   open,
   setOpen,
   selectedTags,
-  onSelect,
-  onUnselect,
+  onSave,
+  saving,
   maxSelectedCount,
 }: TagsPicker) => {
-  const { data: tags, loading } = useFetch<{ tags: TagModel[] }>("/tags");
+  const { tags, loading, localTags, handleTagClick, getTagVariant } =
+    useTagsPickerController(selectedTags, maxSelectedCount);
 
   const tagsComponents = tags?.tags?.map((tag) => {
-    const selected = selectedTags.find((value) => value.id === tag.id);
     return (
       <Tag
         key={tag.id}
         {...tag}
         onClick={() => {
-          if (selected) {
-            onUnselect(tag);
-          } else {
-            if (maxSelectedCount && selectedTags.length >= maxSelectedCount) {
-              return;
-            }
-            onSelect(tag);
-          }
+          handleTagClick(tag);
         }}
-        variant={selected ? "selected" : "default"}
+        variant={getTagVariant(tag)}
       />
     );
   });
@@ -67,30 +62,39 @@ export const TagsPicker = ({
           "md:max-h-fit md:rounded-2xl",
         )}
       >
-        <DialogHeader className="h-[20px]">
+        <DialogHeader className="flex flex-row justify-between gap-4">
+          <DialogTitle className="text-xl font-semibold text-left">
+            {title}
+          </DialogTitle>
           <Button
-            className="h-[20px] w-[20px] p-0 px-0!"
+            className="p-0 px-0!"
             variant="ghost"
             onClick={() => {
               setOpen(false);
             }}
           >
-            <Back />
+            <Close className="text-primary min-h-[30px] min-w-[30px] " />
           </Button>
         </DialogHeader>
-        <DialogTitle className="text-xl font-semibold">{title}</DialogTitle>
         <DialogDescription className="text-sm">{description}</DialogDescription>
-        {loading ? (
-          <LoadingSpinner />
-        ) : (
-          <div
-            className={cn(
-              "overflow-y-auto flex justify-center items-center flex-wrap gap-2 gap-x-6 no-scrollbar py-1",
-            )}
+        <div
+          className={cn(
+            "overflow-y-auto flex justify-center items-center flex-wrap h-full md:h-auto gap-2 gap-x-6 no-scrollbar py-1",
+          )}
+        >
+          {loading ? <LoadingSpinner /> : tagsComponents}
+        </div>
+        <DialogFooter>
+          <Button
+            onClick={() => {
+              onSave(localTags);
+            }}
+            className="w-fit mx-auto px-14"
+            loading={saving}
           >
-            {tagsComponents}
-          </div>
-        )}
+            Сохранить
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

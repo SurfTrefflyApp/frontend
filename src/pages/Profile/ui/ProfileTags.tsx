@@ -1,7 +1,7 @@
 import { Tag as TagModel } from "@/entities/Tag";
-import { Pencil } from "lucide-react";
 import { useState } from "react";
 
+import { Edit } from "@/shared/icons/Edit";
 import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
 
@@ -31,7 +31,7 @@ export const ProfileTags = ({ tags }: { tags: TagModel[] }) => {
               setPickerOpen(true);
             }}
           >
-            <Pencil className="text-primary size-[18px]" />
+            <Edit className="text-primary size-[18px]" />
           </Button>
         </div>
         <div className="text-center flex justify-center items-center flex-wrap gap-2 gap-x-6">

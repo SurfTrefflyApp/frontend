@@ -14,7 +14,7 @@ export const ProfileTagsPicker = ({
   setOpen,
   tags,
 }: ProfileTagsPicker) => {
-  const { handleSelect, handleUnselect } = useTagsPicker();
+  const { handleSave, saving } = useTagsPicker(setOpen);
 
   return (
     <TagsPicker
@@ -23,8 +23,8 @@ export const ProfileTagsPicker = ({
       open={open}
       setOpen={setOpen}
       selectedTags={tags}
-      onSelect={handleSelect}
-      onUnselect={handleUnselect}
+      onSave={handleSave}
+      saving={saving}
     />
   );
 };

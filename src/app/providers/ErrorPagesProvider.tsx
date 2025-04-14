@@ -33,7 +33,7 @@ export const ErrorPagesProvider = ({ children }: PropsWithChildren) => {
         position: "top-center",
         description: error.subtitle,
         cancel: {
-          label: <Close />,
+          label: <Close className="text-error-foreground" />,
           onClick: () => {},
         },
       });
