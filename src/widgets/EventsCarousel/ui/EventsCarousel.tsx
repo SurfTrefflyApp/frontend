@@ -46,17 +46,17 @@ export const EventsCarousel = ({ events = [], isLoading }: EventsCarousel) => {
       </CarouselContent>
       <CarouselPrevious
         className={cn(
-          "absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity",
-          "duration-200 hover:bg-surface-container-high hidden md:block",
+          "absolute -left-7 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity",
+          "duration-200 hover:bg-surface-container-high hidden md:block w-[60px] h-[60px]",
         )}
-        size="sm"
+        size="lg"
       />
       <CarouselNext
         className={cn(
-          "absolute -right-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity",
-          "duration-200 hover:bg-surface-container-high hidden md:block",
+          "absolute -right-7 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity",
+          "duration-200 hover:bg-surface-container-high hidden md:block w-[60px] h-[60px]",
         )}
-        size="sm"
+        size="lg"
       />
     </Carousel>
   );
