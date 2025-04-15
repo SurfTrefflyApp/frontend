@@ -35,6 +35,7 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
     endIcon?: Icon;
     iconProps?: IconProps;
     error?: boolean;
+    loading?: boolean;
   };
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -47,6 +48,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       iconProps,
       error,
       variant,
+      loading,
       ...props
     },
     ref,
@@ -112,6 +114,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
         <input
+          disabled={loading}
           type={type}
           className={cn(
             startIcon ? "pl-8" : "",

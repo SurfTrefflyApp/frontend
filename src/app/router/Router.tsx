@@ -4,6 +4,7 @@ import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
+import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
 import { EventNew } from "@/pages/EventNew";
 import { Login } from "@/pages/Login";
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
         <AppLoader />
       </ErrorPagesProvider>
     ),
-    errorElement: <NotFound />,
+    errorElement: <Error />,
     children: [
       {
         element: <PrivateRoutes navigateHref={routes.main} />,
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
         element: <Event />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

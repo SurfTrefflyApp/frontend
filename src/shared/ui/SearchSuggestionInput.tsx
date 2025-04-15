@@ -84,7 +84,7 @@ export const SearchSuggestionInput = <T,>({
           variant="secondary"
           ref={inputRef}
           value={value}
-          onChange={loading ? undefined : (e) => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onFocus={() => setOpen(true)}
           placeholder={"Поиск места"}
@@ -98,7 +98,7 @@ export const SearchSuggestionInput = <T,>({
             isOpen ? "block" : "hidden",
           )}
         >
-          <CommandList className="rounded-lg ring-1 ring-slate-200">
+          <CommandList className="rounded-lg">
             {loading ? (
               <CommandPrimitive.Loading>
                 <div className="p-1">
@@ -125,11 +125,6 @@ export const SearchSuggestionInput = <T,>({
                   );
                 })}
               </CommandGroup>
-            ) : null}
-            {!loading ? (
-              <CommandPrimitive.Empty className="select-none rounded-sm px-2 py-3 text-center text-sm">
-                Empty
-              </CommandPrimitive.Empty>
             ) : null}
           </CommandList>
         </div>
