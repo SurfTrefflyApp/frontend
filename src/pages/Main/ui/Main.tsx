@@ -7,7 +7,7 @@ export const Main = () => {
   const { data, loading } = useEventsFetch();
 
   return (
-    <main className="h-inherit mx-auto max-w-2xl pl-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0">
+    <main className="h-inherit mx-auto max-w-2xl px-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0">
       <div className="w-full pt-2">
         <EventsCarousel events={data?.premium} isLoading={loading} />
       </div>
