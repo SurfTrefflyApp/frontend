@@ -3,10 +3,13 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { AliasOptions, defineConfig } from "vite";
+import { VitePWA } from "vite-plugin-pwa";
+
+import { manifest } from "./manifest";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), basicSsl()],
+  plugins: [react(), tailwindcss(), basicSsl(), VitePWA(manifest)],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
