@@ -2,7 +2,7 @@ import { Map, Placemark, YMaps } from "@pbe/react-yandex-maps";
 
 import Pin from "@/shared/icons/pin.svg";
 
-import { useMapController } from "../lib/useMapController";
+import { useMapController } from "../controller/useMapController";
 
 export const SelectPageMap = () => {
   const { coordinates, handleMapClick } = useMapController();

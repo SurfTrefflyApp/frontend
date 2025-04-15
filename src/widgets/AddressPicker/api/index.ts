@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { api } from "@/shared/api";
 
 export interface GeocodeResponse {
@@ -17,26 +15,24 @@ export function geocode(lat: number, lon: number) {
   });
 }
 
-export interface SuggestResponseItem {
-  title: {
-    text: string;
-  };
-  subtitle?: {
-    text: string;
-  };
+export function geocodeReverse(address: string) {
+  return api.get<GeocodeResponse>("/reverse-geocode", {
+    params: {
+      address,
+    },
+  });
 }
 
-export interface SuggestResponse {
-  results: SuggestResponseItem[];
+export interface SuggestResponseItem {
+  id: number;
+  title: string;
+  address: string;
 }
 
 export function suggest(text: string) {
-  return axios.get<SuggestResponse>(
-    "https://suggest-maps.yandex.ru/v1/suggest?apikey=API_KEY&ll=39.2006,51.6606&spn=0.2,0.2",
-    {
-      params: {
-        text,
-      },
+  return api.get<SuggestResponseItem[]>("/suggest/addresses", {
+    params: {
+      text,
     },
-  );
+  });
 }
