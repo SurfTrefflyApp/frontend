@@ -22,9 +22,9 @@ const buttonVariants = cva(
         link: "text-primary hover:bg-accent active:underline h-auto",
       },
       size: {
-        default: "md:text-xl font-semibold h-9 p-6 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        default: "md:text-xl font-semibold h-9 p-6 has-[>svg]:px-0",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-0",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-0",
         icon: "size-9",
       },
     },

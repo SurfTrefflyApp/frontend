@@ -17,7 +17,7 @@ export const ContentHeader = ({
   const navigate = useNavigate();
 
   return (
-    <header className="grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-3 rounded-b-3xl shadow-md sticky top-0 z-10">
+    <header className="grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-1 pr-4 rounded-b-3xl shadow-md sticky top-0 z-10">
       {withBackArrow && (
         <Button
           variant="ghost"
