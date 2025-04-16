@@ -12,14 +12,12 @@ export const useMapController = () => {
   const setAddress = useUnit(setAddressEvent);
   const setError = useUnit(setErrorEvent);
 
-  const [coordinates, setCoordinates] = useState(address.coordinates);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleMapClick = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (e: any) => {
       const coords = e.get("coords");
-      setCoordinates(coords);
       setIsLoading(true);
 
       try {
@@ -36,7 +34,7 @@ export const useMapController = () => {
   );
 
   return {
-    coordinates,
+    coordinates: address.coordinates,
     isLoading,
     handleMapClick,
   };
