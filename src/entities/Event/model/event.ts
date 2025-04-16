@@ -5,6 +5,7 @@ export interface Event {
   name: string;
   description: string;
   capacity: number;
+  participantCount: number;
   latitude: number;
   longitude: number;
   address: string;
