@@ -1,5 +1,5 @@
 import { ChevronLeft } from "lucide-react";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useNavigate } from "react-router";
 
 import { Button } from "@/shared/ui/button";

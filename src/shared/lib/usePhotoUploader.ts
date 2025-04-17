@@ -1,4 +1,5 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import type { ChangeEvent} from "react";
+import { useCallback, useState } from "react";
 
 export const usePhotoUploader = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);

@@ -1,4 +1,4 @@
-import { LoginSchema } from "@/pages/Login/model/formSchema";
+import type { LoginSchema } from "@/pages/Login/model/formSchema";
 
 import { api } from "@/shared/api";
 

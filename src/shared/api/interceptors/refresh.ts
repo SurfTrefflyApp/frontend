@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosRequestConfig } from "axios";
+import type { AxiosInstance, AxiosRequestConfig } from "axios";
 
 import { setErrorCodeEvent, setErrorEvent } from "@/shared/api/model";
 import { logoutWithoutApiEvent } from "@/shared/auth";

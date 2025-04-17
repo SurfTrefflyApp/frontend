@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { updateUsername } from "@/pages/Profile/api/profile";
-import { Schema, schema } from "@/pages/Profile/model/edit";
+import type { Schema} from "@/pages/Profile/model/edit";
+import { schema } from "@/pages/Profile/model/edit";
 import { $user, setUserEvent } from "@/pages/Profile/model/user";
 
 import { setErrorEvent } from "@/shared/api";

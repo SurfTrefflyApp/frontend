@@ -1,5 +1,5 @@
 import { MessagesProvider } from "@/app/providers/MessagesProvider";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 export const RootProvider = ({ children }: PropsWithChildren) => {
   return (

@@ -1,4 +1,4 @@
-import { Tag as TagModel } from "@/entities/Tag";
+import type { Tag as TagModel } from "@/entities/Tag";
 import { TagsPicker } from "@/widgets/TagsPicker";
 
 import { useTagsPicker } from "../lib/useTagsPicker";

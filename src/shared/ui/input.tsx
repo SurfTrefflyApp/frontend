@@ -1,10 +1,11 @@
-import { VariantProps, cva } from "class-variance-authority";
+import type { VariantProps} from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import * as React from "react";
 
 import { EyeClose } from "@/shared/icons/EyeClose";
 import { EyeOpen } from "@/shared/icons/EyeOpen";
 import { Lock } from "@/shared/icons/Lock";
-import { Icon, IconProps } from "@/shared/icons/type";
+import type { Icon, IconProps } from "@/shared/icons/type";
 import mergeRefs from "@/shared/lib/mergeRefs";
 import { cn } from "@/shared/lib/utils";
 

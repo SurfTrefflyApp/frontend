@@ -6,12 +6,17 @@ import { toast } from "sonner";
 import { setErrorEvent } from "@/shared/api";
 import { useFetch } from "@/shared/lib/useFetch";
 
+import { $event, setEventEvent } from "../model/store";
+
 export const useEventController = () => {
   const location = useLocation();
   const params = useParams();
   const id = Number(params.id);
 
-  const { data } = useFetch<Event>(`/events/${id}`);
+  const event = useUnit($event);
+  const setEvent = useUnit(setEventEvent);
+
+  useFetch<Event>(`/events/${id}`, true, setEvent);
 
   const setError = useUnit(setErrorEvent);
 
@@ -31,11 +36,11 @@ export const useEventController = () => {
   };
 
   const handleAddressCopy = () => {
-    if (!data?.address) {
+    if (!event?.address) {
       return;
     }
 
-    handleCopy(data.address, "Адрес скопирован");
+    handleCopy(event.address, "Адрес скопирован");
   };
 
   const handleEventLinkCopy = () => {
@@ -45,7 +50,6 @@ export const useEventController = () => {
   };
 
   return {
-    event: data,
     handleAddressCopy,
     handleEventLinkCopy,
   };

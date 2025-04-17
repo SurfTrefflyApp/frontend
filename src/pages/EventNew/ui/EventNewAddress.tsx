@@ -1,5 +1,5 @@
 import { AddressPicker } from "@/widgets/AddressPicker";
-import { UseFormReturn } from "react-hook-form";
+import type { UseFormReturn } from "react-hook-form";
 
 import {
   FormControl,
@@ -9,7 +9,7 @@ import {
   FormMessage,
 } from "@/shared/ui/form";
 
-import { EventSchema } from "../model/formSchema";
+import type { EventSchema } from "../model/formSchema";
 
 export const EventNewAddress = ({
   form,
