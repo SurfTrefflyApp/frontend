@@ -1,4 +1,4 @@
-import { Event as EventModel } from "@/entities/Event";
+import type { Event as EventModel } from "@/entities/Event";
 import { EventsSkeleton } from "@/widgets/EventsCarousel/ui/EventsSkeleton";
 import Autoplay from "embla-carousel-autoplay";
 

@@ -10,9 +10,10 @@ import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 
 import { register } from "../api/register";
-import {
+import type {
   RegisterSchema,
-  RegisterServerErrors,
+  RegisterServerErrors} from "../model/formSchema";
+import {
   formSchema,
 } from "../model/formSchema";
 

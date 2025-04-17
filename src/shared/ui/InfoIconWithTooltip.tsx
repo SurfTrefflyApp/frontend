@@ -1,5 +1,6 @@
 import { Info } from "lucide-react";
-import { ReactNode, useState } from "react";
+import type { ReactNode} from "react";
+import { useState } from "react";
 
 import {
   Tooltip,

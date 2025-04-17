@@ -1,4 +1,4 @@
-import { Address } from "@/entities/Address";
+import type { Address } from "@/entities/Address";
 import { useUnit } from "effector-react";
 import { useEffect, useState } from "react";
 

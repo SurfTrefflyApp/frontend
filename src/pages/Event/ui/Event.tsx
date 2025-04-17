@@ -1,25 +1,31 @@
 import { ContentHeader } from "@/widgets/ContentHeader";
+import { useUnit } from "effector-react";
 import { Calendar } from "lucide-react";
+import { Link } from "react-router";
 
 import { Copy } from "@/shared/icons/Copy";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
+import { Edit } from "@/shared/icons/Edit";
 import { LockClose } from "@/shared/icons/LockClose";
 import { LockOpen } from "@/shared/icons/LockOpen";
 import { People } from "@/shared/icons/People";
 import { Pin } from "@/shared/icons/Pin";
 import { Share } from "@/shared/icons/Share";
 import { formatDateWithIntl } from "@/shared/lib/formatDateWithIntl";
+import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 import { ExpandableText } from "@/shared/ui/ExpandableText";
 import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
 
 import { useEventController } from "../controller/useEventController";
+import { $event } from "../model/store";
+import { EventFooter } from "./EventFooter";
 import { EventMap } from "./EventMap";
 
 export const Event = () => {
-  const { event, handleAddressCopy, handleEventLinkCopy } =
-    useEventController();
+  const event = useUnit($event);
+  const { handleAddressCopy, handleEventLinkCopy } = useEventController();
 
   if (!event) return <>Loading...</>;
 
@@ -30,12 +36,19 @@ export const Event = () => {
       <ContentHeader
         title={event.name}
         rightContent={
-          <Button variant="ghost" onClick={handleEventLinkCopy}>
-            <Share />
-          </Button>
+          <div className="flex items-center gap-4">
+            {event.isOwner && (
+              <Link to={routes.eventEdit.replace(":id", event.id.toString())}>
+                <Edit className="size-[16px]" />
+              </Link>
+            )}
+            <Button variant="ghost" onClick={handleEventLinkCopy}>
+              <Share />
+            </Button>
+          </div>
         }
       />
-      <main className="p-3 pt-6 flex flex-col gap-5">
+      <main className="p-3 py-6 flex flex-col gap-5">
         <EventImagePreview className="aspect-video" />
         <section
           className={`text-center flex justify-center items-center flex-wrap gap-2 gap-x-6
@@ -46,7 +59,7 @@ export const Event = () => {
           ))}
         </section>
         <section>
-          <h1 className="text-2xl font-medium mb-1">{event.name}</h1>
+          <h1 className="text-xl font-medium mb-1">{event.name}</h1>
           <div className="flex gap-2 items-center text-xl">
             <Calendar className="text-primary" size={16} />
             <h2>{formatDateWithIntl(event.date)}</h2>
@@ -79,12 +92,19 @@ export const Event = () => {
           </div>
         </section>
         <section>
-          <h2 className="text-sm font-semibold mb-2">Организатор:</h2>
-          <div className="flex items-center gap-2">
-            <DefaultUser className="size-[50px]" />
-            <h3 className="text-sm">{event.ownerName ?? "Имя"}</h3>
-          </div>
+          {event.isOwner ? (
+            <h3 className="text-sm">Организатором являетесь вы</h3>
+          ) : (
+            <>
+              <h2 className="text-sm font-semibold mb-2">Организатор:</h2>
+              <div className="flex items-center gap-2">
+                <DefaultUser className="size-[50px]" />
+                <h3 className="text-sm">{event.ownerName ?? "Имя"}</h3>
+              </div>
+            </>
+          )}
         </section>
+        <EventFooter event={event} />
       </main>
     </div>
   );

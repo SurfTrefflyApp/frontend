@@ -1,4 +1,4 @@
-import { Event as EventModel } from "@/entities/Event";
+import type { Event as EventModel } from "@/entities/Event";
 import { Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router";
 

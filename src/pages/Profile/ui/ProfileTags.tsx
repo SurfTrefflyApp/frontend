@@ -1,4 +1,4 @@
-import { Tag as TagModel } from "@/entities/Tag";
+import type { Tag as TagModel } from "@/entities/Tag";
 import { useState } from "react";
 
 import { Edit } from "@/shared/icons/Edit";

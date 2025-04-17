@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 import { useNavigate } from "react-router";
 
 import { Back } from "@/shared/icons/Back";

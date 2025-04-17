@@ -1,7 +1,7 @@
-import { AxiosRequestConfig } from "axios";
+import type { AxiosRequestConfig } from "axios";
 
 import { setErrorCodeEvent } from "../model";
-import { RefreshInterceptor } from "./refresh";
+import type { RefreshInterceptor } from "./refresh";
 
 export class ErrorHandler {
   private notInterceptedURLs = ["/login", "/auth", "/users"];

@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 export const People = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -13,7 +13,7 @@ export const People = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="M9.02323 6.15386C9.02323 7.6327 7.8117 8.84616 6.29909 8.84616C4.78648 8.84616 3.57495 7.6327 3.57495 6.15386C3.57495 4.67501 4.78648 3.46155 6.29909 3.46155C7.8117 3.46155 9.02323 4.67501 9.02323 6.15386Z"
         stroke="#4B6A51"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <mask
         id="mask0_338_721"

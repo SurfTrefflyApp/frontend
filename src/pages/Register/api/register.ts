@@ -1,4 +1,4 @@
-import { RegisterSchema } from "@/pages/Register/model/formSchema";
+import type { RegisterSchema } from "@/pages/Register/model/formSchema";
 
 import { api } from "@/shared/api";
 

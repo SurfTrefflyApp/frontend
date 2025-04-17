@@ -1,4 +1,4 @@
-import { IconProps } from "@/shared/icons/type";
+import type { IconProps } from "@/shared/icons/type";
 
 export const EyeClose = (props: IconProps) => {
   return (

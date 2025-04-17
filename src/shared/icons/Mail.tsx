@@ -1,4 +1,4 @@
-import { IconProps } from "@/shared/icons/type";
+import type { IconProps } from "@/shared/icons/type";
 
 export const Mail = (props: IconProps) => {
   return (

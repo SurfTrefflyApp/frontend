@@ -1,4 +1,4 @@
-import { Event as EventModel } from "@/entities/Event";
+import type { Event as EventModel } from "@/entities/Event";
 import { Event } from "@/widgets/EventsHorizontalList/ui/Event";
 import { EventsSkeleton } from "@/widgets/EventsHorizontalList/ui/EventsSkeleton";
 
