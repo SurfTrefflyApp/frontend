@@ -1,4 +1,4 @@
-import { Event } from "@/entities/Event";
+import type { Event } from "@/entities/Event";
 
 import { useFetch } from "@/shared/lib/useFetch";
 

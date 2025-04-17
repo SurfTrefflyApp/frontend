@@ -8,7 +8,8 @@ import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 
 import { createEvent } from "../api";
-import { EventSchema, formSchema } from "../model/formSchema";
+import type { EventSchema} from "../model/formSchema";
+import { formSchema } from "../model/formSchema";
 
 export const useEventNewController = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createEvent, createStore } from "effector";
 
-import { ErrorResponse } from "@/shared/api";
+import type { ErrorResponse } from "@/shared/api";
 import { routes } from "@/shared/router";
 
 export const errorPages: {

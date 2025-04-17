@@ -11,6 +11,7 @@ export const routes = {
   getError: "/error",
   events: "/events",
   eventsSearch: "/events-search",
+  eventEdit: "/events/:id/edit",
   event: "/events/:id",
   eventNew: "/events/new",
 };

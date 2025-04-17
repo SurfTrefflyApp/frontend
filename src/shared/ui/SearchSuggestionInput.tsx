@@ -1,5 +1,6 @@
 import { Command as CommandPrimitive } from "cmdk";
-import { KeyboardEvent, ReactNode, useCallback, useRef, useState } from "react";
+import type { KeyboardEvent, ReactNode} from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { CommandGroup, CommandItem, CommandList } from "@/shared/ui/command";
 import { Input } from "@/shared/ui/input";

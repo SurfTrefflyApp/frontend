@@ -1,4 +1,4 @@
-import { Tag } from "@/entities/Tag/shared/event";
+import type { Tag } from "@/entities/Tag/shared/event";
 
 export interface Event {
   id: number;
@@ -15,4 +15,6 @@ export interface Event {
   ownerName: string;
   preview?: string;
   tags: Tag[];
+  isOwner?: boolean;
+  isParticipant?: boolean;
 }

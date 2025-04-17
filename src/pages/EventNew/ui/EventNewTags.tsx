@@ -1,7 +1,7 @@
-import { Tag as TagModel } from "@/entities/Tag";
+import type { Tag as TagModel } from "@/entities/Tag";
 import { TagsPicker } from "@/widgets/TagsPicker";
 import { useState } from "react";
-import { UseFormReturn } from "react-hook-form";
+import type { UseFormReturn } from "react-hook-form";
 
 import { Edit } from "@/shared/icons/Edit";
 import { cn } from "@/shared/lib/utils";
@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/shared/ui/form";
 
-import { EventSchema } from "../model/formSchema";
+import type { EventSchema } from "../model/formSchema";
 
 interface EventNewTags {
   form: UseFormReturn<EventSchema>;

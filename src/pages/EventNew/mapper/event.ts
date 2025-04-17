@@ -1,4 +1,4 @@
-import { EventSchema } from "../model/formSchema";
+import type { EventSchema } from "../model/formSchema";
 
 interface ServerEvent {
   name: string;

@@ -1,4 +1,4 @@
-import { Tag } from "@/entities/Tag/shared/user";
+import type { Tag } from "@/entities/Tag/shared/user";
 
 export interface User {
   username: string;

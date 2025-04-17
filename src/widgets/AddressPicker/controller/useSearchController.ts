@@ -3,7 +3,8 @@ import { useCallback, useState } from "react";
 
 import { setErrorEvent } from "@/shared/api";
 
-import { SuggestResponseItem, geocodeReverse, suggest } from "../api";
+import type { SuggestResponseItem} from "../api";
+import { geocodeReverse, suggest } from "../api";
 import { geocodeMapper } from "../mapper/geocode";
 import { setAddressEvent } from "../model";
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useEffect } from "react";
-import { SetFieldValue } from "react-hook-form";
+import type { SetFieldValue } from "react-hook-form";
 
 export interface FormPersistConfig {
   storage?: Storage;

@@ -1,4 +1,4 @@
-import { Address } from "@/entities/Address";
+import type { Address } from "@/entities/Address";
 import { createEvent, createStore } from "effector";
 
 export const setAddressEvent = createEvent<Address>();

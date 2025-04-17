@@ -1,8 +1,8 @@
-import { Tag as TagModel } from "@/entities/Tag";
+import type { Tag as TagModel } from "@/entities/Tag";
 import { useState } from "react";
 
 import { useFetch } from "@/shared/lib/useFetch";
-import { Tag } from "@/shared/ui/Tag";
+import type { Tag } from "@/shared/ui/Tag";
 
 export const useTagsPickerController = (
   selectedTags: TagModel[],

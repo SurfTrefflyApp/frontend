@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 export const Pin = (props: SVGProps<SVGSVGElement>) => {
   return (
