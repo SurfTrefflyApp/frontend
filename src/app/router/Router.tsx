@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
 import { EventNew } from "@/pages/EventNew";
+import { EventsSearch } from "@/pages/EventsSearch";
 import { Login } from "@/pages/Login";
 import { Main } from "@/pages/Main";
 import { NotFound } from "@/pages/NotFound";
@@ -87,7 +88,7 @@ const router = createBrowserRouter([
           },
           {
             path: routes.eventsSearch,
-            element: <>Search events</>,
+            element: <EventsSearch />,
           },
         ],
       },
