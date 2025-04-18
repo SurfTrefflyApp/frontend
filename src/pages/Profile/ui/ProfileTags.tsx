@@ -2,7 +2,7 @@ import type { Tag as TagModel } from "@/entities/Tag";
 import { useState } from "react";
 
 import { Edit } from "@/shared/icons/Edit";
-import { Tag } from "@/shared/ui/Tag";
+import { TagsContainer } from "@/shared/ui/TagsContainer";
 import { Button } from "@/shared/ui/button";
 
 import { ProfileTagsPicker } from "./ProfileTagsPicker";
@@ -34,15 +34,7 @@ export const ProfileTags = ({ tags }: { tags: TagModel[] }) => {
             <Edit className="text-primary size-[18px]" />
           </Button>
         </div>
-        <div className="text-center flex justify-center items-center flex-wrap gap-2 gap-x-6">
-          {tags.length ? (
-            tags.map(({ id, name }) => (
-              <Tag key={id} name={name} variant="static" />
-            ))
-          ) : (
-            <p>Тут пока что пусто...</p>
-          )}
-        </div>
+        <TagsContainer tags={tags} emptyText="Тут пока что пусто..." />
       </div>
     </>
   );

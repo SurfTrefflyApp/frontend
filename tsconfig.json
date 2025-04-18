@@ -9,7 +9,6 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true

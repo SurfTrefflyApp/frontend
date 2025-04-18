@@ -1,0 +1,23 @@
+import { useUnit } from "effector-react";
+
+import { EventCard } from "@/shared/ui/EventCard";
+
+import { $events, fetchEventsFx } from "../model/events";
+import { EventsSearchListSkeleton } from "./EventsSearchListSkeleton";
+
+export const EventsSearchList = () => {
+  const events = useUnit($events);
+  const loading = useUnit(fetchEventsFx.pending);
+
+  if (loading) {
+    return <EventsSearchListSkeleton />;
+  }
+
+  return (
+    <div className="flex flex-col gap-4 p-2 mt-2">
+      {events.map((event) => (
+        <EventCard key={event.id} event={event} />
+      ))}
+    </div>
+  );
+};
