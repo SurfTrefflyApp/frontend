@@ -2,17 +2,24 @@ import type { Event } from "@/entities/Event";
 import { Calendar, MapPin, User } from "lucide-react";
 import { Link } from "react-router";
 
+import { cn } from "../lib/utils";
 import { routes } from "../router";
 import { EventImagePreview } from "./EventImagePreview";
 
 interface EventCard {
   event: Event;
+  containerClassName?: string;
 }
 
-export const EventCard = ({ event }: EventCard) => {
+export const EventCard = ({ event, containerClassName }: EventCard) => {
   return (
     <Link to={routes.event.replace(":id", event.id.toString())}>
-      <figure className="w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto">
+      <figure
+        className={cn(
+          "w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto",
+          containerClassName,
+        )}
+      >
         <div className="grid grid-cols-2 gap-4">
           <div className="mb-1">
             <EventImagePreview className="h-full" titleClassName="w-[70px]" />

@@ -16,7 +16,7 @@ export const EventsSearchList = () => {
   return (
     <div className="flex flex-col gap-4 p-2 mt-2">
       {events.map((event) => (
-        <EventCard event={event} />
+        <EventCard key={event.id} event={event} />
       ))}
     </div>
   );
