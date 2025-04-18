@@ -99,7 +99,7 @@ export const Event = () => {
               <h2 className="text-sm font-semibold mb-2">Организатор:</h2>
               <div className="flex items-center gap-2">
                 <DefaultUser className="size-[50px]" />
-                <h3 className="text-sm">{event.ownerName ?? "Имя"}</h3>
+                <h3 className="text-sm">{event.ownerUsername ?? "Имя"}</h3>
               </div>
             </>
           )}

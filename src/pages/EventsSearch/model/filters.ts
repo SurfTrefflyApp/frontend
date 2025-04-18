@@ -1,14 +1,13 @@
-import { createEvent, createStore } from "effector";
+import type { Tag } from "@/entities/Tag";
 
-export const setOpenFiltersEvent = createEvent<boolean>();
-export const setTagsOpenEvent = createEvent<boolean>();
+export const Time = {
+  day: "day",
+  week: "week",
+  month: "month",
+} as const;
 
-export const $filtersOpen = createStore<boolean>(false).on(
-  setOpenFiltersEvent,
-  (_, payload) => payload,
-);
-
-export const $tagsOpen = createStore<boolean>(false).on(
-  setTagsOpenEvent,
-  (_, payload) => payload,
-);
+export interface Filters {
+  keywords: string;
+  tags: Tag[];
+  time: keyof typeof Time;
+}

@@ -1,13 +1,11 @@
-import { useUnit } from "effector-react";
-
 import { Filters } from "@/shared/icons/Filters";
 import { Button } from "@/shared/ui/button";
 
-import { setOpenFiltersEvent } from "../model/filters";
+import { useFiltersController } from "../controller/useFiltersController";
 import { EventsSearchFilters } from "./EventsSearchFilters";
 
 export const EventsSearchHeader = () => {
-  const setOpenFilters = useUnit(setOpenFiltersEvent);
+  const filtersController = useFiltersController();
 
   return (
     <>
@@ -15,14 +13,14 @@ export const EventsSearchHeader = () => {
         <Button
           variant="ghost"
           onClick={() => {
-            setOpenFilters(true);
+            filtersController.setOpenFilters(true);
           }}
         >
           <Filters />
         </Button>
         <h2 className="text-sm font-semibold">Поиск мероприятий</h2>
       </header>
-      <EventsSearchFilters />
+      <EventsSearchFilters {...filtersController} />
     </>
   );
 };

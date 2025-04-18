@@ -12,7 +12,7 @@ export interface Event {
   date: string;
   isPrivate: boolean;
   isPremium: boolean;
-  ownerName: string;
+  ownerUsername: string;
   preview?: string;
   tags: Tag[];
   isOwner?: boolean;

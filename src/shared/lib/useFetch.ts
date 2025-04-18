@@ -1,4 +1,4 @@
-import type { AxiosError, AxiosResponse } from "axios";
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { useCallback, useEffect, useState } from "react";
 
 import { api } from "@/shared/api";
@@ -7,6 +7,7 @@ export const useFetch = <T>(
   url: string,
   shouldFetch = true,
   onSuccess?: (user: T) => void,
+  config?: AxiosRequestConfig,
 ) => {
   const [data, setData] = useState<T | undefined>();
   const [loading, setLoading] = useState(shouldFetch);
@@ -18,6 +19,7 @@ export const useFetch = <T>(
 
       const response: AxiosResponse<T> = await api({
         url,
+        ...config,
       });
 
       setData(response.data);
@@ -28,7 +30,7 @@ export const useFetch = <T>(
     } finally {
       setLoading(false);
     }
-  }, [url, onSuccess]);
+  }, [url, onSuccess, config]);
 
   useEffect(() => {
     if (shouldFetch) {
@@ -40,5 +42,6 @@ export const useFetch = <T>(
     data,
     loading,
     error,
+    execute,
   };
 };
