@@ -3,8 +3,14 @@ import { EventsHorizontalList } from "@/widgets/EventsHorizontalList";
 
 import { useEventsFetch } from "@/pages/Main/api/useEventsFetch";
 
+import { NotFound } from "@/shared/ui/NotFound";
+
 export const Main = () => {
   const { data, loading } = useEventsFetch();
+
+  if (!loading && !data) {
+    return <NotFound />;
+  }
 
   return (
     <main className="h-inherit mx-auto max-w-2xl px-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0">

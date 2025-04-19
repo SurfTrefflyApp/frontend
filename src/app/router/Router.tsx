@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
 import { EventNew } from "@/pages/EventNew";
+import { Events } from "@/pages/Events";
 import { EventsSearch } from "@/pages/EventsSearch";
 import { Login } from "@/pages/Login";
 import { Main } from "@/pages/Main";
@@ -87,8 +88,13 @@ const router = createBrowserRouter([
             element: <Timeout />,
           },
           {
-            path: routes.events,
-            element: <>Events</>,
+            element: <PrivateRoutes navigateHref={routes.profile} forAuth />,
+            children: [
+              {
+                path: routes.events,
+                element: <Events />,
+              },
+            ],
           },
           {
             path: routes.eventsSearch,
