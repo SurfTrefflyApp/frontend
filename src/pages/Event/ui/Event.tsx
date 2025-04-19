@@ -34,6 +34,7 @@ export const Event = () => {
   return (
     <div className="lg:w-1/3 lg:mx-auto overflow-y-auto no-scrollbar">
       <ContentHeader
+        className="py-2"
         title={event.name}
         rightContent={
           <div className="flex items-center gap-4">
@@ -42,7 +43,11 @@ export const Event = () => {
                 <Edit className="size-[16px]" />
               </Link>
             )}
-            <Button variant="ghost" onClick={handleEventLinkCopy}>
+            <Button
+              variant="ghost"
+              onClick={handleEventLinkCopy}
+              className="p-0"
+            >
               <Share />
             </Button>
           </div>

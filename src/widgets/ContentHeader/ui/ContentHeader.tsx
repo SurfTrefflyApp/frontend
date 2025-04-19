@@ -2,22 +2,30 @@ import { ChevronLeft } from "lucide-react";
 import type { ReactNode } from "react";
 import { useNavigate } from "react-router";
 
+import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
 
 interface ContentHeader {
   withBackArrow?: boolean;
   title?: string;
   rightContent?: ReactNode;
+  className?: string;
 }
 export const ContentHeader = ({
   withBackArrow = true,
   title,
   rightContent,
+  className,
 }: ContentHeader) => {
   const navigate = useNavigate();
 
   return (
-    <header className="grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-1 pr-4 rounded-b-3xl shadow-md sticky top-0 z-10">
+    <header
+      className={cn(
+        "grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-4 rounded-b-3xl shadow-md sticky top-0 z-10",
+        className,
+      )}
+    >
       {withBackArrow && (
         <Button
           variant="ghost"

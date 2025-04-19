@@ -23,7 +23,7 @@ export const EventNew = () => {
 
   return (
     <main className="lg:w-2/4 md:mx-auto overflow-y-auto no-scrollbar">
-      <ContentHeader title="Новое мероприятие" />
+      <ContentHeader className="py-2" title="Новое мероприятие" />
       <Form {...form} formState={formState}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
