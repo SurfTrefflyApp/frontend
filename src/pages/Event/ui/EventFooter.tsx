@@ -7,12 +7,8 @@ import { $isAuth } from "@/shared/auth";
 import { routes } from "@/shared/router";
 import { Button } from "@/shared/ui/button";
 
-import {
-  subscribeEvent,
-  subscribeFx,
-  unsubscribeEvent,
-  unsubscribeFx,
-} from "../model/store";
+import { subscribeEvent, subscribeFx } from "../model/store";
+import { EventUnsubscribeConfirm } from "./EventUnsubsribeConfirm";
 
 interface EventFooter {
   event: Event;
@@ -22,8 +18,6 @@ export const EventFooter = ({ event }: EventFooter) => {
   const isAuth = useUnit($isAuth);
   const subscribe = useUnit(subscribeEvent);
   const subscribing = useUnit(subscribeFx.pending);
-  const unsubscribe = useUnit(unsubscribeEvent);
-  const unsubscribing = useUnit(unsubscribeFx.pending);
 
   const getFooterContent = (): ReactNode => {
     if (!isAuth) {
@@ -42,16 +36,7 @@ export const EventFooter = ({ event }: EventFooter) => {
       return <></>;
     }
     if (event.isParticipant) {
-      return (
-        <Button
-          loading={unsubscribing}
-          onClick={() => {
-            unsubscribe(event.id);
-          }}
-        >
-          Покинуть мероприятие
-        </Button>
-      );
+      return <EventUnsubscribeConfirm eventId={event.id} />;
     }
     if (!event.isParticipant) {
       return (
