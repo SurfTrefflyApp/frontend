@@ -10,11 +10,13 @@ import { Button } from "@/shared/ui/button";
 
 interface AuthLayout extends PropsWithChildren {
   withBackBtn?: boolean;
+  withCloseBtn?: boolean;
   footer?: ReactNode;
 }
 
 export const AuthLayout = ({
   withBackBtn = true,
+  withCloseBtn = true,
   footer,
   children,
 }: AuthLayout) => {
@@ -24,13 +26,13 @@ export const AuthLayout = ({
     <div className="h-svh w-screen flex items-center justify-center">
       <div
         className={cn(
-          "relative h-full w-full max-w-3xl flex flex-col gap-5 justify-between items-center p-5 pt-[20%]",
-          "md:pt-5 md:max-h-[600px] md:background-red-100 md:bg-white md:rounded-xl md:shadow-md",
+          "h-full w-full max-w-3xl flex flex-col gap-5 justify-between items-center p-5 pt-[20%]",
+          "md:py-30",
         )}
       >
         {withBackBtn && (
           <Button
-            className="absolute left-5 top-5"
+            className="absolute left-5 top-5 md:hidden"
             onClick={() => {
               navigate(-1);
             }}
@@ -39,17 +41,22 @@ export const AuthLayout = ({
             <Back className="size-[20px]" />
           </Button>
         )}
-        <Button
-          className="absolute right-5 top-5"
-          variant="ghost"
-          onClick={() => {
-            navigate(routes.main, { replace: true });
-          }}
-        >
-          <Close color="var(--primary)" className="size-[20px]" />
-        </Button>
+        {withCloseBtn && (
+          <Button
+            className="absolute right-5 top-5"
+            variant="ghost"
+            onClick={() => {
+              navigate(routes.main, { replace: true });
+            }}
+          >
+            <Close
+              color="var(--primary)"
+              className="size-[20px] md:size-auto"
+            />
+          </Button>
+        )}
         <header>
-          <Title />
+          <Title className="md:w-[250px] md:h-auto" />
         </header>
         <main className="w-full">{children}</main>
         <footer className="w-full md:w-fit">{footer}</footer>
