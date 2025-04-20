@@ -14,7 +14,7 @@ export const Tabbar = () => {
   const location = useLocation();
 
   const linkClass = (path: string) =>
-    `relative flex items-center justify-center w-[56px] h-[56px] rounded-full transition-all duration-300 ${
+    `relative flex items-center justify-center w-[56px] h-[56px] rounded-full transition-all duration-300 outline-none focus:outline-none ${
       location.pathname === path
         ? "rounded-full bg-[#c6e9ca]/30 shadow-[0_0_10px_#c6e9ca]"
         : ""
