@@ -1,4 +1,3 @@
-import { Appbar } from "@/widgets/Appbar";
 import { Tabbar } from "@/widgets/Tabbar";
 import { useMediaQuery } from "react-responsive";
 import { Outlet } from "react-router";
@@ -8,7 +7,6 @@ export const AppLayout = () => {
 
   return (
     <>
-      {isDesktop && <Appbar />}
       <div className="flex-1 overflow-y-auto no-scrollbar">
         <Outlet />
       </div>

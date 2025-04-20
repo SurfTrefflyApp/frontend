@@ -21,6 +21,8 @@ import { Welcome } from "@/pages/Welcome";
 
 import { routes } from "@/shared/router";
 
+import { AppbarLayout } from "./AppbarLayout";
+
 const router = createBrowserRouter([
   {
     element: (
@@ -52,59 +54,66 @@ const router = createBrowserRouter([
         ],
       },
       {
-        element: <PrivateRoutes navigateHref={routes.profile} forAuth />,
+        element: <AppbarLayout />,
         children: [
-          {
-            path: routes.eventNew,
-            element: <EventNew />,
-          },
-          {
-            path: routes.eventEdit,
-            element: <>Edit Event</>,
-          },
-        ],
-      },
-      {
-        element: <AppLayout />,
-        children: [
-          {
-            path: routes.profile,
-            element: <Profile />,
-          },
-          {
-            path: routes.main,
-            element: <Main />,
-          },
-          {
-            path: routes.terms,
-            element: <Terms />,
-          },
-          {
-            path: routes.privacy,
-            element: <Privacy />,
-          },
-          {
-            path: routes.timeout,
-            element: <Timeout />,
-          },
           {
             element: <PrivateRoutes navigateHref={routes.profile} forAuth />,
             children: [
               {
-                path: routes.events,
-                element: <Events />,
+                path: routes.eventNew,
+                element: <EventNew />,
+              },
+              {
+                path: routes.eventEdit,
+                element: <>Edit Event</>,
               },
             ],
           },
           {
-            path: routes.eventsSearch,
-            element: <EventsSearch />,
+            element: <AppLayout />,
+            children: [
+              {
+                path: routes.profile,
+                element: <Profile />,
+              },
+              {
+                path: routes.main,
+                element: <Main />,
+              },
+              {
+                path: routes.terms,
+                element: <Terms />,
+              },
+              {
+                path: routes.privacy,
+                element: <Privacy />,
+              },
+              {
+                path: routes.timeout,
+                element: <Timeout />,
+              },
+              {
+                element: (
+                  <PrivateRoutes navigateHref={routes.profile} forAuth />
+                ),
+                children: [
+                  {
+                    path: routes.events,
+                    element: <Events />,
+                  },
+                ],
+              },
+              {
+                path: routes.eventsSearch,
+                element: <EventsSearch />,
+              },
+            ],
+          },
+          {
+            path: routes.event,
+            element: <Event />,
           },
         ],
-      },
-      {
-        path: routes.event,
-        element: <Event />,
       },
     ],
   },

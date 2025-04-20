@@ -7,8 +7,12 @@ import { EventsUpcoming } from "./EventsUpcoming";
 
 export const Events = () => {
   return (
-    <main className="h-full flex flex-col">
-      <ContentHeader withBackArrow={false} title="Мероприятия" />
+    <main className="h-full flex flex-col md:mx-auto lg:w-1/3">
+      <ContentHeader
+        withBackArrow={false}
+        title="Мероприятия"
+        className="md:hidden"
+      />
       <Tabs defaultValue="upcoming" className="gap-10 flex-1">
         <TabsList className="w-full flex justify-evenly pt-8">
           <TabsTrigger value="upcoming" className="w-fit">
