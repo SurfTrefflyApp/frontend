@@ -2,10 +2,17 @@ import type { Event } from "@/entities/Event";
 
 import { api } from "@/shared/api";
 
-import type { Filters } from "../model/filters";
+import { mapFiltersToAPI } from "../mapper/filters";
+import type { FiltersSchema } from "../model/filters";
 
-export function getEvents(filters: Filters) {
+export interface APIParams {
+  keywords: string;
+  tags: string;
+  dateWithin: FiltersSchema["time"];
+}
+
+export function getEvents(filters: FiltersSchema) {
   return api.get<{ events: Event[] }>("/events", {
-    params: filters,
+    params: mapFiltersToAPI(filters),
   });
 }

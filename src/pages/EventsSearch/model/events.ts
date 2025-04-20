@@ -4,11 +4,11 @@ import { createEffect, createEvent, createStore, sample } from "effector";
 import { setErrorEvent } from "@/shared/api";
 
 import { getEvents } from "../api";
-import { type Filters } from "./filters";
+import { type FiltersSchema } from "./filters";
 
-export const fetchEventsEvent = createEvent<Filters>();
+export const fetchEventsEvent = createEvent<FiltersSchema>();
 
-export const fetchEventsFx = createEffect(async (filters: Filters) => {
+export const fetchEventsFx = createEffect(async (filters: FiltersSchema) => {
   return (await getEvents(filters)).data.events;
 });
 
