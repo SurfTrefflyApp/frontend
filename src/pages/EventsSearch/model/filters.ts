@@ -1,4 +1,4 @@
-import type { Tag } from "@/entities/Tag";
+import { z } from "zod";
 
 export const Time = {
   day: "day",
@@ -6,8 +6,24 @@ export const Time = {
   month: "month",
 } as const;
 
-export interface Filters {
-  keywords: string;
-  tags: Tag[];
-  time: keyof typeof Time;
-}
+export const filtersSchema = z.object({
+  keywords: z
+    .string()
+    .regex(/^[\p{L}\p{N}]*$/u, {
+      message: "Введены некорректные символы",
+    })
+    .optional(),
+  tags: z
+    .array(
+      z.object({
+        id: z.number(),
+        name: z.string(),
+      }),
+    )
+    .max(3, {
+      message: "Можно добавить не более 3 тегов",
+    }),
+  time: z.enum([Time.day, Time.week, Time.month]),
+});
+
+export type FiltersSchema = z.infer<typeof filtersSchema>;

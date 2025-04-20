@@ -1,16 +1,18 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useUnit } from "effector-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { fetchEventsEvent } from "../model/events";
-import { type Filters, Time } from "../model/filters";
+import { type FiltersSchema, Time, filtersSchema } from "../model/filters";
 
 export const useFiltersController = () => {
   const [filtersOpen, setOpenFilters] = useState(false);
   const [tagsOpen, setTagsOpen] = useState(false);
   const fetchEvents = useUnit(fetchEventsEvent);
 
-  const form = useForm<Filters>({
+  const form = useForm<FiltersSchema>({
+    resolver: zodResolver(filtersSchema),
     defaultValues: {
       keywords: "",
       tags: [],
@@ -23,7 +25,7 @@ export const useFiltersController = () => {
   }, [fetchEvents]);
 
   const handleSubmit = useCallback(
-    (filters: Filters) => {
+    (filters: FiltersSchema) => {
       fetchEvents(filters);
       setOpenFilters(false);
     },

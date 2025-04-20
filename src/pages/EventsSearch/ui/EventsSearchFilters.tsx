@@ -71,7 +71,7 @@ export const EventsSearchFilters = ({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value={Time.day}>1 день</SelectItem>
+                      <SelectItem value={Time.day}>1 День</SelectItem>
                       <SelectItem value={Time.week}>1 Неделя</SelectItem>
                       <SelectItem value={Time.month}>1 Месяц</SelectItem>
                     </SelectContent>
@@ -107,7 +107,7 @@ export const EventsSearchFilters = ({
               >
                 Очистить
               </Button>
-              <Button>Применить</Button>
+              <Button disabled={!form.formState.isValid}>Применить</Button>
             </div>
           </form>
         </Form>
@@ -122,6 +122,7 @@ export const EventsSearchFilters = ({
           form.setValue("tags", tags);
           setTagsOpen(false);
         }}
+        maxSelectedCount={3}
       />
     </>
   );
