@@ -15,6 +15,7 @@ import { formatDateWithIntl } from "@/shared/lib/formatDateWithIntl";
 import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 import { ExpandableText } from "@/shared/ui/ExpandableText";
+import { NotFound } from "@/shared/ui/NotFound";
 import { Tag } from "@/shared/ui/Tag";
 import { Button } from "@/shared/ui/button";
 
@@ -29,8 +30,12 @@ export const Event = () => {
   const { handleAddressCopy, handleEventLinkCopy, loading } =
     useEventController();
 
-  if (loading || !event) {
+  if (loading) {
     return <EventSkeleton />;
+  }
+
+  if (!event) {
+    return <NotFound />;
   }
 
   const isPrivate = event.isPrivate;

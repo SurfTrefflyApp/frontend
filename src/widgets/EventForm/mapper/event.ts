@@ -1,6 +1,6 @@
-import type { EventSchema } from "../model/formSchema";
+import type { EventSchema } from "../../../widgets/EventForm/model/formSchema";
 
-interface ServerEvent {
+export interface ServerEvent {
   name: string;
   description: string;
   latitude: number;

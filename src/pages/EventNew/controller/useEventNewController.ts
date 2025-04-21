@@ -1,3 +1,8 @@
+import {
+  type EventSchema,
+  formSchema,
+  mapDataToServer,
+} from "@/widgets/EventForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
@@ -8,14 +13,12 @@ import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 
 import { createEvent } from "../api";
-import type { EventSchema} from "../model/formSchema";
-import { formSchema } from "../model/formSchema";
 
 export const useEventNewController = () => {
   const navigate = useNavigate();
   const setError = useUnit(setErrorEvent);
 
-  const { formState, ...form } = useForm<EventSchema>({
+  const form = useForm<EventSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       tags: [],
@@ -33,7 +36,8 @@ export const useEventNewController = () => {
 
   const onSubmit = async (values: EventSchema) => {
     try {
-      await createEvent(values);
+      const mappedValues = mapDataToServer(values);
+      await createEvent(mappedValues);
       clear();
       form.reset();
       navigate(routes.profile);
@@ -42,5 +46,5 @@ export const useEventNewController = () => {
     }
   };
 
-  return { formState, form, onSubmit };
+  return { form, onSubmit };
 };

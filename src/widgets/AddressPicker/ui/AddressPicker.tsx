@@ -4,20 +4,31 @@ import { useEffect, useState } from "react";
 
 import { Button } from "@/shared/ui/button";
 
-import { $address } from "../model";
+import { $address, setAddressEvent } from "../model";
 import { SelectPage } from "./SelectPage";
 
 interface AddressPicker {
   setAddress: (address: Address) => void;
   error?: boolean;
+  defaultAddress?: Address;
 }
-export const AddressPicker = ({ setAddress }: AddressPicker) => {
+export const AddressPicker = ({
+  setAddress,
+  defaultAddress,
+}: AddressPicker) => {
   const [selectPageOpen, setSelectPageOpen] = useState(false);
   const address = useUnit($address);
+  const setLocalAddress = useUnit(setAddressEvent);
 
   useEffect(() => {
     setAddress(address);
   }, [address, setAddress]);
+
+  useEffect(() => {
+    if (defaultAddress) {
+      setLocalAddress(defaultAddress);
+    }
+  }, [setLocalAddress, defaultAddress]);
 
   return (
     <>
