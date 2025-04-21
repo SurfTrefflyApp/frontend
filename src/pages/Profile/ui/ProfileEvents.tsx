@@ -12,7 +12,7 @@ export const ProfileEvents = () => {
       <div className="bg-surface-container-low rounded-3xl shadow-lg">
         <div className="relative grid grid-cols-[1fr_3fr_1fr] items-center p-4 pb-0">
           <h3 className="text-center text-base font-semibold col-2">
-            Мои события
+            Мои мероприятия
           </h3>
           <Button className="w-fit h-[22px] ml-auto" variant="ghost" asChild>
             <Link to={routes.eventNew}>
