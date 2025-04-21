@@ -6,12 +6,15 @@ import { Calendar } from "@/shared/icons/Calendar";
 import { Home } from "@/shared/icons/Home";
 import { Map } from "@/shared/icons/Map";
 import { Profile } from "@/shared/icons/Profile";
+import { isRunningAsPWA } from "@/shared/lib/isRunningAsPWA";
 import { cn } from "@/shared/lib/utils";
 import { routes } from "@/shared/router";
 
 export const Tabbar = () => {
   const isAuth = useUnit($isAuth);
   const location = useLocation();
+
+  const isPWA = isRunningAsPWA();
 
   const linkClass = (path: string) =>
     `relative flex items-center justify-center w-[56px] h-[56px] rounded-full transition-all duration-300 outline-none focus:outline-none ${
@@ -26,7 +29,12 @@ export const Tabbar = () => {
     });
 
   return (
-    <nav className="w-full py-2 pb-10 bg-[#F4F4F0] rounded-t-xl flex justify-evenly shadow-3xl z-10">
+    <nav
+      className={cn(
+        "w-full p-2 bg-[#F4F4F0] rounded-t-xl flex justify-evenly shadow-3xl z-10",
+        { "pb-6": isPWA },
+      )}
+    >
       <Link to={routes.main} className={linkClass(routes.main)}>
         <Home className={iconClass(routes.main)} />
       </Link>

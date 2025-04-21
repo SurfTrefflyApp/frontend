@@ -38,8 +38,8 @@ export const EventNewTags = ({ form }: EventNewTags) => {
         <FormItem>
           {tagsPickerOpen && (
             <TagsPicker
-              title="Определите главные темы события"
-              description="На основе вашего выбора у пользователей будет формироваться список рекомендаций"
+              title="Определи главные темы события"
+              description="На основе твоего выбора у пользователей будет формироваться список рекомендаций"
               open={tagsPickerOpen}
               setOpen={setTagsPickerOpen}
               selectedTags={field.value as TagModel[]}
@@ -69,7 +69,7 @@ export const EventNewTags = ({ form }: EventNewTags) => {
             >
               <TagsContainer
                 tags={field.value}
-                emptyText="Выберите от 1 до 3 тегов"
+                emptyText="Выбери от 1 до 3 тегов"
               />
             </div>
           </FormControl>

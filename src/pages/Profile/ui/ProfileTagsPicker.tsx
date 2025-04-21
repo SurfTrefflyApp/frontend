@@ -18,8 +18,8 @@ export const ProfileTagsPicker = ({
 
   return (
     <TagsPicker
-      title="Расскажите нам о Ваших интересах"
-      description="Мы будем формировать список рекомендаций на основе вашего выбора"
+      title="Расскажи нам о своих интересах"
+      description="Мы будем формировать список рекомендаций на основе твоего выбора"
       open={open}
       setOpen={setOpen}
       selectedTags={tags}

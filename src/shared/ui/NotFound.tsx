@@ -14,7 +14,7 @@ export const NotFound = () => {
           <>
             Мы не смогли ничего найти
             <br />
-            Попробуйте снова
+            Попробуй снова
           </>
         }
         subtitleClassName="text-lg"

@@ -50,7 +50,7 @@ export const EventForm = ({
               <FormControl>
                 <Input
                   id="title"
-                  placeholder="Введите название мероприятия"
+                  placeholder="Введи название мероприятия"
                   variant="secondary"
                   error={!!formState.errors.title}
                   {...field}
@@ -97,7 +97,7 @@ export const EventForm = ({
                 <Input
                   id="participantsCount"
                   type="number"
-                  placeholder="Введите количество участников"
+                  placeholder="Введи количество участников"
                   variant="secondary"
                   error={!!formState.errors.participantsCount}
                   {...field}
@@ -123,7 +123,7 @@ export const EventForm = ({
               <FormControl>
                 <Textarea
                   id="description"
-                  placeholder="Напишите описание для мероприятия"
+                  placeholder="Напиши описание для мероприятия"
                   rows={20}
                   variant="secondary"
                   error={!!formState.errors.description}

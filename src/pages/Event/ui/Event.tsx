@@ -107,7 +107,7 @@ export const Event = () => {
         </section>
         <section>
           {event.isOwner ? (
-            <h3 className="text-sm">Организатором являетесь вы</h3>
+            <h3 className="text-sm text-center">Организатором являешься ты</h3>
           ) : (
             <>
               <h2 className="text-sm font-semibold mb-2">Организатор:</h2>

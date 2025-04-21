@@ -29,7 +29,7 @@ export const EventDelete = ({ eventId }: { eventId: number }) => {
         <DialogContent className="[&>button:last-child]:hidden max-w-[320px]!">
           <DialogHeader className="mb-4">
             <DialogTitle className="text-center">
-              Вы уверены, что хотите удалить это мероприятие?
+              Ты уверен, что хочешь удалить это мероприятие?
             </DialogTitle>
           </DialogHeader>
           <DialogFooter className="flex-row! justify-center! gap-4">

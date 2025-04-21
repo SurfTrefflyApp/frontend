@@ -23,7 +23,7 @@ export const Register = () => {
     <AuthLayout
       footer={
         <small className="text-center w-full max-w-md block text-xs text-outline-variant">
-          Используя Treffly вы соглашаетесь с нашими{" "}
+          Используя Treffly ты соглашаешься с нашими{" "}
           <Link to={routes.terms} className="text-primary">
             Условиями
           </Link>{" "}
