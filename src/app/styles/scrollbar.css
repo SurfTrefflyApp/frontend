@@ -1,0 +1,22 @@
+:root {
+  --scrollbar-color: #e0e0e0;
+}
+
+* {
+  scrollbar-color: var(--scrollbar-color);
+  scrollbar-width: 6px;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 8px;
+  background-color: var(--scrollbar-color);
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(0, 0, 0, 0);
+  background: #a9a9a9;
+  border-radius: 8px;
+  background-clip: padding-box;
+}

@@ -1,192 +1,28 @@
 import { ContentHeader } from "@/widgets/ContentHeader";
+import { EventForm } from "@/widgets/EventForm";
 
-import { DateTimePicker } from "@/shared/ui/DateTimePicker";
-import { InfoIconWithTooltip } from "@/shared/ui/InfoIconWithTooltip";
 import { Button } from "@/shared/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/shared/ui/form";
-import { Input } from "@/shared/ui/input";
-import { Textarea } from "@/shared/ui/textarea";
 
 import { useEventNewController } from "../controller/useEventNewController";
-import { EventNewAddress } from "./EventNewAddress";
-import { EventNewTags } from "./EventNewTags";
 
 export const EventNew = () => {
-  const { formState, form, onSubmit } = useEventNewController();
+  const { form, onSubmit } = useEventNewController();
 
   return (
     <main className="lg:w-2/4 md:mx-auto overflow-y-auto no-scrollbar">
       <ContentHeader className="py-2" title="Новое мероприятие" />
-      <Form {...form} formState={formState}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-5 p-6"
-        >
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Название</FormLabel>
-                <FormControl>
-                  <Input
-                    id="title"
-                    placeholder="Введите название мероприятия"
-                    variant="secondary"
-                    error={!!formState.errors.title}
-                    {...field}
-                  />
-                </FormControl>
-                {formState.errors.title && (
-                  <FormMessage>{formState.errors.title.message}</FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="dateTime"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Дата и время</FormLabel>
-                <FormControl>
-                  <DateTimePicker
-                    {...field}
-                    onError={(error) => {
-                      if (error) {
-                        form.setError("dateTime", { message: error });
-                      } else {
-                        form.clearErrors("dateTime");
-                      }
-                    }}
-                    error={!!formState.errors.dateTime}
-                  />
-                </FormControl>
-                {formState.errors.dateTime && (
-                  <FormMessage>{formState.errors.dateTime.message}</FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="participantsCount"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Количество участников</FormLabel>
-                <FormControl>
-                  <Input
-                    id="participantsCount"
-                    type="number"
-                    placeholder="Введите количество участников"
-                    variant="secondary"
-                    error={!!formState.errors.participantsCount}
-                    {...field}
-                    onChange={(value) =>
-                      field.onChange(value.target.valueAsNumber)
-                    }
-                  />
-                </FormControl>
-                {formState.errors.participantsCount && (
-                  <FormMessage>
-                    {formState.errors.participantsCount.message}
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Описание</FormLabel>
-                <FormControl>
-                  <Textarea
-                    id="description"
-                    placeholder="Напишите описание для мероприятия"
-                    rows={20}
-                    variant="secondary"
-                    error={!!formState.errors.description}
-                    {...field}
-                  />
-                </FormControl>
-                {formState.errors.description && (
-                  <FormMessage>
-                    {formState.errors.description.message}
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-          <EventNewAddress form={{ ...form, formState }} />
-          <FormField
-            control={form.control}
-            name="eventType"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center gap-2">
-                  <FormLabel>Тип мероприятия</FormLabel>
-                  <InfoIconWithTooltip
-                    content={
-                      <p className="text-sm text-center">
-                        Приватные мероприятия не отображаются при поиске.
-                        <br />
-                        Участников можно пригласить по специальной ссылке
-                      </p>
-                    }
-                  />
-                </div>
-                <FormControl>
-                  <div className="flex justify-between gap-3">
-                    <Button
-                      className="flex-1"
-                      type="button"
-                      variant={field.value === "public" ? "default" : "outline"}
-                      onClick={() => {
-                        form.setValue("eventType", "public");
-                      }}
-                    >
-                      Открытое
-                    </Button>
-                    <Button
-                      className="flex-1"
-                      type="button"
-                      variant={
-                        field.value === "private" ? "default" : "outline"
-                      }
-                      onClick={() => {
-                        form.setValue("eventType", "private");
-                      }}
-                    >
-                      Приватное
-                    </Button>
-                  </div>
-                </FormControl>
-                {formState.errors.eventType && (
-                  <FormMessage>
-                    {formState.errors.eventType.message}
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-          <EventNewTags form={{ formState, ...form }} />
+      <EventForm
+        form={form}
+        onSubmit={onSubmit}
+        formFooter={
           <Button
-            loading={formState.isSubmitting}
-            disabled={!formState.isValid}
+            loading={form.formState.isSubmitting}
+            disabled={!form.formState.isValid}
           >
             Создать мероприятие
           </Button>
-        </form>
-      </Form>
+        }
+      />
     </main>
   );
 };

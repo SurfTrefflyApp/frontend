@@ -1,3 +1,4 @@
+import type { Address } from "@/entities/Address";
 import { AddressPicker } from "@/widgets/AddressPicker";
 import type { UseFormReturn } from "react-hook-form";
 
@@ -11,11 +12,12 @@ import {
 
 import type { EventSchema } from "../model/formSchema";
 
-export const EventNewAddress = ({
-  form,
-}: {
+interface EventNewAddress {
   form: UseFormReturn<EventSchema>;
-}) => {
+  defaultAddress?: Address;
+}
+
+export const EventNewAddress = ({ form, defaultAddress }: EventNewAddress) => {
   return (
     <FormField
       control={form.control}
@@ -24,7 +26,10 @@ export const EventNewAddress = ({
         <FormItem>
           <FormLabel>Место проведения</FormLabel>
           <FormControl>
-            <AddressPicker setAddress={field.onChange} />
+            <AddressPicker
+              setAddress={field.onChange}
+              defaultAddress={defaultAddress}
+            />
           </FormControl>
           {form.formState.errors.location && (
             <FormMessage>{form.formState.errors.location.message}</FormMessage>

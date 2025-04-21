@@ -1,5 +1,5 @@
 import { useUnit } from "effector-react";
-import type { PropsWithChildren} from "react";
+import type { PropsWithChildren } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";

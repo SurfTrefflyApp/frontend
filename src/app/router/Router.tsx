@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 
 import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
+import { EventEdit } from "@/pages/EventEdit";
 import { EventNew } from "@/pages/EventNew";
 import { Events } from "@/pages/Events";
 import { EventsSearch } from "@/pages/EventsSearch";
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
               },
               {
                 path: routes.eventEdit,
-                element: <>Edit Event</>,
+                element: <EventEdit />,
               },
             ],
           },

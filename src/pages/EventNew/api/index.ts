@@ -1,8 +1,7 @@
+import { type ServerEvent } from "@/widgets/EventForm/mapper/event";
+
 import { api } from "@/shared/api";
 
-import { mapDataToServer } from "../mapper/event";
-import type { EventSchema } from "../model/formSchema";
-
-export function createEvent(values: EventSchema) {
-  return api.post("/events", mapDataToServer(values));
+export function createEvent(values: ServerEvent) {
+  return api.post("/events", values);
 }

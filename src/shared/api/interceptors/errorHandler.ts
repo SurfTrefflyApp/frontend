@@ -27,7 +27,8 @@ export class ErrorHandler {
       return this.refreshInterceptor.refresh(error, originalRequest);
     } else if (
       !this.notInterceptedURLs.includes(originalRequest.url ?? "") &&
-      originalRequest.method === "get"
+      originalRequest.method === "get" &&
+      status !== 404
     ) {
       setErrorCodeEvent(400);
     }
