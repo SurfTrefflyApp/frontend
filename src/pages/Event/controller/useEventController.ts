@@ -16,7 +16,7 @@ export const useEventController = () => {
   const event = useUnit($event);
   const setEvent = useUnit(setEventEvent);
 
-  useFetch<Event>(`/events/${id}`, true, setEvent);
+  const { loading } = useFetch<Event>(`/events/${id}`, true, setEvent);
 
   const setError = useUnit(setErrorEvent);
 
@@ -52,5 +52,6 @@ export const useEventController = () => {
   return {
     handleAddressCopy,
     handleEventLinkCopy,
+    loading,
   };
 };

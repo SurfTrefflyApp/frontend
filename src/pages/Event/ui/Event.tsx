@@ -22,12 +22,16 @@ import { useEventController } from "../controller/useEventController";
 import { $event } from "../model/store";
 import { EventFooter } from "./EventFooter";
 import { EventMap } from "./EventMap";
+import { EventSkeleton } from "./EventSkeleton";
 
 export const Event = () => {
   const event = useUnit($event);
-  const { handleAddressCopy, handleEventLinkCopy } = useEventController();
+  const { handleAddressCopy, handleEventLinkCopy, loading } =
+    useEventController();
 
-  if (!event) return <>Loading...</>;
+  if (loading || !event) {
+    return <EventSkeleton />;
+  }
 
   const isPrivate = event.isPrivate;
 
