@@ -18,7 +18,7 @@ export type errorValues = (typeof errorPages)[errorsKeys];
 export const setErrorEvent = createEvent<unknown>();
 
 const defaultTitle = "Ошибка сервера";
-const defaultSubtitle = "Что-то пошло не так. Попробуйте позже";
+const defaultSubtitle = "Что-то пошло не так. Попробуй позже";
 
 export const $error = createStore<ErrorResponse | null>(null).on(
   setErrorEvent,
