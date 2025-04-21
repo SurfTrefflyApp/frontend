@@ -26,7 +26,7 @@ export const Tabbar = () => {
     });
 
   return (
-    <nav className="w-full py-2 pb-4 bg-[#F4F4F0] rounded-t-xl flex justify-evenly shadow-3xl z-10">
+    <nav className="w-full py-2 pb-10 bg-[#F4F4F0] rounded-t-xl flex justify-evenly shadow-3xl z-10">
       <Link to={routes.main} className={linkClass(routes.main)}>
         <Home className={iconClass(routes.main)} />
       </Link>
