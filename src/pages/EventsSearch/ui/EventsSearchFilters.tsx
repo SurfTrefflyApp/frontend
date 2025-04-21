@@ -1,7 +1,6 @@
 import { TagsPicker } from "@/widgets/TagsPicker";
 import { Search } from "lucide-react";
 
-import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
 import { TagsContainer } from "@/shared/ui/TagsContainer";
 import { Button } from "@/shared/ui/button";
 import {
@@ -24,8 +23,6 @@ import type { useFiltersController } from "../controller/useFiltersController";
 import { Time } from "../model/filters";
 
 export const EventsSearchFilters = ({
-  filtersOpen,
-  setOpenFilters,
   tagsOpen,
   setTagsOpen,
   form,
@@ -33,85 +30,86 @@ export const EventsSearchFilters = ({
 }: ReturnType<typeof useFiltersController>) => {
   return (
     <>
-      <AdaptivePopover open={filtersOpen} setOpen={setOpenFilters}>
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="flex flex-col gap-4 p-4">
-            <FormField
-              control={form.control}
-              name="keywords"
-              render={({ field }) => (
-                <FormItem>
+      <Form {...form}>
+        <form
+          onSubmit={onSubmit}
+          className="flex flex-col gap-4 p-4 2xl:flex-row 2xl:justify-around 2xl:w-full 2xl:shadow-lg z-10"
+        >
+          <FormField
+            control={form.control}
+            name="keywords"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder="Ключевые слова"
+                    variant="secondary"
+                    endIcon={Search}
+                    iconProps={{
+                      className: "text-primary",
+                    }}
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="time"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Время до начала</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
-                    <Input
-                      placeholder="Ключевые слова"
-                      variant="secondary"
-                      endIcon={Search}
-                      iconProps={{
-                        className: "text-primary",
-                      }}
-                      {...field}
-                    />
+                    <SelectTrigger>
+                      <SelectValue placeholder="Время до начала" />
+                    </SelectTrigger>
                   </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="time"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Время до начала</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
+                  <SelectContent>
+                    <SelectItem value={Time.day}>1 День</SelectItem>
+                    <SelectItem value={Time.week}>1 Неделя</SelectItem>
+                    <SelectItem value={Time.month}>1 Месяц</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="tags"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <div
+                    className="bg-surface-container p-4 shadow-lg rounded-3xl min-w-[300px]"
+                    onClick={() => {
+                      setTagsOpen(true);
+                    }}
                   >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Время до начала" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value={Time.day}>1 День</SelectItem>
-                      <SelectItem value={Time.week}>1 Неделя</SelectItem>
-                      <SelectItem value={Time.month}>1 Месяц</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="tags"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <div
-                      className="bg-surface-container p-4 shadow-lg rounded-3xl"
-                      onClick={() => {
-                        setTagsOpen(true);
-                      }}
-                    >
-                      <TagsContainer tags={field.value} emptyText="Теги" />
-                    </div>
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <div className="flex justify-between gap-4">
-              <Button
-                variant="secondary"
-                type="button"
-                onClick={() => {
-                  form.reset();
-                }}
-              >
-                Очистить
-              </Button>
-              <Button disabled={!form.formState.isValid}>Применить</Button>
-            </div>
-          </form>
-        </Form>
-      </AdaptivePopover>
+                    <TagsContainer tags={field.value} emptyText="Теги" />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <div className="flex justify-between gap-4">
+            <Button
+              variant="secondary"
+              type="button"
+              onClick={() => {
+                form.reset();
+              }}
+            >
+              Очистить
+            </Button>
+            <Button disabled={!form.formState.isValid}>Применить</Button>
+          </div>
+        </form>
+      </Form>
       <TagsPicker
         open={tagsOpen}
         setOpen={setTagsOpen}
