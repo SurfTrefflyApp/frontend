@@ -12,12 +12,18 @@ import { useFetch } from "@/shared/lib/useFetch";
 import { routes } from "@/shared/router";
 import { Button } from "@/shared/ui/button";
 
+import { ProfileSkeleton } from "./ProfileSkeleton";
+
 export const Profile = () => {
   const isAuth = useUnit($isAuth);
   const user = useUnit($user);
   const setUser = useUnit(setUserEvent);
 
-  useFetch<User>("/users/me", isAuth, setUser);
+  const { loading } = useFetch<User>("/users/me", isAuth, setUser);
+
+  if (!loading) {
+    return <ProfileSkeleton />;
+  }
 
   return (
     <main className="mx-auto flex flex-col h-full max-w-2xl">
