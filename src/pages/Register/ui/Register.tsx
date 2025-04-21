@@ -35,7 +35,9 @@ export const Register = () => {
       }
     >
       <div className="text-center mb-8 pb-4 border-b-2 border-outline-variant">
-        <h1 className="text-3xl font-semibold">Создание аккаунта</h1>
+        <h1 className="text-3xl font-semibold md:text-5xl">
+          Создание аккаунта
+        </h1>
       </div>
       <Form {...form} formState={formState}>
         <form

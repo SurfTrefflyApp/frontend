@@ -21,8 +21,10 @@ export const Login = () => {
   return (
     <AuthLayout>
       <div className="text-center mb-8 pb-4 border-b-2 border-outline-variant">
-        <h1 className="text-3xl font-semibold">С возвращением!</h1>
-        <h2 className="text-xl">
+        <h1 className="text-3xl font-semibold md:text-5xl md:mb-2">
+          С возвращением!
+        </h1>
+        <h2 className="text-xl md:text-2xl">
           Введи свою почту и пароль для того, чтобы войти
         </h2>
       </div>
@@ -90,7 +92,7 @@ export const Login = () => {
         </form>
         <Button
           variant="ghost"
-          className="mx-auto mt-4 block text-center text-primary text-sm font-medium p-0"
+          className="mx-auto mt-4 block text-center text-primary text-sm font-medium p-0 hidden"
         >
           <Link to={routes.passwordReset}>Забыли пароль?</Link>
         </Button>

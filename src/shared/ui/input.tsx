@@ -1,4 +1,4 @@
-import type { VariantProps} from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import * as React from "react";
 
@@ -119,7 +119,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             startIcon ? "pl-8" : "",
-            endIcon ? "pr-8" : "",
+            endIcon ? "pr-20" : "",
             inputClassname,
           )}
           ref={ref}

@@ -22,7 +22,7 @@ export const ContentHeader = ({
   return (
     <header
       className={cn(
-        "grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-4 rounded-b-3xl shadow-md sticky top-0 z-10",
+        "grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-4 rounded-b-3xl shadow-md sticky top-0 z-10 md:rounded-t-3xl",
         className,
       )}
     >
