@@ -21,7 +21,7 @@ export const Profile = () => {
 
   const { loading } = useFetch<User>("/users/me", isAuth, setUser);
 
-  if (!loading) {
+  if (loading) {
     return <ProfileSkeleton />;
   }
 
