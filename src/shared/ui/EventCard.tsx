@@ -16,7 +16,7 @@ export const EventCard = ({ event, containerClassName }: EventCard) => {
     <Link to={routes.event.replace(":id", event.id.toString())}>
       <figure
         className={cn(
-          "w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto",
+          "w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto hover:opacity-60 active:opacity-60",
           containerClassName,
         )}
       >
