@@ -11,7 +11,7 @@ export const ProfileEventsList = () => {
       <EventsHorizontalList
         events={events}
         isLoading={loading}
-        emptyMessage="Пока не нашлось Ваших мероприятий"
+        emptyMessage="Пока не нашлось твоих мероприятий"
       />
     </>
   );

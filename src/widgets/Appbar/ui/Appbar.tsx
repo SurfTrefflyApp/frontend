@@ -31,7 +31,7 @@ export const Appbar = () => {
         </Link>
         {isAuth && (
           <Link to={routes.events} className={linkClass(routes.events)}>
-            События
+            Мероприятия
           </Link>
         )}
         <Link to={routes.profile} className={linkClass(routes.profile)}>

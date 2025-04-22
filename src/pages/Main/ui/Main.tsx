@@ -23,7 +23,7 @@ export const Main = () => {
         isLoading={loading}
       />
       <EventsHorizontalList
-        title="Возможно, вам понравится"
+        title="Возможно, тебе понравится"
         events={data?.recommended}
         isLoading={loading}
       />

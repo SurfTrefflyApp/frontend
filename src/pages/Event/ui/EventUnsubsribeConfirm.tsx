@@ -26,7 +26,7 @@ export const EventUnsubscribeConfirm = ({ eventId }: { eventId: number }) => {
       <DialogContent className="[&>button:last-child]:hidden">
         <DialogHeader>
           <DialogTitle className="text-primary text-xl">
-            Ты уверен, что хочешь покинуть это событие?
+            Ты уверен, что хочешь покинуть это мероприятие?
           </DialogTitle>
         </DialogHeader>
         <DialogFooter className="flex flex-row justify-between px-10">

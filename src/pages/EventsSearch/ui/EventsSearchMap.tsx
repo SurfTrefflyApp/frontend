@@ -106,7 +106,7 @@ export const EventsSearchMap = () => {
               to={routes.event.replace(":id", selectedEvent.id.toString())}
               className="text-center text-primary"
             >
-              На страницу события
+              На страницу мероприятия
             </Link>
           }
         >

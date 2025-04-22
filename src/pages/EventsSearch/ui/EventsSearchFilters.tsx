@@ -113,7 +113,7 @@ export const EventsSearchFilters = ({
       <TagsPicker
         open={tagsOpen}
         setOpen={setTagsOpen}
-        title="Выберите интересующие вас темы"
+        title="Выбери интересующие тебя темы"
         description="Мы покажем мероприятия с соответствующей тематикой"
         selectedTags={form.getValues("tags")}
         onSave={(tags) => {
