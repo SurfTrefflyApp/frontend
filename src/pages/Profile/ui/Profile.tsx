@@ -37,9 +37,9 @@ export const Profile = () => {
         ) : (
           <div className="flex flex-col gap-4">
             <p className="text-center text-xl font-medium">
-              Войди в аккаунт или зарегистрируйся, чтобы участвовать в событиях,
-              получать персональные рекомендации и напоминания о предстоящих
-              мероприятиях
+              Войди в аккаунт или зарегистрируйся, чтобы участвовать в
+              мероприятиях, получать персональные рекомендации и напоминания о
+              предстоящих мероприятиях
             </p>
             <Button variant="secondary" asChild className="w-fit mx-auto">
               <Link to={routes.login}>Авторизоваться</Link>

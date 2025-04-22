@@ -6,7 +6,7 @@ export const Error = () => {
     <ErrorLayout
       icon={<ErrorIcon />}
       title="Здесь что-то не так"
-      subtitle="Перезагрузите приложение и попробуйте позже"
+      subtitle="Перезагрузите приложение и попробуй позже"
       titleIconClassName="text-error"
     />
   );

@@ -5,6 +5,7 @@ import { logoutWithoutApiEvent } from "@/shared/auth";
 import { refresh } from "@/shared/auth/api";
 
 export class RefreshInterceptor {
+  private static instance: RefreshInterceptor;
   private isRefreshing = false;
   private failedQueue: {
     resolve: (value?: unknown) => void;
@@ -13,8 +14,15 @@ export class RefreshInterceptor {
   }[] = [];
   private axiosInstance: AxiosInstance;
 
-  constructor(axiosInstance: AxiosInstance) {
+  private constructor(axiosInstance: AxiosInstance) {
     this.axiosInstance = axiosInstance;
+  }
+
+  public static getInstance(axiosInstance: AxiosInstance): RefreshInterceptor {
+    if (!RefreshInterceptor.instance) {
+      RefreshInterceptor.instance = new RefreshInterceptor(axiosInstance);
+    }
+    return RefreshInterceptor.instance;
   }
 
   private processQueue(error: unknown, tokenRefreshed = false) {

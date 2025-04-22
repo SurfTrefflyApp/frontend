@@ -38,7 +38,7 @@ export const EventNewTags = ({ form }: EventNewTags) => {
         <FormItem>
           {tagsPickerOpen && (
             <TagsPicker
-              title="Определи главные темы события"
+              title="Определи главные темы мероприятия"
               description="На основе твоего выбора у пользователей будет формироваться список рекомендаций"
               open={tagsPickerOpen}
               setOpen={setTagsPickerOpen}

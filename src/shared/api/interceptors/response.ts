@@ -4,7 +4,7 @@ import { RefreshInterceptor } from "@/shared/api/interceptors/refresh";
 import { ErrorHandler } from "./errorHandler";
 
 export function initResponseInterceptors() {
-  const refreshInterceptor = new RefreshInterceptor(api);
+  const refreshInterceptor = RefreshInterceptor.getInstance(api);
   const errorHandler = new ErrorHandler(refreshInterceptor);
   api.interceptors.response.use(
     (response) => response,
