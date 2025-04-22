@@ -12,7 +12,7 @@ export interface APIParams {
 }
 
 export function getEvents(filters: FiltersSchema) {
-  return api.get<{ events: Event[] }>("/events", {
+  return api.get<Event[]>("/events", {
     params: mapFiltersToAPI(filters),
   });
 }
