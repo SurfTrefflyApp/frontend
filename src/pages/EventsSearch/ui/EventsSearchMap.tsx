@@ -104,7 +104,7 @@ export const EventsSearchMap = () => {
           footer={
             <Link
               to={routes.event.replace(":id", selectedEvent.id.toString())}
-              className="text-center text-primary"
+              className="text-center text-primary block w-full"
             >
               На страницу мероприятия
             </Link>
@@ -112,7 +112,7 @@ export const EventsSearchMap = () => {
         >
           <EventCard
             event={selectedEvent}
-            containerClassName="bg-transparent"
+            containerClassName="bg-transparent hover:opacity-100 active:opacity-100"
           />
         </AdaptivePopover>
       )}
