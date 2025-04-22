@@ -21,7 +21,6 @@ export const ErrorPagesProvider = ({ children }: PropsWithChildren) => {
   const isOnline = useNetworkStatus();
 
   useEffect(() => {
-    console.debug(errorPageURL);
     if (errorPageURL && errorPageURL !== routes.getError) {
       navigate(errorPageURL);
       setErrorCode(null);
