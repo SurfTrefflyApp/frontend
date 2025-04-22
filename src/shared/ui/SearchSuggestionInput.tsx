@@ -1,11 +1,11 @@
 import { Command as CommandPrimitive } from "cmdk";
-import type { KeyboardEvent, ReactNode} from "react";
+import type { KeyboardEvent, ReactNode } from "react";
 import { useCallback, useRef, useState } from "react";
 
 import { CommandGroup, CommandItem, CommandList } from "@/shared/ui/command";
 import { Input } from "@/shared/ui/input";
 
-import { useDebounceInput } from "../lib/useDebounce";
+import { useDebounce } from "../lib/useDebounce";
 import { cn } from "../lib/utils";
 import { Skeleton } from "./skeleton";
 
@@ -37,7 +37,7 @@ export const SearchSuggestionInput = <T,>({
   const [isOpen, setOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useDebounceInput(value, 300, onSearch);
+  useDebounce(value, 300, onSearch);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
