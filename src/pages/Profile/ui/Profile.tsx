@@ -42,7 +42,7 @@ export const Profile = () => {
               мероприятиях
             </p>
             <Button variant="secondary" asChild className="w-fit mx-auto">
-              <Link to={routes.welcome}>Авторизоваться</Link>
+              <Link to={routes.login}>Авторизоваться</Link>
             </Button>
           </div>
         )}

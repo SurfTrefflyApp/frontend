@@ -9,7 +9,7 @@ import { type FiltersSchema } from "./filters";
 export const fetchEventsEvent = createEvent<FiltersSchema>();
 
 export const fetchEventsFx = createEffect(async (filters: FiltersSchema) => {
-  return (await getEvents(filters)).data;
+  return (await getEvents(filters)).data.events;
 });
 
 export const $events = createStore<Event[]>([]).on(
