@@ -16,7 +16,7 @@ export const useFiltersController = () => {
     defaultValues: {
       keywords: "",
       tags: [],
-      time: Time.month,
+      time: Time.all,
     },
   });
 

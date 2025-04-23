@@ -64,14 +64,16 @@ export const Event = () => {
       />
       <main className="p-3 py-6 flex flex-col gap-5">
         <EventImagePreview className="aspect-video" />
-        <section
-          className={`text-center flex justify-center items-center flex-wrap gap-2 gap-x-6
+        {!!event.tags.length && (
+          <section
+            className={`text-center flex justify-center items-center flex-wrap gap-2 gap-x-6
         bg-surface-container-low rounded-3xl p-4 shadow-lg mb-4`}
-        >
-          {event.tags.map(({ id, name }) => (
-            <Tag key={id} name={name} variant="static" />
-          ))}
-        </section>
+          >
+            {event.tags.map(({ id, name }) => (
+              <Tag key={id} name={name} variant="static" />
+            ))}
+          </section>
+        )}
         <section>
           <h1 className="text-xl font-medium mb-1">{event.name}</h1>
           <div className="flex gap-2 items-center text-xl">

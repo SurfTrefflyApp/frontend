@@ -27,7 +27,7 @@ export const useEventController = () => {
         classNames: {
           title: "text-center",
           content: "w-full",
-          toast: "w-fit! mx-auto",
+          toast: "w-fit! mx-auto left-0 right-0",
         },
       });
     } catch (error) {

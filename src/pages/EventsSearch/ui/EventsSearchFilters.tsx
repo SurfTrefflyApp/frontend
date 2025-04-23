@@ -1,6 +1,7 @@
 import { TagsPicker } from "@/widgets/TagsPicker";
 import { Search } from "lucide-react";
 
+import { Edit } from "@/shared/icons/Edit";
 import { TagsContainer } from "@/shared/ui/TagsContainer";
 import { Button } from "@/shared/ui/button";
 import {
@@ -33,7 +34,7 @@ export const EventsSearchFilters = ({
       <Form {...form}>
         <form
           onSubmit={onSubmit}
-          className="flex flex-col gap-4 p-4 2xl:flex-row 2xl:justify-around 2xl:w-full 2xl:shadow-lg z-10"
+          className="flex flex-col gap-4 p-4 2xl:flex-row 2xl:justify-around xl:w-full 2xl:shadow-lg z-10"
         >
           <FormField
             control={form.control}
@@ -70,6 +71,7 @@ export const EventsSearchFilters = ({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
+                    <SelectItem value={Time.all}>Не выбрано</SelectItem>
                     <SelectItem value={Time.day}>1 День</SelectItem>
                     <SelectItem value={Time.week}>1 Неделя</SelectItem>
                     <SelectItem value={Time.month}>1 Месяц</SelectItem>
@@ -84,13 +86,25 @@ export const EventsSearchFilters = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div
-                    className="bg-surface-container p-4 shadow-lg rounded-3xl min-w-[300px]"
-                    onClick={() => {
-                      setTagsOpen(true);
-                    }}
-                  >
-                    <TagsContainer tags={field.value} emptyText="Теги" />
+                  <div className="bg-surface-container p-4 shadow-lg rounded-3xl min-w-[300px]">
+                    <div className="mb-4 grid grid-cols-[1fr_2fr_1fr] h-fit">
+                      <h3 className="text-center text-base font-semibold self-center col-2">
+                        Теги
+                      </h3>
+                      <Button
+                        className="h-[18px] w-fit ml-auto p-0"
+                        variant="ghost"
+                        onClick={() => {
+                          setTagsOpen(true);
+                        }}
+                      >
+                        <Edit className="text-primary size-[18px] h-[18px]" />
+                      </Button>
+                    </div>
+                    <TagsContainer
+                      tags={field.value}
+                      emptyText="Выберите до 3 тегов"
+                    />
                   </div>
                 </FormControl>
               </FormItem>

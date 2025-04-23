@@ -108,7 +108,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <div className="w-full relative">
+      <div className="w-full h-fit relative">
         {StartIcon && (
           <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
             <StartIcon {...iconProps} className={iconClassname} />
