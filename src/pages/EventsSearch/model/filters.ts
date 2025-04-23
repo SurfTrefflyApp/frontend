@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const Time = {
+  all: "all",
   day: "day",
   week: "week",
   month: "month",
@@ -23,7 +24,7 @@ export const filtersSchema = z.object({
     .max(3, {
       message: "Можно добавить не более 3 тегов",
     }),
-  time: z.enum([Time.day, Time.week, Time.month]),
+  time: z.enum([Time.all, Time.day, Time.week, Time.month]),
 });
 
 export type FiltersSchema = z.infer<typeof filtersSchema>;

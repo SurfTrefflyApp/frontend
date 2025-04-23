@@ -9,7 +9,6 @@ import Pin from "@/shared/icons/pin.svg";
 import { routes } from "@/shared/router";
 import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
 import { EventCard } from "@/shared/ui/EventCard";
-import { NotFound } from "@/shared/ui/NotFound";
 
 import { $events } from "../model/events";
 
@@ -42,10 +41,6 @@ export const EventsSearchMap = () => {
       )),
     [events],
   );
-
-  if (!events.length) {
-    return <NotFound />;
-  }
 
   return (
     <>
