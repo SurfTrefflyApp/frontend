@@ -21,10 +21,16 @@ export const Events = () => {
           <TabsTrigger value="past">Прошедшие</TabsTrigger>
         </TabsList>
         <div className="p-2 flex-1 md:mx-auto lg:max-w-2/4">
-          <TabsContent value="upcoming" className="h-full flex flex-col gap-4">
+          <TabsContent
+            value="upcoming"
+            className="h-full grid grid-flow-row auto-rows-fr gap-4"
+          >
             <EventsUpcoming />
           </TabsContent>
-          <TabsContent value="past" className="h-full flex flex-col gap-4">
+          <TabsContent
+            value="past"
+            className="h-full grid grid-flow-row auto-rows-fr gap-4"
+          >
             <EventsPast />
           </TabsContent>
         </div>

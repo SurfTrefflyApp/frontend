@@ -16,7 +16,7 @@ export const EventCard = ({ event, containerClassName }: EventCard) => {
     <Link to={routes.event.replace(":id", event.id.toString())}>
       <figure
         className={cn(
-          "w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto hover:opacity-60 active:opacity-60",
+          "h-full w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto hover:opacity-60 active:opacity-60",
           containerClassName,
         )}
       >
@@ -24,7 +24,7 @@ export const EventCard = ({ event, containerClassName }: EventCard) => {
           <div className="mb-1">
             <EventImagePreview className="h-full" titleClassName="w-[70px]" />
           </div>
-          <div>
+          <div className="h-full flex flex-col">
             <figcaption className="line-clamp-1 font-semibold leading-none">
               {event.name}
             </figcaption>
@@ -42,7 +42,11 @@ export const EventCard = ({ event, containerClassName }: EventCard) => {
               <User className="text-primary w-[20px]" />
               <h4 className="line-clap-1 w-full">{event.ownerUsername}</h4>
             </div>
-            <p className="line-clamp-4 mt-1 text-center">{event.description}</p>
+            <div className="flex-1 flex items-center justify-center">
+              <p className="line-clamp-3 break-all text-center">
+                {event.description}
+              </p>
+            </div>
           </div>
         </div>
       </figure>
