@@ -1,6 +1,23 @@
+import { useNavigate } from "react-router";
+
+import { Close } from "@/shared/icons/Close";
+import { Button } from "@/shared/ui/button";
+
 export const Privacy = () => {
+  const navigate = useNavigate();
+
   return (
-    <main className="h-svh max-w-4xl mx-auto px-4 py-8 text-gray-800 overflow-y-auto">
+    <main className="h-svh max-w-4xl mx-auto px-4 py-8 text-gray-800 overflow-y-auto relative">
+      <Button
+        variant="ghost"
+        className="fixed right-8 top-4 md:hidden"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        <Close className="size-6" />
+      </Button>
+
       <h1 className="text-3xl font-bold mb-6 text-indigo-700 border-b pb-2">
         Политика конфиденциальности
       </h1>

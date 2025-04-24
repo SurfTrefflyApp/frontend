@@ -71,6 +71,14 @@ const router = createBrowserRouter([
             ],
           },
           {
+            path: routes.terms,
+            element: <Terms />,
+          },
+          {
+            path: routes.privacy,
+            element: <Privacy />,
+          },
+          {
             element: <AppLayout />,
             children: [
               {
@@ -80,14 +88,6 @@ const router = createBrowserRouter([
               {
                 path: routes.main,
                 element: <Main />,
-              },
-              {
-                path: routes.terms,
-                element: <Terms />,
-              },
-              {
-                path: routes.privacy,
-                element: <Privacy />,
               },
               {
                 path: routes.timeout,
