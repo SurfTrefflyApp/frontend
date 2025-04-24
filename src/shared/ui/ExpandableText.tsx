@@ -17,7 +17,7 @@ export const ExpandableText = ({ text, maxLength = 90 }: ExpandableText) => {
 
   return (
     <div>
-      <p>{displayedText}</p>
+      <p className="break-all">{displayedText}</p>
       {shouldTruncate && (
         <Button
           type="button"
