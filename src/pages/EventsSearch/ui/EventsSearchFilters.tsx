@@ -94,6 +94,7 @@ export const EventsSearchFilters = ({
                         onClick={() => {
                           setTagsOpen(true);
                         }}
+                        type="button"
                       >
                         <Edit className="text-primary size-[18px] h-[18px]" />
                       </Button>
