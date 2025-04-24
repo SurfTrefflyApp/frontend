@@ -41,7 +41,7 @@ export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
           <h1 className="text-xl font-semibold">Место проведения</h1>
         </DialogHeader>
         <div className="px-4 md:flex md:gap-4">
-          <p className="font-semibold mb-2 text-sm">Выбранный адресс:</p>
+          <p className="font-semibold mb-2 text-sm">Выбранный адрес:</p>
           <p className="font-semibold text-sm">
             {address?.address ? address.address : "Место не выбрано"}
           </p>

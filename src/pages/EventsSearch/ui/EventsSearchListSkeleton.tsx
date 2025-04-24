@@ -8,7 +8,7 @@ const EventSkeleton = () => {
 
 export const EventsSearchListSkeleton = () => {
   return (
-    <div className="flex flex-col gap-4 p-2 mt-2">
+    <div className="mt-2 p-2 lg:max-w-2/4 w-full mx-auto no-scrollbar flex flex-col gap-4">
       {Array(6)
         .fill(0)
         .map((_, index) => (

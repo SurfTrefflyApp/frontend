@@ -7,7 +7,7 @@ import { EventsUpcoming } from "./EventsUpcoming";
 
 export const Events = () => {
   return (
-    <main className="h-full flex flex-col md:mx-auto lg:w-1/3">
+    <main className="h-full flex flex-col overflow-auto no-scrollbar">
       <ContentHeader
         withBackArrow={false}
         title="Мероприятия"
@@ -20,7 +20,7 @@ export const Events = () => {
           </TabsTrigger>
           <TabsTrigger value="past">Прошедшие</TabsTrigger>
         </TabsList>
-        <div className="p-2 flex-1">
+        <div className="p-2 flex-1 md:mx-auto lg:max-w-2/4">
           <TabsContent value="upcoming" className="h-full flex flex-col gap-4">
             <EventsUpcoming />
           </TabsContent>

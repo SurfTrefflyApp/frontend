@@ -31,12 +31,12 @@ export const Event = ({ event }: { event: EventModel }) => {
             </figcaption>
           </div>
           <div className="flex gap-2 items-center">
-            <MapPin className="text-primary w-[22px]" />
-            <h3 className="leading-none text-sm">{event.address}</h3>
-          </div>
-          <div className="flex gap-2 items-center">
             <Calendar className="text-primary w-[22px]" />
             <h3 className="leading-none text-sm">{dateTime}</h3>
+          </div>
+          <div className="flex gap-2 items-center">
+            <MapPin className="text-primary w-[22px]" />
+            <h3 className="leading-none text-sm">{event.address}</h3>
           </div>
         </div>
       </figure>
