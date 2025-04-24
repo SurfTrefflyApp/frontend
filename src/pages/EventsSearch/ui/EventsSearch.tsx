@@ -6,10 +6,10 @@ import { EventsSearchMap } from "./EventsSearchMap";
 import { EventsSearchViewSwitch } from "./EventsSearchViewSwitch";
 
 export const EventsSearch = () => {
-  const [listView, setListView] = useLocalStorage("listView", true);
+  const [listView, setListView] = useLocalStorage("listView", false);
 
   return (
-    <main className="lg:mx-auto flex flex-col h-full relative">
+    <main className="lg:mx-auto flex flex-col h-full relative overflow-auto no-scrollbar">
       <EventsSearchHeader />
       {listView ? <EventsSearchList /> : <EventsSearchMap />}
       <EventsSearchViewSwitch listView={listView} setListView={setListView} />

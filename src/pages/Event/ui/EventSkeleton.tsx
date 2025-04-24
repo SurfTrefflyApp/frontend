@@ -1,6 +1,6 @@
 export const EventSkeleton = () => {
   return (
-    <main className="p-2 lg:w-1/3 lg:mx-auto no-scrollbar flex flex-col gap-4">
+    <main className="p-2 lg:max-w-2/4 w-full mx-auto no-scrollbar flex flex-col gap-4">
       <div className="w-full aspect-5/2 bg-white rounded-2xl overflow-hidden shadow-md">
         <div className="shimmer h-full w-full bg-surface-container rounded-2xl shadow" />
       </div>

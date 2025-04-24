@@ -14,6 +14,8 @@ import {
   DrawerHeader,
 } from "@/shared/ui/drawer";
 
+import { cn } from "../lib/utils";
+
 interface AdaptivePopover extends PropsWithChildren {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -37,7 +39,9 @@ export const AdaptivePopover = ({
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className={contentClassname}>
+        <DialogContent
+          className={cn("[&>button:last-child]:hidden", contentClassname)}
+        >
           <DialogHeader>{header}</DialogHeader>
           {children}
           <DialogFooter>{footer}</DialogFooter>

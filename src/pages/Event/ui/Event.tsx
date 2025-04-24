@@ -41,7 +41,7 @@ export const Event = () => {
   const isPrivate = event.isPrivate;
 
   return (
-    <div className="lg:w-1/3 lg:mx-auto overflow-y-auto no-scrollbar">
+    <div className="overflow-y-auto no-scrollbar">
       <ContentHeader
         className="py-2"
         title={event.name}
@@ -62,7 +62,7 @@ export const Event = () => {
           </div>
         }
       />
-      <main className="p-3 py-6 flex flex-col gap-5">
+      <main className="p-3 py-6 flex flex-col gap-5 lg:max-w-2/4 w-full mx-auto">
         <EventImagePreview className="aspect-video" />
         {!!event.tags.length && (
           <section

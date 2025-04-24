@@ -39,7 +39,7 @@ export const EventForm = ({
     <Form {...form} formState={formState}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-5 p-6"
+        className="flex flex-col gap-5 p-6 lg:max-w-2/4 w-full mx-auto"
       >
         <FormField
           control={form.control}

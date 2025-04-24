@@ -17,7 +17,7 @@ export const EventEdit = () => {
   if (!event) return <NotFound />;
 
   return (
-    <main className="lg:w-2/4 md:mx-auto overflow-y-auto no-scrollbar">
+    <main className="overflow-y-auto no-scrollbar">
       <ContentHeader className="py-2" title="Редактирование мероприятия" />
       <EventForm
         form={form}

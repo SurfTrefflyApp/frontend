@@ -32,10 +32,7 @@ export const EventsSearchFilters = ({
   return (
     <>
       <Form {...form}>
-        <form
-          onSubmit={onSubmit}
-          className="flex flex-col gap-4 p-4 2xl:flex-row 2xl:justify-around xl:w-full 2xl:shadow-lg z-10"
-        >
+        <form onSubmit={onSubmit} className="flex flex-col gap-4 p-4 z-10">
           <FormField
             control={form.control}
             name="keywords"

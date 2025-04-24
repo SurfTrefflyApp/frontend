@@ -9,7 +9,7 @@ export const EventNew = () => {
   const { form, onSubmit } = useEventNewController();
 
   return (
-    <main className="lg:w-2/4 md:mx-auto overflow-y-auto no-scrollbar">
+    <main className="overflow-y-auto no-scrollbar">
       <ContentHeader className="py-2" title="Новое мероприятие" />
       <EventForm
         form={form}

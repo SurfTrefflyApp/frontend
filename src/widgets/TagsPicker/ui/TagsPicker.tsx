@@ -91,6 +91,7 @@ export const TagsPicker = ({
             }}
             className="w-fit mx-auto px-14"
             loading={saving}
+            variant="outline"
           >
             Сохранить
           </Button>
