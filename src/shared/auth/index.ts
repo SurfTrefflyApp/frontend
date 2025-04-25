@@ -6,3 +6,5 @@ export {
   checkAuthFx,
   startApp,
 } from "./model";
+
+export { useRefresh } from "./lib/useRefresh";
