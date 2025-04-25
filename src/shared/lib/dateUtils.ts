@@ -14,3 +14,15 @@ export function formatDateWithIntl(inputDate: string): string {
 
   return formatter.format(date);
 }
+
+export function isDateInPast(dateString: string) {
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    throw new Error("Invalid date string");
+  }
+
+  const now = new Date();
+
+  return date < now;
+}

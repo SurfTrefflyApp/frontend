@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
-import { formatDateWithIntl } from "./formatDateWithIntl";
+import { formatDateWithIntl, isDateInPast } from "./dateUtils";
 
 describe("formatDateWithIntl", () => {
   it("correctly formats date with ru locale", () => {
@@ -44,5 +44,47 @@ describe("formatDateWithIntl", () => {
     expect(() =>
       formatDateWithIntl(undefined as unknown as string),
     ).toThrowError("Invalid date string");
+  });
+});
+
+describe("isDateInPast", () => {
+  beforeAll(() => {
+    const mockDate = new Date("2025-04-25T12:00:00Z");
+    vi.useFakeTimers();
+    vi.setSystemTime(mockDate);
+  });
+
+  afterAll(() => {
+    vi.useRealTimers();
+  });
+
+  it("returns true for past date", () => {
+    const pastDate = "2025-04-10T20:00:48.23689Z";
+    expect(isDateInPast(pastDate)).toBe(true);
+  });
+
+  it("returns false for future date", () => {
+    const futureDate = "2025-05-01T00:00:00Z";
+    expect(isDateInPast(futureDate)).toBe(false);
+  });
+
+  it("returns false for current date", () => {
+    const currentDate = new Date().toISOString();
+    expect(isDateInPast(currentDate)).toBe(false);
+  });
+
+  it("handles dates just in the past", () => {
+    const justPastDate = new Date(Date.now() - 1000).toISOString();
+    expect(isDateInPast(justPastDate)).toBe(true);
+  });
+
+  it("handles dates just in the future", () => {
+    const justFutureDate = new Date(Date.now() + 1000).toISOString();
+    expect(isDateInPast(justFutureDate)).toBe(false);
+  });
+
+  it("throws error for invalid date string", () => {
+    const invalidDate = "not-a-date";
+    expect(() => isDateInPast(invalidDate)).toThrow();
   });
 });

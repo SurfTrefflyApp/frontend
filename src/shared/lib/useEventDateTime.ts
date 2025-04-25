@@ -1,4 +1,4 @@
-import { formatDateWithIntl } from "@/shared/lib/formatDateWithIntl";
+import { formatDateWithIntl } from "@/shared/lib/dateUtils";
 
 export const useEventDateTime = (dateTime: string) => {
   try {
