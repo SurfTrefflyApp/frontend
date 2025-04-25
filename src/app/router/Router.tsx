@@ -22,6 +22,7 @@ import { Welcome } from "@/pages/Welcome";
 
 import { routes } from "@/shared/router";
 
+import { CoordsProvider } from "../providers/CoordsProvider";
 import { AppbarLayout } from "./AppbarLayout";
 
 const router = createBrowserRouter([
@@ -82,12 +83,21 @@ const router = createBrowserRouter([
             element: <AppLayout />,
             children: [
               {
-                path: routes.profile,
-                element: <Profile />,
-              },
-              {
-                path: routes.main,
-                element: <Main />,
+                element: <CoordsProvider />,
+                children: [
+                  {
+                    path: routes.profile,
+                    element: <Profile />,
+                  },
+                  {
+                    path: routes.main,
+                    element: <Main />,
+                  },
+                  {
+                    path: routes.eventsSearch,
+                    element: <EventsSearch />,
+                  },
+                ],
               },
               {
                 path: routes.timeout,
@@ -103,10 +113,6 @@ const router = createBrowserRouter([
                     element: <Events />,
                   },
                 ],
-              },
-              {
-                path: routes.eventsSearch,
-                element: <EventsSearch />,
               },
             ],
           },
