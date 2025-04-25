@@ -1,19 +1,9 @@
 import { useEffect, useState } from "react";
 
-interface Geolocation {
-  latitude: null | number;
-  longitude: null | number;
-  error: null | string;
-  isLocationCheckComplete: boolean;
-}
+import { type Geolocation, defaultGeo } from "./CoordsContext";
 
 const useGeolocation = () => {
-  const [state, setState] = useState<Geolocation>({
-    latitude: null,
-    longitude: null,
-    error: null,
-    isLocationCheckComplete: false,
-  });
+  const [state, setState] = useState<Geolocation>(defaultGeo);
 
   useEffect(() => {
     if (!navigator.geolocation) {

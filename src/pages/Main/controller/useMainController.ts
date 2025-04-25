@@ -1,7 +1,7 @@
 import type { Event } from "@/entities/Event";
 
+import { useCoordsContext } from "@/shared/coords/CoordsContext";
 import { useFetch } from "@/shared/lib/useFetch";
-import useGeolocation from "@/shared/lib/useGeolocation";
 
 interface MainResponse {
   latest: Event[];
@@ -11,10 +11,12 @@ interface MainResponse {
 }
 
 export const useMainController = () => {
-  const state = useGeolocation();
-  console.debug(state);
+  const state = useCoordsContext();
 
-  const { data, loading } = useFetch<MainResponse>("/events/home");
+  const { data, loading } = useFetch<MainResponse>(
+    "/events/home",
+    state.isLocationCheckComplete,
+  );
 
-  return { data, loading };
+  return { data, loading: !state.isLocationCheckComplete || loading };
 };
