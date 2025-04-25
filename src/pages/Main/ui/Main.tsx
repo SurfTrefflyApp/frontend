@@ -1,12 +1,12 @@
 import { EventsCarousel } from "@/widgets/EventsCarousel";
 import { EventsHorizontalList } from "@/widgets/EventsHorizontalList";
 
-import { useEventsFetch } from "@/pages/Main/api/useEventsFetch";
-
 import { NotFound } from "@/shared/ui/NotFound";
 
+import { useMainController } from "../controller/useMainController";
+
 export const Main = () => {
-  const { data, loading } = useEventsFetch();
+  const { data, loading } = useMainController();
 
   if (!loading && !data) {
     return <NotFound />;

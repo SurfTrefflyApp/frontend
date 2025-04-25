@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router";
 
 import { $isAuth } from "@/shared/auth";
+import { isDateInPast } from "@/shared/lib/dateUtils";
 import { routes } from "@/shared/router";
 import { Button } from "@/shared/ui/button";
 
@@ -20,6 +21,10 @@ export const EventFooter = ({ event }: EventFooter) => {
   const subscribing = useUnit(subscribeFx.pending);
 
   const getFooterContent = (): ReactNode => {
+    if (isDateInPast(event.date)) {
+      return <p className="text-center">Мероприятие завершено</p>;
+    }
+
     if (!isAuth) {
       return (
         <p>

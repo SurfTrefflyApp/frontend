@@ -11,7 +11,7 @@ import { LockOpen } from "@/shared/icons/LockOpen";
 import { People } from "@/shared/icons/People";
 import { Pin } from "@/shared/icons/Pin";
 import { Share } from "@/shared/icons/Share";
-import { formatDateWithIntl } from "@/shared/lib/formatDateWithIntl";
+import { formatDateWithIntl } from "@/shared/lib/dateUtils";
 import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 import { ExpandableText } from "@/shared/ui/ExpandableText";
