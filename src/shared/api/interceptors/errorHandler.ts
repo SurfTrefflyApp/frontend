@@ -4,7 +4,7 @@ import { setErrorCodeEvent } from "../model";
 import type { RefreshInterceptor } from "./refresh";
 
 export class ErrorHandler {
-  private notInterceptedURLs = ["/login", "/auth", "/users", "/auth/refresh"];
+  private notInterceptedURLs = ["/login", "/users", "/auth", "/auth/refresh"];
   private refreshInterceptor: RefreshInterceptor;
 
   constructor(refreshInterceptor: RefreshInterceptor) {

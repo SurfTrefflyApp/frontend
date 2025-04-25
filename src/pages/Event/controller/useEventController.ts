@@ -4,6 +4,7 @@ import { useLocation, useParams } from "react-router";
 import { toast } from "sonner";
 
 import { setErrorEvent } from "@/shared/api";
+import { useRefresh } from "@/shared/auth";
 import { useFetch } from "@/shared/lib/useFetch";
 
 import { $event, setEventEvent } from "../model/store";
@@ -16,7 +17,13 @@ export const useEventController = () => {
   const event = useUnit($event);
   const setEvent = useUnit(setEventEvent);
 
-  const { loading } = useFetch<Event>(`/events/${id}`, true, setEvent);
+  const { refreshed, refreshing } = useRefresh();
+
+  const { loading } = useFetch<Event>(
+    `/events/${id}`,
+    refreshed && !refreshing,
+    setEvent,
+  );
 
   const setError = useUnit(setErrorEvent);
 
@@ -52,6 +59,6 @@ export const useEventController = () => {
   return {
     handleAddressCopy,
     handleEventLinkCopy,
-    loading,
+    loading: refreshing || loading,
   };
 };
