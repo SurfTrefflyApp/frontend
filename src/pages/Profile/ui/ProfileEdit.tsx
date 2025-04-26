@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 import { DefaultUser } from "@/shared/icons/DefaultUser";
 import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
 import { FileUploadButton } from "@/shared/ui/FileUploadButton";
@@ -19,8 +21,14 @@ interface ProfileEdit {
 }
 
 export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
-  const { form, handleClose, onSubmit, previewUrl, handleFileChange } =
-    useEditController({ setOpen });
+  const {
+    form,
+    handleClose,
+    onSubmit,
+    previewUrl,
+    handleFileChange,
+    handleImageDelete,
+  } = useEditController({ setOpen });
 
   return (
     <AdaptivePopover
@@ -42,11 +50,28 @@ export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
           ) : (
             <DefaultUser className="w-[120px] h-[120px]" />
           )}
-          <FileUploadButton
-            handleChange={handleFileChange}
-            variant="outline"
-            className="rounded-4xl p-2 text-sm font-medium"
-          />
+          <div className="flex flex-col items-center gap1">
+            <FileUploadButton
+              handleChange={handleFileChange}
+              variant="outline"
+              className="rounded-4xl p-2 text-sm font-medium"
+              onTypeMismatch={(extensions) => {
+                toast.error(
+                  `Разрешены только файлы с расширениями: ${extensions.join(", ")}`,
+                );
+              }}
+            />
+            {previewUrl && (
+              <Button
+                type="button"
+                variant="ghost"
+                className="text-secondary text-xs font-semibold p-0"
+                onClick={handleImageDelete}
+              >
+                Удалить фото
+              </Button>
+            )}
+          </div>
         </div>
         <Form {...form}>
           <form

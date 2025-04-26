@@ -21,12 +21,13 @@ export const useEditController = ({ setOpen }: useEditController) => {
   const setError = useUnit(setErrorEvent);
 
   const { previewUrl, handleFileChange, selectedFile, resetPhoto } =
-    usePhotoUploader();
+    usePhotoUploader(user?.image_url);
 
   const form = useForm<Schema>({
     resolver: zodResolver(schema),
     defaultValues: {
       username: user?.username || "",
+      delete_image: false,
     },
     mode: "all",
   });
@@ -39,6 +40,9 @@ export const useEditController = ({ setOpen }: useEditController) => {
     try {
       const appendProfileForm = createFormDataAppender<Schema>();
       const formData = appendProfileForm(values);
+      if (values.avatar && values.delete_image) {
+        formData.set("delete_image", "true");
+      }
       const res = await updateUsername(formData);
       setUser(res.data);
       setOpen(false);
@@ -53,9 +57,15 @@ export const useEditController = ({ setOpen }: useEditController) => {
     setOpen(false);
   };
 
+  const handleImageDelete = () => {
+    resetPhoto();
+    form.setValue("delete_image", true);
+  };
+
   useEffect(() => {
     if (selectedFile) {
       form.setValue("avatar", selectedFile);
+      form.setValue("delete_image", false);
     } else {
       form.resetField("avatar");
     }
@@ -67,5 +77,6 @@ export const useEditController = ({ setOpen }: useEditController) => {
     onSubmit,
     handleClose,
     handleFileChange,
+    handleImageDelete,
   };
 };
