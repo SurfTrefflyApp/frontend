@@ -1,5 +1,3 @@
-import { toast } from "sonner";
-
 import { DefaultUser } from "@/shared/icons/DefaultUser";
 import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
 import { FileUploadButton } from "@/shared/ui/FileUploadButton";
@@ -55,11 +53,6 @@ export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
               handleChange={handleFileChange}
               variant="outline"
               className="rounded-4xl p-2 text-sm font-medium"
-              onTypeMismatch={(extensions) => {
-                toast.error(
-                  `Разрешены только файлы с расширениями: ${extensions.join(", ")}`,
-                );
-              }}
             />
             {previewUrl && (
               <Button

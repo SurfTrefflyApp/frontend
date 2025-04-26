@@ -17,4 +17,6 @@ export interface Event {
   tags: Tag[];
   isOwner?: boolean;
   isParticipant?: boolean;
+  imageEventUrl?: string;
+  imageUserUrl?: string;
 }

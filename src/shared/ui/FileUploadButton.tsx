@@ -1,5 +1,6 @@
 import type { ChangeEvent, ReactNode } from "react";
 import { useRef } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/shared/ui/button";
 
@@ -8,7 +9,6 @@ interface FileUploadButton extends Button {
   handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   allowedExtensions?: string[];
   multiple?: boolean;
-  onTypeMismatch?: (allowedExtensions: string[]) => void;
 }
 
 export const FileUploadButton = ({
@@ -16,7 +16,6 @@ export const FileUploadButton = ({
   handleChange,
   allowedExtensions = ["jpg", "jpeg", "png"],
   multiple = false,
-  onTypeMismatch,
   ...props
 }: FileUploadButton) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,7 +31,9 @@ export const FileUploadButton = ({
     });
 
     if (invalidFiles.length > 0) {
-      onTypeMismatch?.(allowedExtensions);
+      toast.error(
+        `Разрешены только файлы с расширениями: ${allowedExtensions.join(", ")}`,
+      );
       return true;
     }
 

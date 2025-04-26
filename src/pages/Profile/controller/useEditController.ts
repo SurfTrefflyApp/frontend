@@ -40,7 +40,7 @@ export const useEditController = ({ setOpen }: useEditController) => {
     try {
       const appendProfileForm = createFormDataAppender<Schema>();
       const formData = appendProfileForm(values);
-      if (values.avatar && values.delete_image) {
+      if (values.image && values.delete_image) {
         formData.set("delete_image", "true");
       }
       const res = await updateUsername(formData);
@@ -64,10 +64,10 @@ export const useEditController = ({ setOpen }: useEditController) => {
 
   useEffect(() => {
     if (selectedFile) {
-      form.setValue("avatar", selectedFile);
+      form.setValue("image", selectedFile);
       form.setValue("delete_image", false);
     } else {
-      form.resetField("avatar");
+      form.resetField("image");
     }
   }, [selectedFile]);
 
