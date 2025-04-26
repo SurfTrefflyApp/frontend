@@ -52,7 +52,7 @@ export const EventCard = ({ event, containerClassName }: EventCard) => {
               {event.imageUserUrl ? (
                 <img src={event.imageUserUrl} />
               ) : (
-                <DefaultUser className="w-[32px] h-[32px] shadow-lg rounded-full shadow-md" />
+                <DefaultUser className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full shadow-md" />
               )}
               <h4 className="line-clap-1 w-full">{event.ownerUsername}</h4>
             </div>

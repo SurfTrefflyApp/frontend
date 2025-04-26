@@ -5,7 +5,6 @@ export function createFormDataAppender<T extends Record<string, unknown>>() {
     for (const key in data) {
       const value = data[key];
       if (value instanceof File) {
-        console.debug(value);
         formData.append(key, value);
       } else if (typeof value === "object" && value !== null) {
         formData.append(key, JSON.stringify(value));

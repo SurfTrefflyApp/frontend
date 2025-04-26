@@ -24,8 +24,10 @@ function formatDate(dateTime: string) {
   return `${y}-${mon}-${d}T${h}:${m}:00Z`;
 }
 
+type ServerEventSchemaWithoutTags = Omit<ServerEvent, "tags">;
+
 export function mapDataToServer(values: EventSchema): FormData {
-  const mappedObject = {
+  const mappedObject: ServerEventSchemaWithoutTags = {
     name: values.title,
     description: values.description,
     latitude: values.location.coordinates[0],
@@ -34,11 +36,16 @@ export function mapDataToServer(values: EventSchema): FormData {
     date: formatDate(values.dateTime),
     is_private: values.eventType === "private",
     is_premium: false,
-    tags: values.tags.map((tag) => tag.id),
     capacity: values.participantsCount,
     image: values.image,
   };
-  const appendEventForm = createFormDataAppender<ServerEvent>();
+  const appendEventForm =
+    createFormDataAppender<ServerEventSchemaWithoutTags>();
+  const formData = appendEventForm(mappedObject);
+  values.tags.forEach(({ id }) => {
+    console.debug(id);
+    formData.append("tags", id.toString());
+  });
 
-  return appendEventForm(mappedObject);
+  return formData;
 }

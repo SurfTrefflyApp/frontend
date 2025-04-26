@@ -1,13 +1,8 @@
 import { Info } from "lucide-react";
-import type { ReactNode} from "react";
-import { useState } from "react";
+import type { ReactNode } from "react";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./tooltip";
+import { Button } from "./button";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 export const InfoIconWithTooltip = ({
   content,
@@ -16,32 +11,25 @@ export const InfoIconWithTooltip = ({
   content: ReactNode;
   className?: string;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <TooltipProvider delayDuration={100}>
-      <Tooltip open={isOpen} onOpenChange={setIsOpen}>
-        <TooltipTrigger asChild>
-          <button
-            type="button"
-            className={`inline-flex items-center justify-center rounded-full focus:outline-none ${className}`}
-            aria-label="Information"
-            onClick={(e) => {
-              e.preventDefault();
-              setIsOpen(!isOpen);
-            }}
-          >
-            <Info className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-          </button>
-        </TooltipTrigger>
-        <TooltipContent
-          className="max-w-[250px] bg-primary text-primary-foreground p-3"
-          side="top"
-          align="center"
+    <Popover>
+      <PopoverTrigger>
+        <Button
+          type="button"
+          variant="ghost"
+          className={`inline-flex items-center justify-center rounded-full focus:outline-none hover:opacity-50 active:opacity-50 ${className}`}
+          aria-label="Information"
         >
-          <p className="text-sm">{content}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+          <Info className="h-5 w-5 text-foreground" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent
+        className="max-w-[250px] bg-primary text-primary-foreground p-3 border-none"
+        side="top"
+        align="center"
+      >
+        <p className="text-sm">{content}</p>
+      </PopoverContent>
+    </Popover>
   );
 };

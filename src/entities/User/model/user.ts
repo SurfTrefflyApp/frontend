@@ -4,5 +4,5 @@ export interface User {
   username: string;
   email: string;
   tags: Tag[];
-  image_url?: string;
+  imageUrl?: string;
 }

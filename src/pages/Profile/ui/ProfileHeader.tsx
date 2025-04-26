@@ -43,8 +43,8 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
             </Button>
           )}
         </div>
-        {user?.image_url ? (
-          <img src={user.image_url} alt="User avatar" />
+        {user?.imageUrl ? (
+          <img src={user.imageUrl} alt="User avatar" />
         ) : (
           <DefaultUser className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]" />
         )}
