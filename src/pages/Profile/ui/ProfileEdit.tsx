@@ -1,16 +1,4 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useUnit } from "effector-react";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-
-import { updateUsername } from "@/pages/Profile/api/profile";
-import type { Schema} from "@/pages/Profile/model/edit";
-import { schema } from "@/pages/Profile/model/edit";
-import { $user, setUserEvent } from "@/pages/Profile/model/user";
-
-import { setErrorEvent } from "@/shared/api";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
-import { usePhotoUploader } from "@/shared/lib/usePhotoUploader";
 import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
 import { FileUploadButton } from "@/shared/ui/FileUploadButton";
 import { Button } from "@/shared/ui/button";
@@ -23,45 +11,16 @@ import {
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
 
+import { useEditController } from "../controller/useEditController";
+
 interface ProfileEdit {
   open: boolean;
   setOpen: (state: boolean) => void;
 }
 
 export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
-  const user = useUnit($user);
-  const setUser = useUnit(setUserEvent);
-  const setError = useUnit(setErrorEvent);
-
-  const { previewUrl, handleFileChange, resetPhoto } = usePhotoUploader();
-
-  const form = useForm<Schema>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      username: user?.username || "",
-    },
-    mode: "all",
-  });
-
-  useEffect(() => {
-    form.setValue("username", user?.username || "");
-  }, [user?.username, form]);
-
-  const onSubmit = async (values: Schema) => {
-    try {
-      const res = await updateUsername(values.username);
-      setUser(res.data);
-      setOpen(false);
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  const handleClose = () => {
-    form.setValue("username", user?.username || "");
-    resetPhoto();
-    setOpen(false);
-  };
+  const { form, handleClose, onSubmit, previewUrl, handleFileChange } =
+    useEditController({ setOpen });
 
   return (
     <AdaptivePopover

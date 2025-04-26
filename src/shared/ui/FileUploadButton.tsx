@@ -1,17 +1,17 @@
-import type { ChangeEvent} from "react";
+import type { ChangeEvent, ReactNode } from "react";
 import { useRef } from "react";
 
 import { Button } from "@/shared/ui/button";
 
 interface FileUploadButton extends Button {
-  label?: string;
+  children?: ReactNode;
   handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   allowedExtensions?: string[];
   multiple?: boolean;
 }
 
 export const FileUploadButton = ({
-  label = "Загрузить фото",
+  children = "Загрузить фото",
   handleChange,
   allowedExtensions = ["jpg", "jpeg", "png"],
   multiple = false,
@@ -54,8 +54,8 @@ export const FileUploadButton = ({
 
   return (
     <>
-      <Button onClick={handleClick} {...props}>
-        {label}
+      <Button onClick={handleClick} type="button" {...props}>
+        {children}
       </Button>
       <input
         type="file"
