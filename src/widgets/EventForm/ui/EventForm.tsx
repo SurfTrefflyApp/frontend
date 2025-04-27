@@ -125,6 +125,7 @@ export const EventForm = ({
                 <Input
                   id="participantsCount"
                   type="number"
+                  pattern="\d*"
                   placeholder="Введи количество участников"
                   variant="secondary"
                   error={!!formState.errors.participantsCount}
