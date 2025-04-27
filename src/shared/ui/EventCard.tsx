@@ -39,10 +39,13 @@ export const EventCard = ({
                 className="aspect-video h-full w-full rounded-2xl"
               />
             ) : (
-              <EventImagePreview className="h-full" titleClassName="w-[70px]" />
+              <EventImagePreview
+                className="h-full min-h-full"
+                titleClassName="w-[70px]"
+              />
             )}
           </div>
-          <div className="h-full flex flex-col">
+          <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <figcaption className="font-semibold leading-none flex-1 line-clamp-2 break-words hyphens-auto">
                 {event.name}
