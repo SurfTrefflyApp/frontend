@@ -44,7 +44,7 @@ export const EventCard = ({
           </div>
           <div className="h-full flex flex-col">
             <div className="flex items-center gap-2">
-              <figcaption className="line-clamp-2 font-semibold leading-none flex-1">
+              <figcaption className="font-semibold leading-none flex-1 line-clamp-2 break-words hyphens-auto">
                 {event.name}
               </figcaption>
               <div className="flex items-center gap-1">
@@ -73,10 +73,12 @@ export const EventCard = ({
               ) : (
                 <DefaultUser className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full shadow-md" />
               )}
-              <h4 className="line-clap-1 w-full">{event.ownerUsername}</h4>
+              <h4 className="line-clamp-1 w-full">{event.ownerUsername}</h4>
             </div>
             <div className="flex">
-              <p className="line-clamp-3 break-all">{event.description}</p>
+              <p className="line-clamp-3 break-words hyphens-auto">
+                {event.description}
+              </p>
             </div>
           </div>
         </div>
