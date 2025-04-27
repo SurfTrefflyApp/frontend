@@ -3,25 +3,20 @@ import type { SVGProps } from "react";
 export const Pin = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width="26"
-      height="30"
-      viewBox="0 0 26 30"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#47654D"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-map-pin-icon lucide-map-pin"
       {...props}
     >
-      <path
-        d="M20.9998 10.7471C20.593 13.5227 19.3933 16.2124 17.8345 18.4203C16.3765 20.4853 14.6535 22.0602 13.0656 22.8958C11.5748 22.1683 9.856 20.6978 8.35799 18.7133C6.75107 16.5846 5.46679 13.9538 5.00028 11.2115C5.01924 8.47339 5.99632 6.44722 7.42111 5.09903C8.87189 3.72625 10.847 3 12.9155 3C15.0262 3 17.0521 3.63334 18.5329 4.89591C19.9776 6.12767 20.9828 8.02353 20.9998 10.7471Z"
-        fill="#D8E6D7"
-        stroke="#4B6A51"
-        strokeWidth="2"
-      />
-      <path
-        d="M15.5455 10.6976C15.5455 12.1328 14.3964 13.279 13 13.279C11.6037 13.279 10.4546 12.1328 10.4546 10.6976C10.4546 9.26241 11.6037 8.11621 13 8.11621C14.3964 8.11621 15.5455 9.26241 15.5455 10.6976Z"
-        fill="#FAF9F5"
-        stroke="#4B6A51"
-        strokeWidth="2"
-      />
+      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+      <circle cx="12" cy="10" r="3" />
     </svg>
   );
 };
