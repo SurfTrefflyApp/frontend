@@ -9,11 +9,15 @@ export const formSchema = z.object({
     .string({
       required_error: "Поле не может быть пустым",
     })
-    .min(5, { message: "Длина ввода должна быть от 5 до 50 символов" })
-    .max(50, { message: "Длина ввода должна быть от 5 до 50 символов" })
     .refine(
       (title) => !emojiRegex().test(title),
       "Введены некорректные символы",
+    )
+    .pipe(
+      z
+        .string()
+        .min(5, { message: "Длина ввода должна быть от 5 до 50 символов" })
+        .max(50, { message: "Длина ввода должна быть от 5 до 50 символов" }),
     ),
   dateTime: z
     .string()
