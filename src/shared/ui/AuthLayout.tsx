@@ -27,7 +27,7 @@ export const AuthLayout = ({
       <div
         className={cn(
           "h-full w-full max-w-3xl flex flex-col gap-5 justify-between items-center p-5 pt-[20%]",
-          "md:py-30",
+          "md:py-30 overflow-y-auto no-scrollbar",
         )}
       >
         {withBackBtn && (
