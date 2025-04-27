@@ -1,6 +1,5 @@
 import type { Event } from "@/entities/Event";
 
-import { useCoordsContext } from "@/shared/coords/CoordsContext";
 import { useFetch } from "@/shared/lib/useFetch";
 
 interface MainResponse {
@@ -11,12 +10,7 @@ interface MainResponse {
 }
 
 export const useMainController = () => {
-  const state = useCoordsContext();
+  const { data, loading } = useFetch<MainResponse>("/events/home");
 
-  const { data, loading } = useFetch<MainResponse>(
-    "/events/home",
-    state.isLocationCheckComplete,
-  );
-
-  return { data, loading: !state.isLocationCheckComplete || loading };
+  return { data, loading: loading };
 };

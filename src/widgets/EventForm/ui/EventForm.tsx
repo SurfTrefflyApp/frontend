@@ -52,14 +52,17 @@ export const EventForm = ({
       >
         <FileUploadButton
           variant="ghost"
-          className="mb-2 p-0 flex-1 aspect-video w-full overflow-hidden"
+          className="mb-2 p-0 flex-1 aspect-video w-full overflow-hidden flex relative [& > *]:["
           handleChange={handleFileChange}
         >
           {previewUrl ? (
-            <img src={previewUrl} className="rounded-2xl h-full w-full" />
+            <img
+              src={previewUrl}
+              className="rounded-2xl h-full w-full absolute"
+            />
           ) : (
-            <div className="w-full h-full rounded-2xl border-[#7B827A] border-2 border-dashed flex items-center justify-center">
-              <div className="flex gap-2 items-center text-[#7B827A]">
+            <div className="w-full h-full rounded-2xl border-[#7B827A] border-2 border-dashed absolute">
+              <div className="flex gap-2 items-center text-[#7B827A] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
                 <span className="font-semibold text-lg">Загрузить обложку</span>
                 <Upload />
               </div>
