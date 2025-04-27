@@ -17,7 +17,7 @@ export const ExpandableText = ({ text, maxLength = 90 }: ExpandableText) => {
 
   return (
     <div>
-      <p className="break-all">{displayedText}</p>
+      <p className="break-words hyphens-auto">{displayedText}</p>
       {shouldTruncate && (
         <Button
           type="button"

@@ -55,13 +55,13 @@ export const EventsTabs = () => {
     <>
       <TabsContent
         value="upcoming"
-        className="h-full grid grid-flow-row auto-rows-fr gap-4"
+        className="grid grid-flow-row auto-rows-fr gap-4"
       >
         <EventsUpcoming />
       </TabsContent>
       <TabsContent
         value="past"
-        className="h-full grid grid-flow-row auto-rows-fr gap-4"
+        className="grid grid-flow-row auto-rows-fr gap-4"
       >
         <EventsPast />
       </TabsContent>

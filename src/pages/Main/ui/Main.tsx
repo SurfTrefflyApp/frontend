@@ -8,7 +8,14 @@ import { useMainController } from "../controller/useMainController";
 export const Main = () => {
   const { data, loading } = useMainController();
 
-  if (!loading && !data) {
+  if (
+    !loading &&
+    (!data ||
+      (!data?.latest.length &&
+        !data?.popular &&
+        !data?.recommended &&
+        !data?.premium))
+  ) {
     return <NotFound />;
   }
 
