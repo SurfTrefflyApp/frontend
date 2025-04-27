@@ -5,8 +5,12 @@ import { api } from "@/shared/api";
 
 const profileURL = "/users/me";
 
-export function updateUsername(username: string) {
-  return api.put<User>(profileURL, { username });
+export function updateUsername(data: FormData) {
+  return api.put<User>(profileURL, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 }
 
 export function updateTags(tagsIds: number[]) {

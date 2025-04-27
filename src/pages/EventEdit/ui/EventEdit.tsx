@@ -23,6 +23,7 @@ export const EventEdit = () => {
         form={form}
         onSubmit={onSubmit}
         defaultAddress={mapAddress(event)}
+        defaultPreviewURL={event.imageEventUrl}
         formFooter={
           <div className="flex gap-6">
             <EventDelete eventId={event.id} />

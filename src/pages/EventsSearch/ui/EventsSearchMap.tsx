@@ -107,7 +107,8 @@ export const EventsSearchMap = () => {
         >
           <EventCard
             event={selectedEvent}
-            containerClassName="bg-transparent hover:opacity-100 active:opacity-100"
+            containerClassName="bg-transparent"
+            linkClassName="pointer-events-none"
           />
         </AdaptivePopover>
       )}

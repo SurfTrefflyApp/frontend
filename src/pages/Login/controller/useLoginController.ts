@@ -10,12 +10,8 @@ import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 
 import { login } from "../api/login";
-import type {
-  LoginSchema,
-  LoginServerErrors} from "../model/formSchema";
-import {
-  formSchema,
-} from "../model/formSchema";
+import type { LoginSchema, LoginServerErrors } from "../model/formSchema";
+import { formSchema } from "../model/formSchema";
 
 export const useLoginController = () => {
   const authEvent = useUnit(auth);
@@ -55,7 +51,7 @@ export const useLoginController = () => {
           clear();
         })
         .then(() => {
-          navigate(routes.profile);
+          navigate(routes.main);
         })
         .catch((error) => {
           setError(error);

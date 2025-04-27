@@ -4,13 +4,17 @@ import emojiRegex from "emoji-regex";
 import { z } from "zod";
 
 export const formSchema = z.object({
+  image: z.instanceof(File).optional(),
   title: z
     .string({
       required_error: "Поле не может быть пустым",
     })
     .min(5, { message: "Длина ввода должна быть от 5 до 50 символов" })
     .max(50, { message: "Длина ввода должна быть от 5 до 50 символов" })
-    .refine((title) => !emojiRegex().test(title)),
+    .refine(
+      (title) => !emojiRegex().test(title),
+      "Введены некорректные символы",
+    ),
   dateTime: z
     .string()
     .refine((dateTime) => /^\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}$/.test(dateTime))

@@ -11,7 +11,7 @@ import { LockOpen } from "@/shared/icons/LockOpen";
 import { People } from "@/shared/icons/People";
 import { Pin } from "@/shared/icons/Pin";
 import { Share } from "@/shared/icons/Share";
-import { formatDateWithIntl } from "@/shared/lib/dateUtils";
+import { formatDateWithIntl, isDateInPast } from "@/shared/lib/dateUtils";
 import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 import { ExpandableText } from "@/shared/ui/ExpandableText";
@@ -47,7 +47,7 @@ export const Event = () => {
         title={event.name}
         rightContent={
           <div className="flex items-center gap-4">
-            {event.isOwner && (
+            {event.isOwner && !isDateInPast(event.date) && (
               <Link to={routes.eventEdit.replace(":id", event.id.toString())}>
                 <Edit className="size-[16px]" />
               </Link>
@@ -63,7 +63,15 @@ export const Event = () => {
         }
       />
       <main className="p-3 py-6 flex flex-col gap-5 lg:max-w-2/4 w-full mx-auto">
-        <EventImagePreview className="aspect-video" />
+        {event.imageEventUrl ? (
+          <img
+            src={event.imageEventUrl}
+            alt="Event image"
+            className="rounded-2xl h-full w-full mb-2 p-0 flex-1 aspect-video overflow-hidden"
+          />
+        ) : (
+          <EventImagePreview className="aspect-video" />
+        )}
         {!!event.tags.length && (
           <section
             className={`text-center flex justify-center items-center flex-wrap gap-2 gap-x-6

@@ -2,13 +2,11 @@ import type { Event as EventModel } from "@/entities/Event";
 import { Calendar, Crown, MapPin } from "lucide-react";
 import { Link } from "react-router";
 
-import { useEventDateTime } from "@/shared/lib/useEventDateTime";
+import { formatDateWithIntl } from "@/shared/lib/dateUtils";
 import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 
 export const Event = ({ event }: { event: EventModel }) => {
-  const dateTime = useEventDateTime(event.date);
-
   return (
     <Link to={routes.event.replace(":id", event.id.toString())}>
       <figure className="aspect-video bg-surface-container rounded-3xl p-2 flex flex-col gap-2 hover:opacity-60 active:opacity-60">
@@ -32,7 +30,9 @@ export const Event = ({ event }: { event: EventModel }) => {
           </div>
           <div className="flex gap-2 items-center">
             <Calendar className="text-primary w-[22px]" />
-            <h3 className="leading-none text-sm">{dateTime}</h3>
+            <h3 className="leading-none text-sm">
+              {formatDateWithIntl(event.date)}
+            </h3>
           </div>
           <div className="flex gap-2 items-center">
             <MapPin className="text-primary w-[22px]" />

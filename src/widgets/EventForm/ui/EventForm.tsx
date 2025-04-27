@@ -1,10 +1,12 @@
 import type { Address } from "@/entities/Address";
 import { EventNewAddress } from "@/widgets/EventForm/ui/EventNewAddress";
 import { EventNewTags } from "@/widgets/EventForm/ui/EventNewTags";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import type { UseFormReturn } from "react-hook-form";
 
+import { Upload } from "@/shared/icons/Upload";
 import { DateTimePicker } from "@/shared/ui/DateTimePicker";
+import { FileUploadButton } from "@/shared/ui/FileUploadButton";
 import { InfoIconWithTooltip } from "@/shared/ui/InfoIconWithTooltip";
 import { Button } from "@/shared/ui/button";
 import {
@@ -18,6 +20,7 @@ import {
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/textarea";
 
+import { useEventFormController } from "../controller/useEventFormController";
 import type { EventSchema } from "../model/formSchema";
 
 interface EventForm {
@@ -25,6 +28,7 @@ interface EventForm {
   onSubmit: (values: EventSchema) => Promise<void>;
   formFooter: ReactNode;
   defaultAddress?: Address;
+  defaultPreviewURL?: string;
 }
 
 export const EventForm = ({
@@ -32,8 +36,13 @@ export const EventForm = ({
   onSubmit,
   formFooter,
   defaultAddress,
+  defaultPreviewURL,
 }: EventForm) => {
   const formState = form.formState;
+  const { previewUrl, handleFileChange } = useEventFormController({
+    form,
+    defaultPreviewURL,
+  });
 
   return (
     <Form {...form} formState={formState}>
@@ -41,6 +50,22 @@ export const EventForm = ({
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-5 p-6 lg:max-w-2/4 w-full mx-auto"
       >
+        <FileUploadButton
+          variant="ghost"
+          className="mb-2 p-0 flex-1 aspect-video w-full overflow-hidden"
+          handleChange={handleFileChange}
+        >
+          {previewUrl ? (
+            <img src={previewUrl} className="rounded-2xl h-full w-full" />
+          ) : (
+            <div className="w-full h-full rounded-2xl border-[#7B827A] border-2 border-dashed flex items-center justify-center">
+              <div className="flex gap-2 items-center text-[#7B827A]">
+                <span className="font-semibold text-lg">Загрузить обложку</span>
+                <Upload />
+              </div>
+            </div>
+          )}
+        </FileUploadButton>
         <FormField
           control={form.control}
           name="title"

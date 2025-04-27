@@ -11,6 +11,8 @@ export const schema = z.object({
       const regex = /^[\p{L}-]+$/u;
       return regex.test(username) && !emojiRegex().test(username);
     }, "Введены некорректные символы"),
+  image: z.instanceof(File).optional(),
+  delete_image: z.boolean().optional(),
 });
 
 export type Schema = z.infer<typeof schema>;

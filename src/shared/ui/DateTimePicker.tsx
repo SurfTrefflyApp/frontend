@@ -46,6 +46,7 @@ export function DateTimePicker({
   };
 
   const handleDateSelect = (date: Date | undefined) => {
+    console.debug(date);
     if (!date) return;
     if (parsedValue) {
       date.setHours(parsedValue.getHours());
@@ -119,6 +120,7 @@ export function DateTimePicker({
             onSelect={handleDateSelect}
             initialFocus
             locale={ru}
+            onMonthChange={handleDateSelect}
           />
           <div className="flex gap-2 mt-2">
             <select

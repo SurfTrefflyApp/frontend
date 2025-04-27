@@ -29,7 +29,10 @@ export const EventFooter = ({ event }: EventFooter) => {
       return (
         <p>
           Для записи на мероприятие необходимо{" "}
-          <Link to={routes.welcome} className="text-[#0073FF]">
+          <Link
+            to={routes.welcome}
+            className="text-[#0073FF] hover:opacity-60 active:opacity-60"
+          >
             войти
           </Link>{" "}
           в аккаунт

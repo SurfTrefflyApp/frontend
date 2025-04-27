@@ -1,7 +1,9 @@
-import { type ServerEvent } from "@/widgets/EventForm/mapper/event";
-
 import { api } from "@/shared/api";
 
-export function createEvent(values: ServerEvent) {
-  return api.post("/events", values);
+export function createEvent(values: FormData) {
+  return api.post("/events", values, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 }

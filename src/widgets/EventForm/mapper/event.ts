@@ -1,6 +1,8 @@
+import { createFormDataAppender } from "@/shared/formData/createFormDataAppender";
+
 import type { EventSchema } from "../../../widgets/EventForm/model/formSchema";
 
-export interface ServerEvent {
+export type ServerEvent = {
   name: string;
   description: string;
   latitude: number;
@@ -11,7 +13,8 @@ export interface ServerEvent {
   is_premium: boolean;
   tags: number[];
   capacity: number;
-}
+  image?: File;
+};
 
 function formatDate(dateTime: string) {
   const [date, time] = dateTime.split(" ");
@@ -21,8 +24,10 @@ function formatDate(dateTime: string) {
   return `${y}-${mon}-${d}T${h}:${m}:00Z`;
 }
 
-export function mapDataToServer(values: EventSchema): ServerEvent {
-  return {
+type ServerEventSchemaWithoutTags = Omit<ServerEvent, "tags">;
+
+export function mapDataToServer(values: EventSchema): FormData {
+  const mappedObject: ServerEventSchemaWithoutTags = {
     name: values.title,
     description: values.description,
     latitude: values.location.coordinates[0],
@@ -31,7 +36,16 @@ export function mapDataToServer(values: EventSchema): ServerEvent {
     date: formatDate(values.dateTime),
     is_private: values.eventType === "private",
     is_premium: false,
-    tags: values.tags.map((tag) => tag.id),
     capacity: values.participantsCount,
+    image: values.image,
   };
+  const appendEventForm =
+    createFormDataAppender<ServerEventSchemaWithoutTags>();
+  const formData = appendEventForm(mappedObject);
+  values.tags.forEach(({ id }) => {
+    console.debug(id);
+    formData.append("tags", id.toString());
+  });
+
+  return formData;
 }
