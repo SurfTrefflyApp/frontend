@@ -92,7 +92,7 @@ export const Login = () => {
         </form>
         <Button
           variant="ghost"
-          className="mx-auto mt-4 block text-center text-primary text-sm font-medium p-0 hidden"
+          className="mx-auto mt-4 text-center text-primary text-sm font-medium p-0 hidden"
         >
           <Link to={routes.passwordReset}>Забыли пароль?</Link>
         </Button>
