@@ -4,7 +4,7 @@ import emojiRegex from "emoji-regex";
 import { z } from "zod";
 
 export const formSchema = z.object({
-  image: z.instanceof(File),
+  image: z.instanceof(File).optional(),
   title: z
     .string({
       required_error: "Поле не может быть пустым",

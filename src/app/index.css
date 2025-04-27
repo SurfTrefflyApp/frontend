@@ -149,6 +149,11 @@
     @apply bg-background text-foreground;
   }
 
+  a:hover,
+  a:active {
+    opacity: 60%;
+  }
+
   #root {
     height: 100svh;
     max-height: 100svh;

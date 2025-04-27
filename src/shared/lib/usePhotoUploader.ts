@@ -1,11 +1,13 @@
 import type { ChangeEvent } from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const usePhotoUploader = (defaultPreviewURL?: string) => {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(
-    defaultPreviewURL ?? null,
-  );
+  const [previewUrl, setPreviewUrl] = useState<string | null>();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  useEffect(() => {
+    setPreviewUrl(defaultPreviewURL ?? null);
+  }, [defaultPreviewURL]);
 
   const handleFileChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {

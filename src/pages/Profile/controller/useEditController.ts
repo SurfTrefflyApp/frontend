@@ -21,7 +21,7 @@ export const useEditController = ({ setOpen }: useEditController) => {
   const setError = useUnit(setErrorEvent);
 
   const { previewUrl, handleFileChange, selectedFile, resetPhoto } =
-    usePhotoUploader(user?.image_url);
+    usePhotoUploader(user?.imageUrl);
 
   const form = useForm<Schema>({
     resolver: zodResolver(schema),

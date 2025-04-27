@@ -4,6 +4,7 @@ import { Link } from "react-router";
 
 import { DefaultUser } from "../icons/DefaultUser";
 import { People } from "../icons/People";
+import { formatDateWithIntl } from "../lib/dateUtils";
 import { cn } from "../lib/utils";
 import { routes } from "../router";
 import { EventImagePreview } from "./EventImagePreview";
@@ -11,20 +12,35 @@ import { EventImagePreview } from "./EventImagePreview";
 interface EventCard {
   event: Event;
   containerClassName?: string;
+  linkClassName?: string;
 }
 
-export const EventCard = ({ event, containerClassName }: EventCard) => {
+export const EventCard = ({
+  event,
+  containerClassName,
+  linkClassName,
+}: EventCard) => {
   return (
-    <Link to={routes.event.replace(":id", event.id.toString())}>
+    <Link
+      to={routes.event.replace(":id", event.id.toString())}
+      className={cn(linkClassName)}
+    >
       <figure
         className={cn(
-          "h-full w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto hover:opacity-60 active:opacity-60",
+          "h-full w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto",
           containerClassName,
         )}
       >
         <div className="grid grid-cols-2 gap-4">
           <div className="mb-1">
-            <EventImagePreview className="h-full" titleClassName="w-[70px]" />
+            {event.imageEventUrl ? (
+              <img
+                src={event.imageEventUrl}
+                className="aspect-video h-full w-full rounded-2xl"
+              />
+            ) : (
+              <EventImagePreview className="h-full" titleClassName="w-[70px]" />
+            )}
           </div>
           <div className="h-full flex flex-col">
             <div className="flex items-center gap-2">
@@ -41,7 +57,7 @@ export const EventCard = ({ event, containerClassName }: EventCard) => {
             <div className="flex gap-2 w-full item-start">
               <Calendar className="text-primary w-[20px]" />
               <h4 className="line-clamp-1 w-full">
-                {new Date(event.date).toString()}
+                {formatDateWithIntl(event.date)}
               </h4>
             </div>
             <div className="flex gap-2 w-full items-center">
@@ -50,13 +66,16 @@ export const EventCard = ({ event, containerClassName }: EventCard) => {
             </div>
             <div className="flex gap-2 w-full items-center mb-2">
               {event.imageUserUrl ? (
-                <img src={event.imageUserUrl} />
+                <img
+                  src={event.imageUserUrl}
+                  className="w-[32px] h-[32px] rounded-full"
+                />
               ) : (
                 <DefaultUser className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full shadow-md" />
               )}
               <h4 className="line-clap-1 w-full">{event.ownerUsername}</h4>
             </div>
-            <div className="flex-1 flex">
+            <div className="flex">
               <p className="line-clamp-3 break-all">{event.description}</p>
             </div>
           </div>

@@ -11,7 +11,7 @@ import { LockOpen } from "@/shared/icons/LockOpen";
 import { People } from "@/shared/icons/People";
 import { Pin } from "@/shared/icons/Pin";
 import { Share } from "@/shared/icons/Share";
-import { formatDateWithIntl } from "@/shared/lib/dateUtils";
+import { formatDateWithIntl, isDateInPast } from "@/shared/lib/dateUtils";
 import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 import { ExpandableText } from "@/shared/ui/ExpandableText";
@@ -47,7 +47,7 @@ export const Event = () => {
         title={event.name}
         rightContent={
           <div className="flex items-center gap-4">
-            {event.isOwner && (
+            {event.isOwner && !isDateInPast(event.date) && (
               <Link to={routes.eventEdit.replace(":id", event.id.toString())}>
                 <Edit className="size-[16px]" />
               </Link>

@@ -44,7 +44,11 @@ export const ProfileHeader = ({ isAuth, user }: ProfileHeader) => {
           )}
         </div>
         {user?.imageUrl ? (
-          <img src={user.imageUrl} alt="User avatar" />
+          <img
+            src={user.imageUrl}
+            alt="User avatar"
+            className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] rounded-full"
+          />
         ) : (
           <DefaultUser className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]" />
         )}
