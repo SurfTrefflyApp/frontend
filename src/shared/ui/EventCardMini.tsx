@@ -12,10 +12,17 @@ export const EventCardMini = ({ event }: { event: EventModel }) => {
     <Link to={routes.event.replace(":id", event.id.toString())}>
       <figure className="w-48 gap-1 bg-surface-container p-3 rounded-2xl flex flex-col hover:opacity-60 active:opacity-60">
         <div className="flex-1 mb-1">
-          <EventImagePreview
-            className="aspect-video"
-            titleClassName="w-[70px]"
-          />
+          {event.imageEventUrl ? (
+            <img
+              src={event.imageEventUrl}
+              className="aspect-video rounded-2xl h-full w-full"
+            />
+          ) : (
+            <EventImagePreview
+              className="aspect-video"
+              titleClassName="w-[70px]"
+            />
+          )}
         </div>
         <figcaption className="line-clamp-1 font-semibold leading-none">
           {event.name}
