@@ -149,7 +149,6 @@
     @apply bg-background text-foreground;
   }
 
-  a:hover,
   a:active {
     opacity: 60%;
   }
@@ -184,5 +183,11 @@
 @keyframes shimmer {
   100% {
     mask-position: left;
+  }
+}
+
+@media (hover: hover) {
+  a:hover {
+    opacity: 60%;
   }
 }

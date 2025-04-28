@@ -99,7 +99,7 @@ export const EventsSearchMap = () => {
           footer={
             <Link
               to={routes.event.replace(":id", selectedEvent.id.toString())}
-              className="text-center text-primary block w-full"
+              className="text-center text-primary block w-full mb-4"
             >
               На страницу мероприятия
             </Link>
