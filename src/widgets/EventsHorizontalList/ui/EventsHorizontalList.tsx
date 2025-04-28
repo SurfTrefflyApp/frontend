@@ -1,8 +1,8 @@
 import type { Event as EventModel } from "@/entities/Event";
-import { Event } from "@/widgets/EventsHorizontalList/ui/Event";
 import { EventsSkeleton } from "@/widgets/EventsHorizontalList/ui/EventsSkeleton";
 
 import { cn } from "@/shared/lib/utils";
+import { EventCard } from "@/shared/ui/EventCard";
 import {
   Carousel,
   CarouselContent,
@@ -41,7 +41,10 @@ export const EventsHorizontalList = ({
           {events.length ? (
             events.map((event) => (
               <CarouselItem key={event.id} className="basis-auto flex-shrink-0">
-                <Event event={event} />
+                <EventCard
+                  event={event}
+                  containerClassName="w-90 md:w-120 h-full"
+                />
               </CarouselItem>
             ))
           ) : (

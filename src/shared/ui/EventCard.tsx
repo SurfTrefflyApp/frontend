@@ -27,12 +27,12 @@ export const EventCard = ({
     >
       <figure
         className={cn(
-          "h-full w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto",
+          "w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto",
           containerClassName,
         )}
       >
         <div className="grid grid-cols-2 gap-4">
-          <div className="mb-1">
+          <div>
             {event.imageEventUrl ? (
               <img
                 src={event.imageEventUrl}
