@@ -43,9 +43,20 @@ export const EventFooter = ({ event }: EventFooter) => {
     if (event.isOwner) {
       return <></>;
     }
+
     if (event.isParticipant) {
       return <EventUnsubscribeConfirm eventId={event.id} />;
     }
+
+    if (event.capacity <= event.participantCount) {
+      return (
+        <p className="text-center">
+          Достигнут лимит участников, вы сможете присоединиться, если один из
+          участников покинет меропритие
+        </p>
+      );
+    }
+
     if (!event.isParticipant) {
       return (
         <Button
