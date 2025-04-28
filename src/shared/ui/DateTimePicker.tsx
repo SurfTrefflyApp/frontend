@@ -95,7 +95,6 @@ export function DateTimePicker({
             placeholder="дд.мм.гггг чч:мм"
             className="pr-10"
             variant="secondary"
-            pattern="\d*"
             inputMode="numeric"
             error={error}
           />
