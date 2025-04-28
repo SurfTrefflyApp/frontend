@@ -1,8 +1,11 @@
 import type { Event as EventModel } from "@/entities/Event";
 import { EventsSkeleton } from "@/widgets/EventsHorizontalList/ui/EventsSkeleton";
+import { useMediaQuery } from "react-responsive";
 
+import { mdBreakpoint } from "@/shared/consts/breakpoints";
 import { cn } from "@/shared/lib/utils";
 import { EventCard } from "@/shared/ui/EventCard";
+import { EventCardMini } from "@/shared/ui/EventCardMini";
 import {
   Carousel,
   CarouselContent,
@@ -24,6 +27,10 @@ export const EventsHorizontalList = ({
   isLoading,
   emptyMessage = "Пока не нашлось подходящих мероприятий",
 }: EventsHorizontalList) => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: `(min-width: ${mdBreakpoint}px)`,
+  });
+
   if (isLoading) {
     return <EventsSkeleton />;
   }
@@ -41,10 +48,14 @@ export const EventsHorizontalList = ({
           {events.length ? (
             events.map((event) => (
               <CarouselItem key={event.id} className="basis-auto flex-shrink-0">
-                <EventCard
-                  event={event}
-                  containerClassName="w-90 md:w-120 h-full"
-                />
+                {isDesktopOrLaptop ? (
+                  <EventCard
+                    event={event}
+                    containerClassName="w-90 md:w-120 h-full"
+                  />
+                ) : (
+                  <EventCardMini event={event} />
+                )}
               </CarouselItem>
             ))
           ) : (
