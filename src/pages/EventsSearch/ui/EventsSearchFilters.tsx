@@ -114,6 +114,7 @@ export const EventsSearchFilters = ({
               type="button"
               onClick={() => {
                 form.reset();
+                form.setValue("time", Time.all);
               }}
             >
               Очистить
