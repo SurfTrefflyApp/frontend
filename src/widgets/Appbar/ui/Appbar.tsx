@@ -17,7 +17,7 @@ export const Appbar = () => {
     }`;
 
   return (
-    <header className="flex justify-between items-center py-4 px-20 mb-4">
+    <header className="flex justify-between items-center py-4 px-20">
       <Title />
       <nav className="flex items-center gap-10">
         <Link to={routes.main} className={linkClass(routes.main)}>

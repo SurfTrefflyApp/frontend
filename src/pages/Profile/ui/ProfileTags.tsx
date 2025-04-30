@@ -19,7 +19,7 @@ export const ProfileTags = ({ tags }: { tags: TagModel[] }) => {
           tags={tags}
         />
       )}
-      <div className="bg-surface-container-low rounded-3xl p-4 shadow-lg mb-4">
+      <div className="bg-surface-container-low rounded-3xl p-4 shadow-lg h-fit mx-2 md:mx-0">
         <div className="relative mb-4 grid grid-cols-[1fr_2fr_1fr]">
           <h3 className="text-center text-base font-semibold self-center col-2">
             Мои теги
