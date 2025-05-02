@@ -1,8 +1,9 @@
 import { ChevronLeft } from "lucide-react";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useNavigate } from "react-router";
 
 import { cn } from "@/shared/lib/utils";
+import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
 import { Button } from "@/shared/ui/button";
 
 interface ContentHeader {
@@ -18,6 +19,8 @@ export const ContentHeader = ({
   className,
 }: ContentHeader) => {
   const navigate = useNavigate();
+
+  useStatusBarColor("--surface-container");
 
   return (
     <header

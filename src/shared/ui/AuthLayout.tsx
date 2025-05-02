@@ -8,6 +8,8 @@ import { cn } from "@/shared/lib/utils";
 import { routes } from "@/shared/router";
 import { Button } from "@/shared/ui/button";
 
+import { useStatusBarColor } from "../styles/useStatusBarColor";
+
 interface AuthLayout extends PropsWithChildren {
   withBackBtn?: boolean;
   withCloseBtn?: boolean;
@@ -21,6 +23,8 @@ export const AuthLayout = ({
   children,
 }: AuthLayout) => {
   const navigate = useNavigate();
+
+  useStatusBarColor("--background");
 
   return (
     <div className="h-svh w-screen flex items-center justify-center">

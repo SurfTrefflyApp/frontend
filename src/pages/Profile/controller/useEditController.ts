@@ -58,7 +58,7 @@ export const useEditController = ({ setOpen }: useEditController) => {
   };
 
   const handleImageDelete = () => {
-    resetPhoto();
+    resetPhoto(false);
     form.setValue("delete_image", true);
   };
 
