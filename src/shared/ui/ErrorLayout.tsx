@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { Title } from "../icons/Title";
 import { cn } from "../lib/utils";
+import { useStatusBarColor } from "../styles/useStatusBarColor";
 
 interface ErrorLayout {
   icon: ReactNode;
@@ -22,6 +23,8 @@ export const ErrorLayout = ({
   titleIconClassName,
   containerClassName,
 }: ErrorLayout) => {
+  useStatusBarColor("--background");
+
   return (
     <div
       className={cn(

@@ -4,6 +4,7 @@ import { Exit } from "@/widgets/Exit";
 import { ProfileEdit } from "@/pages/Profile/ui/ProfileEdit";
 
 import { DefaultUser } from "@/shared/icons/DefaultUser";
+import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
 
 import { ProfileEditWidget } from "./ProfileEditWidget";
 
@@ -20,6 +21,8 @@ export const ProfileHeader = ({
   editOpen,
   setEditOpen,
 }: ProfileHeader) => {
+  useStatusBarColor("--secondary-container");
+
   return (
     <>
       <ProfileEdit open={editOpen} setOpen={setEditOpen} />

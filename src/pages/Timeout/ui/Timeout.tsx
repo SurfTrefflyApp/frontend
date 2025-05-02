@@ -1,13 +1,20 @@
-import { Link } from "react-router";
-
-import { routes } from "@/shared/router";
+import { ErrorServer } from "@/shared/icons/ErrorServer";
+import { ErrorLayout } from "@/shared/ui/ErrorLayout";
 
 export const Timeout = () => {
   return (
-    <div>
-      <h1>504 Timeout Error</h1>
-      <p>Сервер не отвечает. Пожалуйста, попробуй позже.</p>
-      <Link to={routes.main}>Вернуться на главную</Link>
-    </div>
+    <ErrorLayout
+      icon={<ErrorServer />}
+      title="Ошибка сервера"
+      subtitle={
+        <>
+          Что-то пошло не так.
+          <br />
+          Попробуй позже.
+        </>
+      }
+      subtitleClassName=""
+      titleIconClassName="text-error"
+    />
   );
 };

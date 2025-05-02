@@ -30,10 +30,15 @@ export const usePhotoUploader = (defaultPreviewURL?: string) => {
     [],
   );
 
-  const resetPhoto = useCallback(() => {
-    setPreviewUrl(defaultPreviewURL ?? null);
-    setSelectedFile(null);
-  }, [defaultPreviewURL]);
+  const resetPhoto = useCallback(
+    (withDefaultURL: boolean = true) => {
+      setPreviewUrl(
+        withDefaultURL && defaultPreviewURL ? defaultPreviewURL : null,
+      );
+      setSelectedFile(null);
+    },
+    [defaultPreviewURL],
+  );
 
   return {
     previewUrl,

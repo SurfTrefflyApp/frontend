@@ -12,7 +12,7 @@ export const manifest: Partial<VitePWAOptions> = {
       "Web app where every user can look for and create events nearby",
     theme_color: "#faf9f5",
     background_color: "#faf9f5",
-    display: "fullscreen",
+    orientation: "portrait",
     icons: [
       {
         src: "/icons/96x96.png",
@@ -43,17 +43,6 @@ export const manifest: Partial<VitePWAOptions> = {
         sizes: "144x144",
         type: "image/svg+xml",
         purpose: "any",
-      },
-    ],
-    screenshots: [
-      {
-        src: "/screenshots/profile_screen.jpg",
-        sizes: "590x1280",
-      },
-      {
-        src: "/screenshots/profile_screen_desk.png",
-        sizes: "2880x1560",
-        form_factor: "wide",
       },
     ],
   },

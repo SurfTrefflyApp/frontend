@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router";
 
 import { Close } from "@/shared/icons/Close";
+import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
 import { Button } from "@/shared/ui/button";
 
 export const Privacy = () => {
   const navigate = useNavigate();
+
+  useStatusBarColor("--background");
 
   return (
     <main className="h-svh max-w-4xl mx-auto px-4 py-8 text-gray-800 overflow-y-auto relative">

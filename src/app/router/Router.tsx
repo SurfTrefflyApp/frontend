@@ -56,6 +56,10 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: routes.timeout,
+        element: <Timeout />,
+      },
+      {
         element: <AppbarLayout />,
         children: [
           {
@@ -98,10 +102,6 @@ const router = createBrowserRouter([
                     element: <EventsSearch />,
                   },
                 ],
-              },
-              {
-                path: routes.timeout,
-                element: <Timeout />,
               },
               {
                 element: (
