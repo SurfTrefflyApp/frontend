@@ -3,8 +3,8 @@ import { Exit } from "@/widgets/Exit";
 
 import { ProfileEdit } from "@/pages/Profile/ui/ProfileEdit";
 
+import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
-import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
 
 import { ProfileEditWidget } from "./ProfileEditWidget";
 

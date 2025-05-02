@@ -1,5 +1,5 @@
+import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
 import { useLocalStorage } from "@/shared/lib/useLocalStorage";
-import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
 
 import { EventsSearchHeader } from "./EventsSearchHeader";
 import { EventsSearchList } from "./EventsSearchList";

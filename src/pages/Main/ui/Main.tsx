@@ -1,7 +1,7 @@
 import { EventsCarousel } from "@/widgets/EventsCarousel";
 import { EventsHorizontalList } from "@/widgets/EventsHorizontalList";
 
-import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
+import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
 import { NotFound } from "@/shared/ui/NotFound";
 
 import { useMainController } from "../controller/useMainController";
