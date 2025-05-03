@@ -5,7 +5,8 @@ import Pin from "@/shared/icons/pin.svg";
 import { useMapController } from "../controller/useMapController";
 
 export const SelectPageMap = () => {
-  const { coordinates, handleMapClick } = useMapController();
+  const { coordinates, defaultCoordinates, handleMapClick } =
+    useMapController();
 
   return (
     <div className="relative w-full h-full flex-1 px-4">
@@ -20,7 +21,7 @@ export const SelectPageMap = () => {
         >
           <Map
             state={{
-              center: coordinates,
+              center: coordinates ?? defaultCoordinates,
               zoom: 10,
               behaviors: ["default", "scrollZoom"],
             }}
@@ -34,16 +35,18 @@ export const SelectPageMap = () => {
               suppressObsoleteBrowserNotifier: true,
             }}
           >
-            <Placemark
-              geometry={coordinates}
-              options={{
-                iconLayout: "default#image",
-                iconImageHref: Pin,
-                iconImageSize: [40, 40],
-                iconImageOffset: [-20, -40],
-                hasBalloon: false,
-              }}
-            />
+            {coordinates && (
+              <Placemark
+                geometry={coordinates}
+                options={{
+                  iconLayout: "default#image",
+                  iconImageHref: Pin,
+                  iconImageSize: [40, 40],
+                  iconImageOffset: [-20, -40],
+                  hasBalloon: false,
+                }}
+              />
+            )}
           </Map>
         </div>
       </YMaps>

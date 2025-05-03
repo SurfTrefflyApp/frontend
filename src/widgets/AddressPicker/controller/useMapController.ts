@@ -5,10 +5,10 @@ import { setErrorEvent } from "@/shared/api";
 
 import { geocode } from "../api";
 import { geocodeMapper } from "../mapper/geocode";
-import { $address, setAddressEvent } from "../model";
+import { $address, $defaultCoords, setAddressEvent } from "../model";
 
 export const useMapController = () => {
-  const address = useUnit($address);
+  const [address, defaultCoords] = useUnit([$address, $defaultCoords]);
   const setAddress = useUnit(setAddressEvent);
   const setError = useUnit(setErrorEvent);
 
@@ -34,7 +34,8 @@ export const useMapController = () => {
   );
 
   return {
-    coordinates: address.coordinates,
+    coordinates: address?.coordinates,
+    defaultCoordinates: defaultCoords,
     isLoading,
     handleMapClick,
   };

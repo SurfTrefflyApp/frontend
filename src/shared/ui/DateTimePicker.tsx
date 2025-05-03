@@ -41,7 +41,11 @@ export function DateTimePicker({
       onChange(format(parsed, "dd.MM.yyyy HH:mm"));
       onError("");
     } else {
-      onError("Некорректный формат даты");
+      if (val === "__.__.____ __:__") {
+        onError("Поле не может быть пустым");
+      } else {
+        onError("Некорректный формат даты");
+      }
     }
   };
 

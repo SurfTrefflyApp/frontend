@@ -21,7 +21,9 @@ export const AddressPicker = ({
   const setLocalAddress = useUnit(setAddressEvent);
 
   useEffect(() => {
-    setAddress(address);
+    if (address) {
+      setAddress(address);
+    }
   }, [address, setAddress]);
 
   useEffect(() => {
