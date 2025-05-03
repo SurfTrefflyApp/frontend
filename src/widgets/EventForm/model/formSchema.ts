@@ -57,7 +57,7 @@ export const formSchema = z.object({
     }),
   }),
   eventType: z.enum(["public", "private"], {
-    required_error: "Выберите тип мероприятия",
+    required_error: "Выбери тип мероприятия",
     invalid_type_error: "Некорректный тип мероприятия",
   }),
   tags: z
@@ -68,7 +68,7 @@ export const formSchema = z.object({
       }),
     )
     .min(1, {
-      message: "Добавьте хотя бы один тег",
+      message: "Добавь хотя бы один тег",
     })
     .max(3, {
       message: "Можно добавить не более 3 тегов",

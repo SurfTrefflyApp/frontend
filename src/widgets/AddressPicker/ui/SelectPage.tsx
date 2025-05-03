@@ -55,7 +55,9 @@ export const SelectPage = ({ open, setOpen, setAddress }: SelectPage) => {
         <Button
           className="mx-4"
           onClick={() => {
-            setAddress(address);
+            if (address) {
+              setAddress(address);
+            }
             setOpen(false);
           }}
         >
