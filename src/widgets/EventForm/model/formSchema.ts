@@ -9,6 +9,7 @@ export const formSchema = z.object({
     .string({
       required_error: "Поле не может быть пустым",
     })
+    .min(1, { message: "Поле не может быть пустым" })
     .refine(
       (title) => !emojiRegex().test(title),
       "Введены некорректные символы",
