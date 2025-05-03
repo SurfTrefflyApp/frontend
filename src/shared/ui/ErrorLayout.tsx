@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
+import { useStatusBarColor } from "../dom/useStatusBarColor";
 import { Title } from "../icons/Title";
 import { cn } from "../lib/utils";
-import { useStatusBarColor } from "../styles/useStatusBarColor";
 
 interface ErrorLayout {
   icon: ReactNode;

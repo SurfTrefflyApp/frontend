@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 
+import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
 import { Close } from "@/shared/icons/Close";
-import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
 import { Button } from "@/shared/ui/button";
 
 export const Privacy = () => {

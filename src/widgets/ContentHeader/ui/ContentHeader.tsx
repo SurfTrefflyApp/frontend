@@ -2,8 +2,8 @@ import { ChevronLeft } from "lucide-react";
 import { type ReactNode } from "react";
 import { useNavigate } from "react-router";
 
+import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
 import { cn } from "@/shared/lib/utils";
-import { useStatusBarColor } from "@/shared/styles/useStatusBarColor";
 import { Button } from "@/shared/ui/button";
 
 interface ContentHeader {
