@@ -1,4 +1,4 @@
-import { bodyStyle } from "./elements";
+import { body } from "./elements";
 import { getRootVar } from "./getRootVar";
 
 export function setStatusBarColor(color: string) {
@@ -10,7 +10,7 @@ export function setStatusBarColor(color: string) {
       ?.setAttribute("content", rootColor ?? color);
   }
 
-  if (bodyStyle) {
-    bodyStyle.background = rootColor ?? color;
+  if (body) {
+    body.style.background = rootColor ?? color;
   }
 }
