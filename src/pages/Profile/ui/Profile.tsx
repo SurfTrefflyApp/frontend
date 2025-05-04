@@ -34,8 +34,12 @@ export const Profile = () => {
     <>
       <div className="w-full justify-end pr-20 hidden md:flex">
         <div className="flex gap-14 items-center">
-          <ProfileEditWidget isAuth={isAuth} setEditOpen={setEditOpen} />
-          <Exit />
+          {isAuth && (
+            <>
+              <ProfileEditWidget isAuth={isAuth} setEditOpen={setEditOpen} />
+              <Exit />
+            </>
+          )}
         </div>
       </div>
       <main className="mx-auto flex flex-col gap-4 h-full max-w-4xl">
