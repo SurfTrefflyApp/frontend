@@ -51,7 +51,7 @@ export const EventFooter = ({ event }: EventFooter) => {
     if (event.capacity <= event.participantCount) {
       return (
         <p className="text-center">
-          Достигнут лимит участников, вы сможете присоединиться, если один из
+          Достигнут лимит участников, ты сможешь присоединиться, если один из
           участников покинет меропритие
         </p>
       );
