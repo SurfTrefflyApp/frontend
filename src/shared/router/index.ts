@@ -1,0 +1,17 @@
+export const routes = {
+  welcome: "/",
+  main: "/main",
+  login: "/login",
+  register: "/register",
+  passwordReset: "/reset",
+  terms: "/terms",
+  privacy: "/privacy",
+  profile: "/profile",
+  timeout: "/timeout",
+  getError: "/error",
+  events: "/events",
+  eventsSearch: "/events-search",
+  eventEdit: "/events/:id/edit",
+  event: "/events/:id",
+  eventNew: "/events/new",
+};
