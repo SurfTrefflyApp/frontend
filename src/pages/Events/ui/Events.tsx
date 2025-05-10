@@ -39,9 +39,11 @@ export const Events = () => {
             className="flex w-full md:hidden"
             style={{ x: 0 }}
           >
-            <EventsTabs />
+            <div className="h-fit flex w-full md:hidden">
+              <EventsTabs />
+            </div>
           </motion.div>
-          <div className="flex-1 w-full hidden md:flex">
+          <div className="h-fit w-full hidden md:flex">
             <EventsTabs />
           </div>
         </div>
@@ -55,13 +57,13 @@ export const EventsTabs = () => {
     <>
       <TabsContent
         value="upcoming"
-        className="grid grid-flow-row auto-rows-fr gap-4"
+        className="grid grid-flow-row auto-rows-1fr gap-4"
       >
         <EventsUpcoming />
       </TabsContent>
       <TabsContent
         value="past"
-        className="grid grid-flow-row auto-rows-fr gap-4"
+        className="grid grid-flow-row auto-rows-1fr gap-4"
       >
         <EventsPast />
       </TabsContent>
