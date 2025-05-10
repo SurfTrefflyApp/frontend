@@ -39,9 +39,11 @@ export const Events = () => {
             className="flex w-full md:hidden"
             style={{ x: 0 }}
           >
-            <EventsTabs />
+            <div className="h-fit flex w-full md:hidden">
+              <EventsTabs />
+            </div>
           </motion.div>
-          <div className="flex-1 w-full hidden md:flex">
+          <div className="h-fit w-full hidden md:flex">
             <EventsTabs />
           </div>
         </div>

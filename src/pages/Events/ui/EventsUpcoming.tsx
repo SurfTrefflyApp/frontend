@@ -20,6 +20,10 @@ export const EventsUpcoming = () => {
   }
 
   return (
-    <>{events?.map((event) => <EventCard key={event.id} event={event} />)}</>
+    <>
+      {events?.map((event) => (
+        <EventCard key={event.id} event={event} containerClassName="h-full" />
+      ))}
+    </>
   );
 };
