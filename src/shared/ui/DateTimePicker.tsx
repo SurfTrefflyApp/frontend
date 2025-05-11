@@ -50,7 +50,6 @@ export function DateTimePicker({
   };
 
   const handleDateSelect = (date: Date | undefined) => {
-    console.debug(date);
     if (!date) return;
     if (parsedValue) {
       date.setHours(parsedValue.getHours());
