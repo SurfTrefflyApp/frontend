@@ -10,7 +10,7 @@ import { formatDateWithIntl } from "../lib/dateUtils";
 export const EventCardMini = ({ event }: { event: EventModel }) => {
   return (
     <Link to={routes.event.replace(":id", event.id.toString())}>
-      <figure className="w-48 gap-1 bg-surface-container p-3 rounded-2xl flex flex-col hover:opacity-60 active:opacity-60">
+      <figure className="w-48 gap-1 bg-surface-container p-3 rounded-2xl flex flex-col hover:brightness-70 active:brightness-70">
         <div className="flex-1 mb-1">
           {event.imageEventUrl ? (
             <img

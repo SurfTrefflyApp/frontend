@@ -23,7 +23,7 @@ export const EventCard = ({
   return (
     <Link
       to={routes.event.replace(":id", event.id.toString())}
-      className={cn(linkClassName)}
+      className={cn("hover:brightness-70", linkClassName)}
     >
       <figure
         className={cn(
