@@ -18,7 +18,6 @@ interface EventNewAddress {
 }
 
 export const EventNewAddress = ({ form, defaultAddress }: EventNewAddress) => {
-  console.debug(form.getValues("location"));
   return (
     <FormField
       control={form.control}

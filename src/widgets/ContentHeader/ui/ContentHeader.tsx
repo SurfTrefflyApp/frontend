@@ -1,6 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import { type ReactNode } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
 import { cn } from "@/shared/lib/utils";
@@ -19,6 +19,7 @@ export const ContentHeader = ({
   className,
 }: ContentHeader) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useStatusBarColor("--surface-container");
 
@@ -33,7 +34,11 @@ export const ContentHeader = ({
         <Button
           variant="ghost"
           onClick={() => {
-            navigate(-1);
+            if (location.state?.skipPage) {
+              navigate(-2);
+            } else {
+              navigate(-1);
+            }
           }}
           className="p-0!"
         >
