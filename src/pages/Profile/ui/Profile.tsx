@@ -43,7 +43,7 @@ export const Profile = () => {
         </div>
       </div>
       <main className="mx-auto flex flex-col gap-4 h-full max-w-4xl">
-        <div className="w-full flex flex-col md:flex-row gap-8 md:justify-center md:items-center relative">
+        <div className="w-full flex flex-col md:flex-row gap-8 md:justify-center md:items-center md:pr-2 relative">
           <ProfileHeader
             isAuth={isAuth}
             user={user}
