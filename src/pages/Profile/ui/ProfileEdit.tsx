@@ -42,11 +42,11 @@ export const ProfileEdit = ({ open, setOpen }: ProfileEdit) => {
         <div className="flex gap-4 items-center justify-center mb-4">
           {previewUrl ? (
             <img
-              className="w-[120px] h-[120px] rounded-full object-fill bg-red-100"
+              className="min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px] rounded-full object-fill bg-red-100"
               src={previewUrl}
             />
           ) : (
-            <DefaultUser className="w-[120px] h-[120px]" />
+            <DefaultUser className="min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px]" />
           )}
           <div className="flex flex-col items-center gap1">
             <FileUploadButton

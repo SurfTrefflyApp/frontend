@@ -23,6 +23,10 @@ export const ProfileHeader = ({
 }: ProfileHeader) => {
   useStatusBarColor("--secondary-container");
 
+  const iconClassname = `min-w-[120px] min-h-[120px] max-w-[120px] max-h-[120px]
+              sm:min-w-[150px] sm:min-h-[150px] sm:max-w-[150px] sm:max-h-[150px]
+              rounded-full`;
+
   return (
     <>
       <ProfileEdit open={editOpen} setOpen={setEditOpen} />
@@ -38,10 +42,10 @@ export const ProfileHeader = ({
           <img
             src={user.imageUrl}
             alt="User avatar"
-            className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] rounded-full"
+            className={iconClassname}
           />
         ) : (
-          <DefaultUser className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]" />
+          <DefaultUser className={iconClassname} />
         )}
 
         <h2 className="text-primary text-xl font-medium">
