@@ -1,4 +1,4 @@
-import { ErrorPagesProvider } from "@/app/providers/ErrorPagesProvider";
+import { ErrorProvider } from "@/app/providers/ErrorProvider";
 import { AppLayout } from "@/app/router/AppLayout";
 import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
@@ -28,9 +28,9 @@ import { AppbarLayout } from "./AppbarLayout";
 const router = createBrowserRouter([
   {
     element: (
-      <ErrorPagesProvider>
+      <ErrorProvider>
         <AppLoader />
-      </ErrorPagesProvider>
+      </ErrorProvider>
     ),
     errorElement: <Error />,
     children: [

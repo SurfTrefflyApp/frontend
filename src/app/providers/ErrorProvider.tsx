@@ -13,7 +13,7 @@ import { routes } from "@/shared/router";
 
 import useNetworkStatus from "../lib/useNetworkStatus";
 
-export const ErrorPagesProvider = ({ children }: PropsWithChildren) => {
+export const ErrorProvider = ({ children }: PropsWithChildren) => {
   const errorPageURL = useUnit($errorPageURL);
   const setErrorCode = useUnit(setErrorCodeEvent);
   const error = useUnit($error);

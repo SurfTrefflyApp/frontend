@@ -18,11 +18,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
         } as React.CSSProperties
       }
       {...props}
-      className={cn("toaster group w-auto! sm-sonner:w-full!", props.className)}
+      className={cn("toaster group w-full! left-0! right-0!", props.className)}
       toastOptions={{
         classNames: {
           toast:
-            "group toast sm-sonner:left-[50%] sm-sonner:transform-[translateX(-50%)]! group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:pointer-events-auto",
+            "group toast mx-auto group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:pointer-events-auto",
         },
       }}
     />
