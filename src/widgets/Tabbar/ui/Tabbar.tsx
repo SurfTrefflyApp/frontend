@@ -34,7 +34,7 @@ export const Tabbar = () => {
   return (
     <nav
       className={cn(
-        "w-full p-2 bg-[#F4F4F0] rounded-t-xl flex justify-evenly shadow-3xl z-10 touch-none select-none",
+        "sticky bottom-0 w-full p-2 bg-[#F4F4F0] rounded-t-xl flex justify-evenly shadow-3xl z-10 touch-none select-none",
         { "pb-6": isPWA },
       )}
     >

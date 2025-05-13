@@ -7,6 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --appbar-height: 80px;
   --surface-container: #eeeeea;
   --surface-container-low: #f4f4f0;
   --surface-container-highest: #e3e3df;
@@ -90,6 +91,7 @@
 
 @theme inline {
   --default-font-family: "Montserrat Alternates", sans-serif;
+  --spacing-appbar-height: var(--appbar-height);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -144,11 +146,19 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    -webkit-tap-highlight-color: transparent;
   }
+
   body,
   #root {
     @apply bg-background text-foreground;
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    min-width: 100dvw;
   }
 
   a:active {
@@ -156,11 +166,10 @@
   }
 
   #root {
-    height: 100dvh;
-    max-height: 100dvh;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
   }
 }
 

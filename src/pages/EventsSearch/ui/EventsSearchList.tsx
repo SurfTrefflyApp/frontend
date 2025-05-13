@@ -19,7 +19,7 @@ export const EventsSearchList = () => {
   }
 
   return (
-    <div className="lg:max-w-2/4 mx-auto grid grid-flow-row auto-rows-fr gap-4 p-2 mt-2">
+    <div className="lg:max-w-2/4 mx-auto grid grid-flow-row auto-rows-fr gap-4 p-2 mt-2 -mb-10">
       {events.map((event) => (
         <EventCard key={event.id} event={event} containerClassName="h-full" />
       ))}

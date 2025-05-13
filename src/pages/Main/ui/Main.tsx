@@ -23,7 +23,13 @@ export const Main = () => {
   }
 
   return (
-    <main className="h-inherit md:mx-20 max-w-7xl lg:mx-auto px-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0">
+    <main
+      className="flex-1 md:mx-20 max-w-7xl lg:mx-auto px-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0"
+      style={{
+        WebkitOverflowScrolling: "touch",
+        transform: "translateZ(0)",
+      }}
+    >
       <div className="w-full pt-2">
         <EventsCarousel events={data?.premium} isLoading={loading} />
       </div>

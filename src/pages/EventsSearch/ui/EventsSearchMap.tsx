@@ -44,51 +44,44 @@ export const EventsSearchMap = () => {
 
   return (
     <>
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <div className="flex-1 overflow-hidden">
-          {mapLoading && <Loader className="mx-auto my-8" />}
-          <div className="relative w-full h-full flex-1">
-            <YMaps
-              query={{
-                lang: "ru_RU",
+      {mapLoading && <Loader className="mx-auto my-8" />}
+      <div className="absolute left-0 top-0 right-0 bottom-0">
+        <YMaps
+          query={{
+            lang: "ru_RU",
+          }}
+        >
+          <div
+            className="relative w-full h-full"
+            style={{ willChange: "transform", transform: "translateZ(0)" }}
+          >
+            <Map
+              state={mapState}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              onBoundsChange={(e: any) => {
+                const newCenter = e.get("newCenter");
+                const newZoom = e.get("newZoom");
+                setMapState({
+                  center: newCenter,
+                  zoom: newZoom,
+                });
+              }}
+              onLoad={() => {
+                setMapLoading(false);
+              }}
+              modules={["control.FullscreenControl", "control.TypeSelector"]}
+              width="100%"
+              height="100%"
+              options={{
+                suppressMapOpenBlock: true,
+                yandexMapDisablePoiInteractivity: true,
+                suppressObsoleteBrowserNotifier: true,
               }}
             >
-              <div
-                className="relative w-full h-full"
-                style={{ willChange: "transform", transform: "translateZ(0)" }}
-              >
-                <Map
-                  state={mapState}
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  onBoundsChange={(e: any) => {
-                    const newCenter = e.get("newCenter");
-                    const newZoom = e.get("newZoom");
-                    setMapState({
-                      center: newCenter,
-                      zoom: newZoom,
-                    });
-                  }}
-                  onLoad={() => {
-                    setMapLoading(false);
-                  }}
-                  modules={[
-                    "control.FullscreenControl",
-                    "control.TypeSelector",
-                  ]}
-                  width="100%"
-                  height="100%"
-                  options={{
-                    suppressMapOpenBlock: true,
-                    yandexMapDisablePoiInteractivity: true,
-                    suppressObsoleteBrowserNotifier: true,
-                  }}
-                >
-                  {placeMarks}
-                </Map>
-              </div>
-            </YMaps>
+              {placeMarks}
+            </Map>
           </div>
-        </div>
+        </YMaps>
       </div>
       {selectedEvent && (
         <AdaptivePopover

@@ -9,9 +9,7 @@ export const AppLayout = () => {
 
   return (
     <>
-      <div className="flex-1 overflow-y-auto no-scrollbar">
-        <Outlet />
-      </div>
+      <Outlet />
       {!isDesktop && <Tabbar />}
     </>
   );

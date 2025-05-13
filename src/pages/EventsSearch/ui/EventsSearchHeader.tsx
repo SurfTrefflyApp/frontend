@@ -10,7 +10,10 @@ export const EventsSearchHeader = () => {
 
   return (
     <>
-      <header className="flex items-center justify-between sticky bg-surface-container px-4 rounded-b-3xl md:rounded-none shadow-md top-0 z-10">
+      <header
+        className={`flex items-center justify-between sticky bg-surface-container px-4
+        rounded-b-3xl md:rounded-none shadow-md top-0 z-10 md:top-[var(--appbar-height)]`}
+      >
         <Button
           variant="ghost"
           onClick={() => {

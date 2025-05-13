@@ -12,18 +12,18 @@ export const EventsSearch = () => {
   useStatusBarColor("--surface-container");
 
   return (
-    <main className="lg:mx-auto h-full">
+    <>
       <EventsSearchHeader />
-      {listView ? (
-        <EventsSearchList />
-      ) : (
-        <div className="h-full flex flex-col">
-          <EventsSearchMap />
-        </div>
-      )}
-      <div className="relative">
+      <main className="h-full flex-1 relative flex flex-col">
+        {listView ? (
+          <EventsSearchList />
+        ) : (
+          <div className="flex-1 relative -mb-12">
+            <EventsSearchMap />
+          </div>
+        )}
         <EventsSearchViewSwitch listView={listView} setListView={setListView} />
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
