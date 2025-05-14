@@ -1,17 +1,18 @@
 import type { Event } from "@/entities/Event";
 import { useUnit } from "effector-react";
-import { useLocation, useParams } from "react-router";
-import { toast } from "sonner";
+import { useParams, useSearchParams } from "react-router";
 
 import { setErrorEvent } from "@/shared/api";
 import { useRefresh } from "@/shared/auth";
 import { useFetch } from "@/shared/lib/useFetch";
 
 import { $event, setEventEvent } from "../model/store";
+import { useEventClipboardController } from "./useEventClipboardController";
 
 export const useEventController = () => {
-  const location = useLocation();
   const params = useParams();
+  const [searchParams] = useSearchParams();
+  const invite = searchParams.get("invite");
   const id = Number(params.id);
 
   const event = useUnit($event);
@@ -20,40 +21,15 @@ export const useEventController = () => {
   const { refreshed, refreshing } = useRefresh();
 
   const { loading } = useFetch<Event>(
-    `/events/${id}`,
+    `/events/${id}?invite=${invite}`,
     refreshed && !refreshing,
     setEvent,
   );
 
   const setError = useUnit(setErrorEvent);
 
-  const handleCopy = async (text: string, toastTitle: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      toast(toastTitle, {
-        classNames: {
-          title: "w-full text-center",
-          content: "w-full",
-        },
-      });
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  const handleAddressCopy = () => {
-    if (!event?.address) {
-      return;
-    }
-
-    handleCopy(event.address, "Адрес скопирован");
-  };
-
-  const handleEventLinkCopy = () => {
-    const fullUrl = window.location.origin + location.pathname;
-
-    handleCopy(fullUrl, "Ссылка скопирована");
-  };
+  const { handleAddressCopy, handleEventLinkCopy } =
+    useEventClipboardController({ event, setError });
 
   return {
     handleAddressCopy,
