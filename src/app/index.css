@@ -7,6 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --toastify-container-width: fit-content;
   --appbar-height: 80px;
   --surface-container: #eeeeea;
   --surface-container-low: #f4f4f0;

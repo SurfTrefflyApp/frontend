@@ -18,11 +18,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
         } as React.CSSProperties
       }
       {...props}
-      className={cn("toaster group w-full! left-0! right-0!", props.className)}
+      className={cn("toaster group", props.className)}
       toastOptions={{
         classNames: {
           toast:
-            "group toast mx-auto group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:pointer-events-auto",
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:pointer-events-auto",
         },
       }}
     />
