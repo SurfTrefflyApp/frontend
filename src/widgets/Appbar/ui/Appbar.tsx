@@ -10,7 +10,7 @@ export const Appbar = () => {
   const location = useLocation();
 
   const linkClass = (path: string) =>
-    `outline-none focus:outline-none text-xl font-medium hover:text-primary hover:border-b-2 hover:border-primary ${
+    `text-xl font-medium hover:text-primary hover:border-b-2 hover:border-primary ${
       location.pathname === path
         ? "text-primary border-b-2 border-primary font-semibold"
         : ""

@@ -39,20 +39,15 @@ export const AddressPicker = ({
         setOpen={setSelectPageOpen}
         setAddress={setAddress}
       />
-      <div className="bg-surface-container rounded-xl p-4 px-6 flex justify-between items-center overflow-hidden gap-2">
-        <p className="text-black/50 text-sm leading-none truncate">
-          {address?.address ? address.address : "Введите место проведения"}
-        </p>
-        <Button
-          type="button"
-          size="sm"
-          onClick={() => {
-            setSelectPageOpen(true);
-          }}
-        >
-          Выбрать
-        </Button>
-      </div>
+      <Button
+        type="button"
+        onClick={() => {
+          setSelectPageOpen(true);
+        }}
+        className="whitespace-normal h-fit py-3"
+      >
+        {address?.address ? address.address : "Выбрать"}
+      </Button>
     </>
   );
 };

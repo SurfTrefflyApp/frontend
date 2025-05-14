@@ -52,7 +52,7 @@ export const EventForm = ({
       >
         <FileUploadButton
           variant="ghost"
-          className="mb-2 p-0 flex-1 aspect-video w-full overflow-hidden flex relative [& > *]:["
+          className="mb-2 p-0 flex-1 aspect-video w-full overflow-hidden flex relative"
           handleChange={handleFileChange}
         >
           {previewUrl ? (
