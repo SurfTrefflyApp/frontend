@@ -17,6 +17,7 @@
   --green: #adcfb1;
   --normal: #e8e8e4;
   --outline-variant: #c2c8c0;
+  --outline: #7b827a;
   --radius: 0.625rem;
   --background: #faf9f5;
   --foreground: #1a1c1a;
@@ -105,6 +106,7 @@
   --color-white: var(--white);
   --color-green: var(--green);
   --color-normal: var(--normal);
+  --color-outline: var(--outline);
   --color-outline-variant: var(--outline-variant);
   --color-background: var(--background);
   --color-foreground: var(--foreground);

@@ -26,7 +26,11 @@ export const Events = () => {
           onValueChange={setActiveTab}
         >
           <TabsList className="w-full flex justify-evenly pt-8">
-            <TabsTrigger value="upcoming" className="w-fit">
+            <TabsTrigger
+              value="upcoming"
+              className="w-fit"
+              defaultValue={"upcoming"}
+            >
               Предстоящие
             </TabsTrigger>
             <TabsTrigger value="past">Прошедшие</TabsTrigger>
