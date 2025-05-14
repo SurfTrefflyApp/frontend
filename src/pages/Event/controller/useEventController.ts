@@ -32,9 +32,8 @@ export const useEventController = () => {
       await navigator.clipboard.writeText(text);
       toast(toastTitle, {
         classNames: {
-          title: "text-center",
+          title: "w-full text-center",
           content: "w-full",
-          toast: "w-fit! mx-auto",
         },
       });
     } catch (error) {
