@@ -9,3 +9,7 @@ export function subscribe(eventId: number) {
 export function unsubscribe(eventId: number) {
   return api.delete<Event>(`/events/${eventId}/subscription`);
 }
+
+export function generateInviteToken(eventId: number) {
+  return api.get<{ token: string }>(`/events/${eventId}/invite`);
+}
