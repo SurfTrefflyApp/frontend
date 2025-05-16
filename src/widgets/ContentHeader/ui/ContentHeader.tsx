@@ -8,12 +8,16 @@ import { Button } from "@/shared/ui/button";
 
 interface ContentHeader {
   withBackArrow?: boolean;
+  onBackArrowClick?: () => void;
+  countPageHeader?: boolean;
   title?: string;
   rightContent?: ReactNode;
   className?: string;
 }
 export const ContentHeader = ({
   withBackArrow = true,
+  onBackArrowClick,
+  countPageHeader = true,
   title,
   rightContent,
   className,
@@ -27,7 +31,8 @@ export const ContentHeader = ({
     <header
       className={cn(
         `grid grid-cols-[auto_1fr_auto] gap-2 items-center bg-surface-container p-4 rounded-b-3xl
-        shadow-md sticky top-0 z-10 md:rounded-t-3xl md:mx-20 md:top-[var(--appbar-height)]`,
+        shadow-md sticky top-0 z-10 md:rounded-t-3xl md:mx-20`,
+        { "md:top-[var(--appbar-height)]": countPageHeader },
         className,
       )}
     >
@@ -35,6 +40,10 @@ export const ContentHeader = ({
         <Button
           variant="ghost"
           onClick={() => {
+            if (onBackArrowClick) {
+              onBackArrowClick();
+              return;
+            }
             if (location.state?.skipPage) {
               navigate(-2);
             } else {
