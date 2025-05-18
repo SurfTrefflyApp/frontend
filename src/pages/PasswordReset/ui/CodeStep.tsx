@@ -1,0 +1,65 @@
+import VerificationInput from "react-verification-input";
+
+import { Button } from "@/shared/ui/button";
+
+import { useCodeController } from "../controller/useCodeController";
+import { useStepContext } from "../controller/useStepContext";
+
+export const CodeStep = () => {
+  const { email } = useStepContext();
+  const { code, setCode, handleConfirm, confirming, handleRetry, retryTime } =
+    useCodeController();
+
+  return (
+    <>
+      <div className="text-center mb-8 pb-4 border-b-2 border-outline-variant">
+        <h1 className="text-3xl font-semibold md:text-5xl md:mb-2">
+          Подтверждение почты
+        </h1>
+        <h2 className="text-xl md:text-2xl">
+          Мы отправили тебе код подтверждения на твою почту:
+          <br />
+          <span className="font-semibold">{email}</span>
+        </h2>
+      </div>
+      <div className="flex flex-col gap-6">
+        <VerificationInput
+          validChars="0-9"
+          length={5}
+          placeholder="_"
+          classNames={{
+            container: "gap-4 h-fit! mx-auto",
+            character: `h-[70px]! rounded-3xl bg-white shadow-md text-center flex items-center text-surface-on!
+              justify-center border-none! outline-primary! transition-all duration-200`,
+            characterInactive: "bg-white!",
+          }}
+          inputProps={{
+            className:
+              "w-full h-full text-center border-b-2 border-gray-300 focus:border-black outline-none",
+          }}
+          value={code}
+          onChange={setCode}
+        />
+        <Button
+          className="w-fit mx-auto"
+          onClick={handleConfirm}
+          loading={confirming}
+        >
+          Подтвердить
+        </Button>
+        {retryTime ? (
+          <p className="text-center">{retryTime}</p>
+        ) : (
+          <Button
+            variant="ghost"
+            className="w-fit mx-auto text-primary py-0"
+            onClick={handleRetry}
+            disabled={confirming}
+          >
+            Отправить код еще раз
+          </Button>
+        )}
+      </div>
+    </>
+  );
+};

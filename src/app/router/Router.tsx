@@ -13,6 +13,7 @@ import { EventsSearch } from "@/pages/EventsSearch";
 import { Login } from "@/pages/Login";
 import { Main } from "@/pages/Main";
 import { NotFound } from "@/pages/NotFound";
+import { PasswordReset } from "@/pages/PasswordReset";
 import { Privacy } from "@/pages/Privacy";
 import { Profile } from "@/pages/Profile";
 import { Register } from "@/pages/Register";
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
           },
           {
             path: routes.passwordReset,
-            element: <>Reset</>,
+            element: <PasswordReset />,
           },
         ],
       },

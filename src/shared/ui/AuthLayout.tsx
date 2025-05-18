@@ -14,6 +14,7 @@ interface AuthLayout extends PropsWithChildren {
   withBackBtn?: boolean;
   withCloseBtn?: boolean;
   footer?: ReactNode;
+  onBackClick?: () => void;
 }
 
 export const AuthLayout = ({
@@ -21,6 +22,7 @@ export const AuthLayout = ({
   withCloseBtn = true,
   footer,
   children,
+  onBackClick,
 }: AuthLayout) => {
   const navigate = useNavigate();
 
@@ -38,7 +40,11 @@ export const AuthLayout = ({
           <Button
             className="absolute left-5 top-5 md:hidden"
             onClick={() => {
-              navigate(-1);
+              if (onBackClick) {
+                onBackClick();
+              } else {
+                navigate(-1);
+              }
             }}
             variant="ghost"
           >

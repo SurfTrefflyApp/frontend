@@ -12,7 +12,7 @@ import { cn } from "@/shared/lib/utils";
 const inputVariants = cva(
   cn(
     "w-full focus-visible:ring-blue focus-visible:ring-ring/25 focus-visible:ring-2 md:text-xl",
-    "shadow-md border text-sm ring-offset-background outline-none disabled:cursor-not-allowed disabled:opacity-50",
+    "shadow-md border text-sm ring-offset-background disabled:cursor-not-allowed disabled:opacity-50",
   ),
   {
     variants: {

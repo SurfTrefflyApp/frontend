@@ -12,6 +12,7 @@
   --surface-container: #eeeeea;
   --surface-container-low: #f4f4f0;
   --surface-container-highest: #e3e3df;
+  --surface-on: #424842;
   --error: #dc2626;
   --error-foreground: #fee2e2;
   --white: #ffffff;
@@ -102,6 +103,7 @@
   --color-surface-container: var(--surface-container);
   --color-surface-container-low: var(--surface-container-low);
   --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-on: var(--surface-on);
   --color-error: var(--error);
   --color-error-foreground: var(--error-foreground);
   --color-white: var(--white);
