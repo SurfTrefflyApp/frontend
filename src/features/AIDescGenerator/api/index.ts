@@ -1,4 +1,4 @@
-// import { api } from "@/shared/api";
+import { api } from "@/shared/api";
 
 interface Limit {
   limit: number;
@@ -13,7 +13,7 @@ const mockedLimit: Limit = {
 };
 
 export function getUserLimit() {
-  // return api.get<Limit>('/users/generate-limit');
+  // return api.get<Limit>("/users/generate-limit");
   return new Promise<Limit>((resolve) => resolve(mockedLimit));
 }
 
@@ -32,6 +32,12 @@ const generationMock: DescriptionResponse = {
 
 export function generateDescription(eventName: string, maxLength = 500) {
   console.debug(eventName, maxLength);
-  // return api.post<DescriptionResponse>("/events/generate-desc", eventName);
-  return new Promise<DescriptionResponse>((resolve) => resolve(generationMock));
+  return api.get<DescriptionResponse>("/events/generate-desc", {
+    params: {
+      name: eventName,
+      description: "Тра ла ле ло тра ла ла",
+      max_characters: maxLength,
+    },
+  });
+  // return new Promise<DescriptionResponse>((resolve) => resolve(generationMock));
 }

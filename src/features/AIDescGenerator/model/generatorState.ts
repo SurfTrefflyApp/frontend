@@ -12,11 +12,10 @@ interface GenerateParams {
   maxLength: number;
 }
 
-export const appStarted = createEvent<string>();
-
 export const generateDescriptionFx = createEffect(
   async ({ eventName, maxLength }: GenerateParams) => {
-    return await generateDescription(eventName, maxLength);
+    const response = await generateDescription(eventName, maxLength);
+    return response.data;
   },
 );
 
@@ -31,7 +30,10 @@ export const $footerState = createStore<FooterState>("initial").on(
   (_, newFooterState) => newFooterState,
 );
 
-export const $isGenerationDisabled = createStore(true);
+export const $isGenerationDisabled = createStore(true).on(
+  setResetTimeFx.failData,
+  () => true,
+);
 
 export const $description = createStore("").on(
   setDescription,
@@ -39,7 +41,7 @@ export const $description = createStore("").on(
 );
 
 sample({
-  clock: [appStarted, $remaining],
+  clock: [$remaining],
   fn: (state) => !state,
   target: $isGenerationDisabled,
 });

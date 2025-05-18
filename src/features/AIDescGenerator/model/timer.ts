@@ -4,12 +4,19 @@ import { setErrorEvent } from "@/shared/api";
 
 import { getUserLimit } from "../api";
 
+export const appStarted = createEvent<string>();
+
 export const getLimitFx = createEffect(async () => {
-  return await getUserLimit();
+  const result = await getUserLimit();
+  return result.data;
 });
 
 export const setResetTimeFx = createEffect((resetTimeString: string) => {
-  return new Date(resetTimeString);
+  const date = new Date(resetTimeString);
+  if (isNaN(date.getTime())) {
+    throw new Error("Incorrect date format");
+  }
+  return date;
 });
 
 export const ticked = createEvent();
@@ -68,6 +75,20 @@ sample({
   target: setErrorEvent,
 });
 
-export const timerIntervalId = setInterval(() => {
-  ticked();
-}, 1000);
+export let timerIntervalId: ReturnType<typeof setInterval>;
+
+sample({
+  clock: [setResetTimeFx.failData, getLimitFx.failData],
+  fn: () => {
+    clearInterval(timerIntervalId);
+  },
+});
+
+sample({
+  clock: appStarted,
+  fn: () => {
+    timerIntervalId = setInterval(() => {
+      ticked();
+    }, 1000);
+  },
+});

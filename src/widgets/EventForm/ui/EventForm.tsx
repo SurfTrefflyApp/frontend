@@ -166,11 +166,13 @@ export const EventForm = ({
                   Помощь от ИИ <Star />
                 </Button>
               </div>
-              <AIDescGenerator
-                open={isGeneratorOpen}
-                setOpen={setIsGeneratorOpen}
-                eventTitle={form.getValues("title")}
-              />
+              {isGeneratorOpen && (
+                <AIDescGenerator
+                  open={isGeneratorOpen}
+                  setOpen={setIsGeneratorOpen}
+                  eventName={form.getValues("title")}
+                />
+              )}
               <FormControl>
                 <Textarea
                   id="description"

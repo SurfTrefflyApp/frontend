@@ -8,7 +8,13 @@ import {
   descriptionGenerated,
   setDescription as setDescriptionEvent,
 } from "../model/generatorState";
-import { $limit, $remaining, $timeLeft, timerIntervalId } from "../model/timer";
+import {
+  $limit,
+  $remaining,
+  $timeLeft,
+  appStarted,
+  timerIntervalId,
+} from "../model/timer";
 
 interface UseAIDescGeneratorController {
   eventName: string;
@@ -27,16 +33,19 @@ export const useAIDescGeneratorController = ({
 
   const [limit, remaining, timeLeft] = useUnit([$limit, $remaining, $timeLeft]);
 
-  const [generateDescription, setDescription] = useUnit([
+  const [generateDescription, setDescription, setAppStarted] = useUnit([
     descriptionGenerated,
     setDescriptionEvent,
+    appStarted,
   ]);
 
   useEffect(() => {
+    setAppStarted(eventName);
+
     return () => {
       clearInterval(timerIntervalId);
     };
-  }, []);
+  }, [eventName]);
 
   return {
     maxLength,
