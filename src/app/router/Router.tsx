@@ -4,6 +4,7 @@ import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
+import { AdminUsers } from "@/pages/AdminUsers";
 import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
 import { EventEdit } from "@/pages/EventEdit";
@@ -21,10 +22,12 @@ import { Terms } from "@/pages/Terms";
 import { Timeout } from "@/pages/Timeout";
 import { Welcome } from "@/pages/Welcome";
 
+import { $isAdmin } from "@/shared/auth/model";
 import { routes } from "@/shared/router";
 
 import { CoordsProvider } from "../providers/CoordsProvider";
 import { AppbarLayout } from "./AppbarLayout";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -60,66 +63,111 @@ const router = createBrowserRouter([
         path: routes.timeout,
         element: <Timeout />,
       },
+      // Admin routes
       {
-        element: <AppbarLayout />,
+        element: (
+          <ProtectedRoutes
+            redirect={() => {
+              const isAdmin = $isAdmin.getState();
+
+              return !isAdmin;
+            }}
+            redirectHref={routes.welcome}
+          />
+        ),
         children: [
           {
-            element: <PrivateRoutes navigateHref={routes.profile} forAuth />,
+            element: <AppbarLayout />,
             children: [
               {
-                path: routes.eventNew,
-                element: <EventNew />,
+                path: routes.adminUsers,
+                element: <AdminUsers />,
               },
               {
-                path: routes.eventEdit,
-                element: <EventEdit />,
+                path: routes.adminEvents,
+                element: <>Admin events</>,
               },
             ],
           },
+        ],
+      },
+      // User routes (admin can't get them)
+      {
+        element: (
+          <ProtectedRoutes
+            redirect={() => {
+              const isAdmin = $isAdmin.getState();
+
+              return isAdmin;
+            }}
+            redirectHref={routes.adminEvents}
+          />
+        ),
+        children: [
           {
-            path: routes.terms,
-            element: <Terms />,
-          },
-          {
-            path: routes.privacy,
-            element: <Privacy />,
-          },
-          {
-            element: <AppLayout />,
+            element: <AppbarLayout />,
             children: [
-              {
-                element: <CoordsProvider />,
-                children: [
-                  {
-                    path: routes.profile,
-                    element: <Profile />,
-                  },
-                  {
-                    path: routes.main,
-                    element: <Main />,
-                  },
-                  {
-                    path: routes.eventsSearch,
-                    element: <EventsSearch />,
-                  },
-                ],
-              },
               {
                 element: (
                   <PrivateRoutes navigateHref={routes.profile} forAuth />
                 ),
                 children: [
                   {
-                    path: routes.events,
-                    element: <Events />,
+                    path: routes.eventNew,
+                    element: <EventNew />,
+                  },
+                  {
+                    path: routes.eventEdit,
+                    element: <EventEdit />,
                   },
                 ],
               },
+              {
+                path: routes.terms,
+                element: <Terms />,
+              },
+              {
+                path: routes.privacy,
+                element: <Privacy />,
+              },
+              {
+                element: <AppLayout />,
+                children: [
+                  {
+                    element: <CoordsProvider />,
+                    children: [
+                      {
+                        path: routes.profile,
+                        element: <Profile />,
+                      },
+                      {
+                        path: routes.main,
+                        element: <Main />,
+                      },
+                      {
+                        path: routes.eventsSearch,
+                        element: <EventsSearch />,
+                      },
+                    ],
+                  },
+                  {
+                    element: (
+                      <PrivateRoutes navigateHref={routes.profile} forAuth />
+                    ),
+                    children: [
+                      {
+                        path: routes.events,
+                        element: <Events />,
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                path: routes.event,
+                element: <Event />,
+              },
             ],
-          },
-          {
-            path: routes.event,
-            element: <Event />,
           },
         ],
       },

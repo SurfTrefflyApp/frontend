@@ -2,11 +2,13 @@ import { useUnit } from "effector-react";
 import { Link, useLocation } from "react-router";
 
 import { $isAuth } from "@/shared/auth";
+import { $isAdmin } from "@/shared/auth/model";
 import { Title } from "@/shared/icons/Title";
 import { routes } from "@/shared/router";
 
 export const Appbar = () => {
   const isAuth = useUnit($isAuth);
+  const isAdmin = useUnit($isAdmin);
   const location = useLocation();
 
   const linkClass = (path: string) =>
@@ -20,23 +22,36 @@ export const Appbar = () => {
     <header className="flex justify-between items-center py-4 px-20 top-0 sticky h-appbar-height z-50 bg-background">
       <Title />
       <nav className="flex items-center gap-10">
-        <Link to={routes.main} className={linkClass(routes.main)}>
-          Главная
-        </Link>
-        <Link
-          to={routes.eventsSearch}
-          className={linkClass(routes.eventsSearch)}
-        >
-          Карта
-        </Link>
-        {isAuth && (
-          <Link to={routes.events} className={linkClass(routes.events)}>
-            Мероприятия
-          </Link>
+        {isAdmin ? (
+          <>
+            <Link to={routes.adminEvents} className={linkClass(routes.main)}>
+              Мероприятия
+            </Link>
+            <Link to={routes.adminUsers} className={linkClass(routes.main)}>
+              Пользователи
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to={routes.main} className={linkClass(routes.main)}>
+              Главная
+            </Link>
+            <Link
+              to={routes.eventsSearch}
+              className={linkClass(routes.eventsSearch)}
+            >
+              Карта
+            </Link>
+            {isAuth && (
+              <Link to={routes.events} className={linkClass(routes.events)}>
+                Мероприятия
+              </Link>
+            )}
+            <Link to={routes.profile} className={linkClass(routes.profile)}>
+              Профиль
+            </Link>
+          </>
         )}
-        <Link to={routes.profile} className={linkClass(routes.profile)}>
-          Профиль
-        </Link>
       </nav>
     </header>
   );

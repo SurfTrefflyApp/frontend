@@ -22,6 +22,8 @@ export const $isAuth = createStore(false)
   .on(logoutWithoutApiEvent, () => false)
   .reset(checkAuthFx.fail);
 
+export const $isAdmin = createStore(false);
+
 sample({
   clock: logoutEvent,
   target: logoutFx,
