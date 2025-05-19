@@ -45,7 +45,7 @@ export const useAIDescGeneratorController = ({
     return () => {
       clearInterval(timerIntervalId);
     };
-  }, [eventName]);
+  }, [eventName, setAppStarted]);
 
   return {
     maxLength,

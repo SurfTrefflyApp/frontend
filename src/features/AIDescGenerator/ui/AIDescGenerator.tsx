@@ -14,6 +14,7 @@ interface AIDescGenerator {
   open: boolean;
   setOpen: (state: boolean) => void;
   eventName: string;
+  onUse: (description: string) => void;
 }
 
 interface Endings {
@@ -40,6 +41,7 @@ export const AIDescGenerator = ({
   open,
   setOpen,
   eventName,
+  onUse,
 }: AIDescGenerator) => {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const {
@@ -144,7 +146,13 @@ export const AIDescGenerator = ({
               >
                 Повторить
               </Button>
-              <Button>Использовать</Button>
+              <Button
+                onClick={() => {
+                  onUse(description);
+                }}
+              >
+                Использовать
+              </Button>
             </div>
           ) : (
             <Button

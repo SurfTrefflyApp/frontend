@@ -78,3 +78,9 @@ sample({
   fn: (response) => response.resetAt,
   target: setResetTimeFx,
 });
+
+sample({
+  clock: generateDescriptionFx.doneData,
+  fn: (): FooterState => "generated",
+  target: footerStateChanged,
+});

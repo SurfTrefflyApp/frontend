@@ -171,6 +171,10 @@ export const EventForm = ({
                   open={isGeneratorOpen}
                   setOpen={setIsGeneratorOpen}
                   eventName={form.getValues("title")}
+                  onUse={(description) => {
+                    form.setValue("description", description);
+                    setIsGeneratorOpen(false);
+                  }}
                 />
               )}
               <FormControl>
