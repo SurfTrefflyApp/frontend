@@ -4,6 +4,7 @@ import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
+import { AdminEvents } from "@/pages/AdminEvents";
 import { AdminUsers } from "@/pages/AdminUsers";
 import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
               },
               {
                 path: routes.adminEvents,
-                element: <>Admin events</>,
+                element: <AdminEvents />,
               },
             ],
           },

@@ -22,7 +22,7 @@ export const $isAuth = createStore(false)
   .on(logoutWithoutApiEvent, () => false)
   .reset(checkAuthFx.fail);
 
-export const $isAdmin = createStore(false);
+export const $isAdmin = createStore(true);
 
 sample({
   clock: logoutEvent,
