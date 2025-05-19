@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { setErrorEvent } from "@/shared/api";
 import useFormPersist from "@/shared/lib/useFormPersist";
 
-import { ask } from "../api";
+import { forgotPw } from "../api";
 import { type EmailSchema, emailSchema } from "../model/emailSchema";
 import { useStepContext } from "./useStepContext";
 
@@ -28,7 +28,7 @@ export const useEmailController = () => {
   });
 
   const onSubmit = async (values: EmailSchema) => {
-    return ask(values.email)
+    return forgotPw(values.email)
       .then(() => {
         clear();
         setEmail(form.getValues("email"));

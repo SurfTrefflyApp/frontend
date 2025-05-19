@@ -3,14 +3,15 @@ import { useUnit } from "effector-react";
 import { useForm } from "react-hook-form";
 
 import { setErrorEvent } from "@/shared/api";
-import { auth } from "@/shared/auth";
 import useFormPersist from "@/shared/lib/useFormPersist";
 
 import { resetPassword } from "../api";
 import { type PasswordSchema, passwordSchema } from "../model/passwordSchema";
+import { useStepContext } from "./useStepContext";
 
 export const usePasswordController = () => {
-  const authEvent = useUnit(auth);
+  const { email, handleNextClick } = useStepContext();
+
   const setError = useUnit(setErrorEvent);
 
   const form = useForm<PasswordSchema>({
@@ -31,10 +32,10 @@ export const usePasswordController = () => {
     return resetPassword(values.password)
       .then(() => {
         clear();
-        authEvent();
+        handleNextClick();
       })
       .catch(setError);
   };
 
-  return { form, onSubmit };
+  return { form, onSubmit, email };
 };
