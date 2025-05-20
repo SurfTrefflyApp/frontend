@@ -1,7 +1,7 @@
 import { ErrorProvider } from "@/app/providers/ErrorProvider";
-import { AppLayout } from "@/app/router/AppLayout";
 import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
+import { TabbarLayout } from "@/app/router/TabbarLayout";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
 import { AdminEvents } from "@/pages/AdminEvents";
@@ -81,12 +81,17 @@ const router = createBrowserRouter([
             element: <AppbarLayout />,
             children: [
               {
-                path: routes.adminUsers,
-                element: <AdminUsers />,
-              },
-              {
-                path: routes.adminEvents,
-                element: <AdminEvents />,
+                element: <TabbarLayout />,
+                children: [
+                  {
+                    path: routes.adminUsers,
+                    element: <AdminUsers />,
+                  },
+                  {
+                    path: routes.adminEvents,
+                    element: <AdminEvents />,
+                  },
+                ],
               },
             ],
           },
@@ -132,7 +137,7 @@ const router = createBrowserRouter([
                 element: <Privacy />,
               },
               {
-                element: <AppLayout />,
+                element: <TabbarLayout />,
                 children: [
                   {
                     element: <CoordsProvider />,

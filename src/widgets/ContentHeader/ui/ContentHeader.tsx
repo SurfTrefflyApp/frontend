@@ -11,6 +11,7 @@ interface ContentHeader {
   onBackArrowClick?: () => void;
   countPageHeader?: boolean;
   title?: string;
+  titleClassName?: string;
   rightContent?: ReactNode;
   className?: string;
 }
@@ -19,6 +20,7 @@ export const ContentHeader = ({
   onBackArrowClick,
   countPageHeader = true,
   title,
+  titleClassName,
   rightContent,
   className,
 }: ContentHeader) => {
@@ -56,7 +58,14 @@ export const ContentHeader = ({
         </Button>
       )}
       {title && (
-        <h1 className="font-semibold truncate whitespace-nowrap">{title}</h1>
+        <h1
+          className={cn(
+            "font-semibold truncate whitespace-nowrap",
+            titleClassName,
+          )}
+        >
+          {title}
+        </h1>
       )}
       {rightContent}
     </header>

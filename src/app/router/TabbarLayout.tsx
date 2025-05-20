@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 
 import { mdBreakpoint } from "@/shared/consts/breakpoints";
 
-export const AppLayout = () => {
+export const TabbarLayout = () => {
   const isDesktop = useMediaQuery({ query: `(min-width: ${mdBreakpoint}px)` });
 
   return (
