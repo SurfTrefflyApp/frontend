@@ -19,7 +19,7 @@ export const AdminUsers = () => {
 
   return (
     <main className="h-full flex-1 flex flex-col gap-6 px-20">
-      <div className="w-full lg:max-w-2/4 mx-auto grid grid-flow row auto-rows-fr gap-4 p-2">
+      <div className="w-full mx-auto grid grid-flow row auto-rows-fr gap-4 p-2">
         {users.map((user) => (
           <UserCard user={user} onDelete={handleDelete} />
         ))}

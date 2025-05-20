@@ -11,7 +11,7 @@ interface UserCard {
 
 export const UserCard = ({ user, onDelete }: UserCard) => {
   return (
-    <div className="flex items-center gap-4 w-full max-w-[400px] bg-surface-container p-6 rounded-2xl shadow-md">
+    <div className="flex items-center gap-4 w-full max-w-[600px] bg-surface-container p-6 rounded-2xl shadow-md">
       {user.imageUrl ? (
         <img
           src={user.imageUrl}
