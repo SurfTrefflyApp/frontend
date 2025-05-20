@@ -4,13 +4,14 @@ import { useState } from "react";
 import { setErrorEvent } from "@/shared/api";
 import { useInterval } from "@/shared/lib/useInterval";
 
-import { ask, codeConfirm } from "../api";
+import { forgotPw, verifyCode } from "../api";
 import { useStepContext } from "./useStepContext";
 
 const RETRY_TIME = 45;
 
 export const useCodeController = () => {
   const [code, setCode] = useState("");
+  const [codeError, setCodeError] = useState(false);
   const [confirming, setConfirming] = useState(false);
   const [retryTime, setRetryTime] = useState(0);
 
@@ -29,10 +30,11 @@ export const useCodeController = () => {
   const handleConfirm = async () => {
     try {
       setConfirming(true);
-      await codeConfirm(code);
+      await verifyCode(email, code);
       handleNextClick();
     } catch (e) {
       setError(e);
+      setCodeError(true);
     } finally {
       setConfirming(false);
     }
@@ -40,7 +42,7 @@ export const useCodeController = () => {
 
   const handleRetry = async () => {
     try {
-      await ask(email);
+      await forgotPw(email);
       setRetryTime(RETRY_TIME);
       resume();
     } catch (e) {
@@ -48,5 +50,14 @@ export const useCodeController = () => {
     }
   };
 
-  return { code, setCode, handleConfirm, handleRetry, confirming, retryTime };
+  return {
+    code,
+    setCode,
+    codeError,
+    setCodeError,
+    handleConfirm,
+    handleRetry,
+    confirming,
+    retryTime,
+  };
 };

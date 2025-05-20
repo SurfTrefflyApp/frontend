@@ -11,7 +11,7 @@ import { Input } from "@/shared/ui/input";
 import { usePasswordController } from "../controller/usePasswordController";
 
 export const PasswordStep = () => {
-  const { form, onSubmit } = usePasswordController();
+  const { form, onSubmit, email } = usePasswordController();
   return (
     <>
       <div className="text-center mb-8 pb-4 border-b-2 border-outline-variant">
@@ -27,6 +27,12 @@ export const PasswordStep = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col gap-4"
         >
+          <input
+            hidden
+            type="email"
+            autoComplete="email"
+            defaultValue={email}
+          />
           <FormField
             control={form.control}
             name="password"
@@ -35,7 +41,7 @@ export const PasswordStep = () => {
                 <FormControl>
                   <Input
                     id="password"
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                     placeholder="Пароль"
                     type="password"
                     error={!!form.formState.errors.password}

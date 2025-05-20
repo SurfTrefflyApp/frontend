@@ -1,14 +1,16 @@
-export function ask(email: string) {
-  console.debug("ASK CODE", email);
-  return new Promise((resolve) => resolve("Success email"));
+import { api } from "@/shared/api";
+
+export function forgotPw(email: string) {
+  return api.post("/forgot-pw", { email });
 }
 
-export function codeConfirm(code: string) {
-  console.debug("CODE", code);
-  return new Promise((resolve) => resolve("Success code"));
+export function verifyCode(email: string, code: string) {
+  return api.post("/verify-code", {
+    email,
+    code,
+  });
 }
 
 export function resetPassword(password: string) {
-  console.debug("PASSWORD", password);
-  return new Promise((resolve) => resolve("Success password"));
+  return api.post("/reset-pw", { new_password: password });
 }

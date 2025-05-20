@@ -24,17 +24,21 @@ export const useEventClipboardController = ({
   };
 
   const handleCopy = async (text: string, toastTitle: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      toast(toastTitle, {
-        classNames: {
-          title: "w-full text-center",
-          content: "w-full",
-        },
-      });
-    } catch (error) {
-      setError(error);
-    }
+    setTimeout(() => {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          toast(toastTitle, {
+            classNames: {
+              title: "w-full text-center",
+              content: "w-full",
+            },
+          });
+        })
+        .catch((e) => {
+          setError(e);
+        });
+    }, 0);
   };
 
   const handleAddressCopy = () => {
