@@ -4,6 +4,8 @@ import { setErrorEvent } from "@/shared/api";
 
 import { getUserLimit } from "../api";
 
+export let timerIntervalId: ReturnType<typeof setInterval>;
+
 export const appStarted = createEvent<string>();
 
 export const getLimitFx = createEffect(async () => {
@@ -17,6 +19,16 @@ export const setResetTimeFx = createEffect((resetTimeString: string) => {
     throw new Error("Incorrect date format");
   }
   return date;
+});
+
+const createIntervalFx = createEffect(() => {
+  timerIntervalId = setInterval(() => {
+    ticked();
+  }, 1000);
+});
+
+const clearIntervalFx = createEffect(() => {
+  clearInterval(timerIntervalId);
 });
 
 export const ticked = createEvent();
@@ -38,10 +50,29 @@ export const $resetTime = createStore<Date | null>(null).on(
   (_, resetTime) => resetTime,
 );
 
+export const $displayTimer = createStore(false);
+
+sample({
+  clock: appStarted,
+  target: getLimitFx,
+});
+
 sample({
   clock: getLimitFx.doneData,
   fn: (data) => data.resetAt,
   target: setResetTimeFx,
+});
+
+sample({
+  clock: getLimitFx.doneData,
+  fn: (limit) => limit.remaining !== limit.limit,
+  target: $displayTimer,
+});
+
+sample({
+  clock: getLimitFx.doneData,
+  filter: (limit) => limit.remaining !== limit.limit,
+  target: createIntervalFx,
 });
 
 sample({
@@ -72,23 +103,5 @@ sample({
 
 sample({
   clock: [getLimitFx.failData, setResetTimeFx.failData],
-  target: setErrorEvent,
-});
-
-export let timerIntervalId: ReturnType<typeof setInterval>;
-
-sample({
-  clock: [setResetTimeFx.failData, getLimitFx.failData],
-  fn: () => {
-    clearInterval(timerIntervalId);
-  },
-});
-
-sample({
-  clock: appStarted,
-  fn: () => {
-    timerIntervalId = setInterval(() => {
-      ticked();
-    }, 1000);
-  },
+  target: [setErrorEvent, clearIntervalFx],
 });

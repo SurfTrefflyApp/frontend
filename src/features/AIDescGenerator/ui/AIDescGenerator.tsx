@@ -2,6 +2,7 @@ import { ContentHeader } from "@/widgets/ContentHeader";
 import { Info } from "lucide-react";
 import { useState } from "react";
 
+import { sklonenie } from "@/shared/lib/sklonenie";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
 import { Dialog, DialogContent } from "@/shared/ui/dialog";
@@ -15,26 +16,6 @@ interface AIDescGenerator {
   setOpen: (state: boolean) => void;
   eventName: string;
   onUse: (description: string) => void;
-}
-
-interface Endings {
-  one: string;
-  few: string;
-  many: string;
-  [key: string]: string;
-}
-
-function formatMinutes(minutes: number) {
-  const pluralRules = new Intl.PluralRules("ru-RU");
-  const pluralForm = pluralRules.select(minutes);
-
-  const endings: Endings = {
-    one: "минута",
-    few: "минуты",
-    many: "минут",
-  };
-
-  return `${minutes} ${endings[pluralForm] ?? endings["few"]}`;
 }
 
 export const AIDescGenerator = ({
@@ -52,9 +33,11 @@ export const AIDescGenerator = ({
     footerState,
     limit,
     remaining,
+    displayTimer,
     timeLeft,
     isGenerationDisabled,
     generateDescription,
+    generating,
   } = useAIDescGeneratorController({
     eventName,
   });
@@ -133,9 +116,12 @@ export const AIDescGenerator = ({
             <p className="inline-block mr-1">
               Осталось попыток: {remaining}/{limit}.
             </p>
-            <p className="inline-block">
-              Обновление через {formatMinutes(timeLeft)}
-            </p>
+            {displayTimer && (
+              <p className="inline-block">
+                Обновление через {timeLeft}{" "}
+                {sklonenie(timeLeft, ["минута", "минуты", "минут"])}
+              </p>
+            )}
           </div>
           {footerState === "generated" ? (
             <div className="flex gap-8 justify-between [&>button]:flex-1">
@@ -143,6 +129,7 @@ export const AIDescGenerator = ({
                 variant="outline"
                 onClick={generateDescription}
                 disabled={isGenerationDisabled}
+                loading={generating}
               >
                 Повторить
               </Button>
@@ -158,6 +145,7 @@ export const AIDescGenerator = ({
             <Button
               onClick={generateDescription}
               disabled={isGenerationDisabled}
+              loading={generating}
             >
               Сформировать
             </Button>

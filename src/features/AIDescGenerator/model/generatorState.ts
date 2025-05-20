@@ -3,7 +3,7 @@ import { createEffect, createEvent, createStore, sample } from "effector";
 import { setErrorEvent } from "@/shared/api";
 
 import { generateDescription } from "../api";
-import { $remaining, setResetTimeFx } from "./timer";
+import { $remaining, appStarted, setResetTimeFx } from "./timer";
 
 type FooterState = "initial" | "generated";
 
@@ -43,6 +43,12 @@ export const $description = createStore("").on(
 sample({
   clock: [$remaining],
   fn: (state) => !state,
+  target: $isGenerationDisabled,
+});
+
+sample({
+  clock: appStarted,
+  fn: (eventName) => !eventName,
   target: $isGenerationDisabled,
 });
 

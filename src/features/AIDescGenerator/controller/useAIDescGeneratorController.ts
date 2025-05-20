@@ -6,9 +6,11 @@ import {
   $footerState,
   $isGenerationDisabled,
   descriptionGenerated,
+  generateDescriptionFx,
   setDescription as setDescriptionEvent,
 } from "../model/generatorState";
 import {
+  $displayTimer,
   $limit,
   $remaining,
   $timeLeft,
@@ -31,13 +33,20 @@ export const useAIDescGeneratorController = ({
     $description,
   ]);
 
-  const [limit, remaining, timeLeft] = useUnit([$limit, $remaining, $timeLeft]);
-
-  const [generateDescription, setDescription, setAppStarted] = useUnit([
-    descriptionGenerated,
-    setDescriptionEvent,
-    appStarted,
+  const [limit, remaining, timeLeft, displayTimer] = useUnit([
+    $limit,
+    $remaining,
+    $timeLeft,
+    $displayTimer,
   ]);
+
+  const [generateDescription, generating, setDescription, setAppStarted] =
+    useUnit([
+      descriptionGenerated,
+      generateDescriptionFx.pending,
+      setDescriptionEvent,
+      appStarted,
+    ]);
 
   useEffect(() => {
     setAppStarted(eventName);
@@ -56,9 +65,11 @@ export const useAIDescGeneratorController = ({
     limit,
     remaining,
     timeLeft,
+    displayTimer,
     isGenerationDisabled,
     generateDescription: () => {
       generateDescription({ eventName, maxLength });
     },
+    generating,
   };
 };
