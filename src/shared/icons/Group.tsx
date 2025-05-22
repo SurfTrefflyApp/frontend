@@ -11,7 +11,7 @@ export const Group = (props: SVGProps<SVGSVGElement>) => {
       color="#4B6A51"
       {...props}
     >
-      <circle cx="16" cy="15" r="13" stroke="currentColor" stroke-width="4" />
+      <circle cx="16" cy="15" r="13" stroke="currentColor" strokeWidth="4" />
       <mask id="path-2-inside-1_1815_2775" fill="white">
         <ellipse cx="13.3147" cy="12.6364" rx="3.58889" ry="3.63635" />
       </mask>
@@ -37,7 +37,7 @@ export const Group = (props: SVGProps<SVGSVGElement>) => {
           height="2.90322"
           fill="#D9D9D9"
           stroke="#1A1C1A"
-          stroke-width="2.90322"
+          strokeWidth="2.90322"
         />
       </mask>
       <g mask="url(#mask0_1815_2775)">

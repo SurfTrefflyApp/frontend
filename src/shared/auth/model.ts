@@ -33,3 +33,9 @@ sample({
   clock: startApp,
   target: checkAuthFx,
 });
+
+sample({
+  source: $isAuth,
+  filter: (isAuth) => !isAuth,
+  target: $isAdmin,
+});
