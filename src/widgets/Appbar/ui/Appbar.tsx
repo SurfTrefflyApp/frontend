@@ -1,3 +1,4 @@
+import { Exit } from "@/features/Exit";
 import { useUnit } from "effector-react";
 import { Link, useLocation } from "react-router";
 
@@ -30,6 +31,7 @@ export const Appbar = () => {
             <Link to={routes.adminUsers} className={linkClass(routes.main)}>
               Пользователи
             </Link>
+            <Exit withConfirm />
           </>
         ) : (
           <>

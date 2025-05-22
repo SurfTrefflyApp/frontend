@@ -1,5 +1,5 @@
 import type { User } from "@/entities/User";
-import { Exit } from "@/widgets/Exit";
+import { Exit } from "@/features/Exit";
 
 import { ProfileEdit } from "@/pages/Profile/ui/ProfileEdit";
 

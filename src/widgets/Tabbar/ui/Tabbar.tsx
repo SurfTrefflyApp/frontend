@@ -1,3 +1,4 @@
+import { Exit } from "@/features/Exit";
 import { useUnit } from "effector-react";
 import { Link, useLocation } from "react-router";
 
@@ -37,7 +38,7 @@ export const Tabbar = () => {
   return (
     <nav
       className={cn(
-        "sticky bottom-0 w-full p-2 bg-[#F4F4F0] rounded-t-xl flex justify-evenly shadow-3xl z-10 touch-none select-none",
+        "sticky bottom-0 w-full p-2 bg-[#F4F4F0] rounded-t-xl flex items-center justify-evenly shadow-3xl z-10 touch-none select-none",
         { "pb-6": isPWA },
       )}
     >
@@ -52,6 +53,7 @@ export const Tabbar = () => {
           <Link to={routes.adminUsers} className={linkClass(routes.adminUsers)}>
             <Group className={iconClass(routes.adminUsers)} />
           </Link>
+          <Exit iconClassName="w-[30px] h-[30px]" withConfirm />
         </>
       ) : (
         <>

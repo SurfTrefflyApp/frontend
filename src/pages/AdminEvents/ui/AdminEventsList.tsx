@@ -24,7 +24,7 @@ export const AdminEventsList = () => {
   return (
     <div className="w-full mx-auto grid grid-flow row auto-rows-fr gap-4 p-2">
       {events.map((event) => (
-        <EventCard event={event} onDelete={handleDelete} />
+        <EventCard key={event.id} event={event} onDelete={handleDelete} />
       ))}
     </div>
   );
