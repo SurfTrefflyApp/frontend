@@ -71,7 +71,7 @@ export const EventCard = ({
               {event.imageUserUrl ? (
                 <img
                   src={event.imageUserUrl}
-                  className="w-[32px] h-[32px] rounded-full"
+                  className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full"
                 />
               ) : (
                 <DefaultUser className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full shadow-md" />
