@@ -13,7 +13,7 @@ const fetchUsersFx = createEffect<{ query: string }, User[], Error>(
   },
 );
 
-const deleteUserFx = createEffect<number, User[], Error>(async (userId) => {
+const deleteUserFx = createEffect(async (userId: number) => {
   const response = await deleteUser(userId);
   return response.data;
 });
@@ -23,7 +23,7 @@ export const usersSearched = createEvent<string>();
 export const userDeleted = createEvent<number>();
 
 export const $users = createStore<User[]>([])
-  .on([fetchUsersFx.doneData, deleteUserFx.doneData], (_, users) => users)
+  .on([fetchUsersFx.doneData], (_, users) => users)
   .reset(fetchUsersFx.fail);
 
 export const $searchQuery = createStore<string>("").on(

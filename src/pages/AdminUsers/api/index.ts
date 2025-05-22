@@ -7,5 +7,5 @@ export function getUsers(query: string) {
 }
 
 export function deleteUser(userId: number) {
-  return api.delete<User[]>(`/admin/users/${userId}`);
+  return api.delete(`/admin/users/${userId}`);
 }
