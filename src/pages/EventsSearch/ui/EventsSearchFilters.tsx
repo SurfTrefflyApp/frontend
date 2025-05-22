@@ -1,4 +1,4 @@
-import { TagsPicker } from "@/widgets/TagsPicker";
+import { TagsPicker } from "@/features/TagsPicker";
 import { Search } from "lucide-react";
 
 import { Edit } from "@/shared/icons/Edit";
