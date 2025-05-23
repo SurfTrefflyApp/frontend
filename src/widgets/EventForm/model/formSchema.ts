@@ -22,6 +22,7 @@ export const formSchema = z.object({
     ),
   dateTime: z
     .string()
+    .refine((dateTime) => dateTime.length, "Поле не может быть пустым")
     .refine((dateTime) => /^\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}$/.test(dateTime))
     .refine(
       (dateTime) =>
