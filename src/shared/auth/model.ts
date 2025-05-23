@@ -3,14 +3,15 @@ import { createEffect, createEvent, createStore, sample } from "effector";
 import { checkAuth, logout } from "@/shared/auth/api";
 
 export const checkAuthFx = createEffect(async () => {
-  await checkAuth();
+  const response = await checkAuth();
+  return response.data;
 });
 
 const logoutFx = createEffect(async () => {
   await logout();
 });
 
-export const auth = createEvent();
+export const auth = createEvent<{ isAdmin: boolean }>();
 export const logoutEvent = createEvent();
 export const logoutWithoutApiEvent = createEvent();
 export const startApp = createEvent();
@@ -32,6 +33,12 @@ sample({
 sample({
   clock: startApp,
   target: checkAuthFx,
+});
+
+sample({
+  clock: [auth, checkAuthFx.doneData],
+  fn: (authState) => authState?.isAdmin || false,
+  target: $isAdmin,
 });
 
 sample({

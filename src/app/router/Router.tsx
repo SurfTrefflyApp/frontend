@@ -23,12 +23,11 @@ import { Terms } from "@/pages/Terms";
 import { Timeout } from "@/pages/Timeout";
 import { Welcome } from "@/pages/Welcome";
 
-import { $isAdmin } from "@/shared/auth/model";
 import { routes } from "@/shared/router";
 
 import { CoordsProvider } from "../providers/CoordsProvider";
+import { AdminRoutes } from "./AdminRoutes";
 import { AppbarLayout } from "./AppbarLayout";
-import { ProtectedRoutes } from "./ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -66,16 +65,7 @@ const router = createBrowserRouter([
       },
       // Admin routes
       {
-        element: (
-          <ProtectedRoutes
-            redirect={() => {
-              const isAdmin = $isAdmin.getState();
-
-              return !isAdmin;
-            }}
-            redirectHref={routes.welcome}
-          />
-        ),
+        element: <AdminRoutes />,
         children: [
           {
             element: <AppbarLayout />,
@@ -100,14 +90,7 @@ const router = createBrowserRouter([
       // User routes (admin can't get them)
       {
         element: (
-          <ProtectedRoutes
-            redirect={() => {
-              const isAdmin = $isAdmin.getState();
-
-              return isAdmin;
-            }}
-            redirectHref={routes.adminEvents}
-          />
+          <AdminRoutes forAdmin={false} navigateHref={routes.adminEvents} />
         ),
         children: [
           {
