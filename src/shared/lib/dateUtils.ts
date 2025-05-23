@@ -10,6 +10,7 @@ export function formatDateWithIntl(inputDate: string): string {
     month: "long",
     hour: "numeric",
     minute: "2-digit",
+    timeZone: "UTC",
   });
 
   return formatter.format(date);
