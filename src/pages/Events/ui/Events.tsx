@@ -44,12 +44,14 @@ export const Events = () => {
               className="flex w-full md:hidden"
               style={{ x: 0 }}
             >
-              <div className="h-fit flex w-full md:hidden">
+              <div className="h-fit w-full flex [&:has(.error)]:h-full">
                 <EventsTabs />
               </div>
             </motion.div>
-            <div className="h-fit w-full hidden md:flex">
-              <EventsTabs />
+            <div className="w-full hidden md:flex">
+              <div className="h-fit w-full [&:has(.error)]:h-full">
+                <EventsTabs />
+              </div>
             </div>
           </div>
         </Tabs>
@@ -61,16 +63,10 @@ export const Events = () => {
 export const EventsTabs = () => {
   return (
     <>
-      <TabsContent
-        value="upcoming"
-        className="grid grid-flow-row auto-rows-fr gap-4"
-      >
+      <TabsContent value="upcoming" asChild>
         <EventsUpcoming />
       </TabsContent>
-      <TabsContent
-        value="past"
-        className="grid grid-flow-row auto-rows-fr gap-4"
-      >
+      <TabsContent value="past" asChild>
         <EventsPast />
       </TabsContent>
     </>

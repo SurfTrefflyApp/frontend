@@ -4,7 +4,7 @@ import { ErrorLayout } from "./ErrorLayout";
 
 export const NotFound = () => {
   return (
-    <div className="flex items-center justify-center h-full flex-1">
+    <div className="error flex items-center justify-center h-full flex-1">
       <ErrorLayout
         icon={<NotFoundIcon className="size-[100px]" />}
         titleIconClassName="hidden"
