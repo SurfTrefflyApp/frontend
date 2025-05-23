@@ -1,7 +1,7 @@
 import { api } from "@/shared/api";
 
 export function checkAuth() {
-  return api.get("/auth");
+  return api.get<{ isAdmin: boolean }>("/auth");
 }
 
 export function logout() {

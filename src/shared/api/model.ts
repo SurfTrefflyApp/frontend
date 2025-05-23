@@ -30,6 +30,7 @@ export const $error = createStore<ErrorResponse | null>(null).on(
         subtitle: error.response?.data.subtitle,
       };
     }
+
     return {
       title: defaultTitle,
       subtitle: defaultSubtitle,

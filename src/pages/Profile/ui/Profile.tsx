@@ -1,5 +1,5 @@
 import type { User } from "@/entities/User";
-import { Exit } from "@/widgets/Exit";
+import { Exit } from "@/features/Exit";
 import { useUnit } from "effector-react";
 import { useState } from "react";
 import { Link } from "react-router";
@@ -56,7 +56,7 @@ export const Profile = () => {
           <ProfileEvents />
         ) : (
           <div className="flex flex-col gap-4 mb-4">
-            <p className="text-center text-xl font-medium">
+            <p className="text-center text-xl font-medium px-2">
               Войди в аккаунт или зарегистрируйся, чтобы участвовать в
               мероприятиях, получать персональные рекомендации и напоминания о
               предстоящих мероприятиях

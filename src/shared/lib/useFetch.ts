@@ -40,6 +40,7 @@ export const useFetch = <T>(
 
   return {
     data,
+    setData,
     loading,
     error,
     execute,

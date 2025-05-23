@@ -46,8 +46,8 @@ export const useLoginController = () => {
   const onSubmit = useCallback(
     (values: LoginSchema) => {
       return login(values)
-        .then(() => {
-          authEvent();
+        .then((respose) => {
+          authEvent(respose.data);
           clear();
         })
         .then(() => {

@@ -1,9 +1,11 @@
 import { ErrorProvider } from "@/app/providers/ErrorProvider";
-import { AppLayout } from "@/app/router/AppLayout";
 import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
+import { TabbarLayout } from "@/app/router/TabbarLayout";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
+import { AdminEvents } from "@/pages/AdminEvents";
+import { AdminUsers } from "@/pages/AdminUsers";
 import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
 import { EventEdit } from "@/pages/EventEdit";
@@ -24,6 +26,7 @@ import { Welcome } from "@/pages/Welcome";
 import { routes } from "@/shared/router";
 
 import { CoordsProvider } from "../providers/CoordsProvider";
+import { AdminRoutes } from "./AdminRoutes";
 import { AppbarLayout } from "./AppbarLayout";
 
 const router = createBrowserRouter([
@@ -60,66 +63,100 @@ const router = createBrowserRouter([
         path: routes.timeout,
         element: <Timeout />,
       },
+      // Admin routes
       {
-        element: <AppbarLayout />,
+        element: <AdminRoutes />,
         children: [
           {
-            element: <PrivateRoutes navigateHref={routes.profile} forAuth />,
+            element: <AppbarLayout />,
             children: [
               {
-                path: routes.eventNew,
-                element: <EventNew />,
-              },
-              {
-                path: routes.eventEdit,
-                element: <EventEdit />,
-              },
-            ],
-          },
-          {
-            path: routes.terms,
-            element: <Terms />,
-          },
-          {
-            path: routes.privacy,
-            element: <Privacy />,
-          },
-          {
-            element: <AppLayout />,
-            children: [
-              {
-                element: <CoordsProvider />,
+                element: <TabbarLayout />,
                 children: [
                   {
-                    path: routes.profile,
-                    element: <Profile />,
+                    path: routes.adminUsers,
+                    element: <AdminUsers />,
                   },
                   {
-                    path: routes.main,
-                    element: <Main />,
-                  },
-                  {
-                    path: routes.eventsSearch,
-                    element: <EventsSearch />,
+                    path: routes.adminEvents,
+                    element: <AdminEvents />,
                   },
                 ],
               },
+            ],
+          },
+        ],
+      },
+      // User routes (admin can't get them)
+      {
+        element: (
+          <AdminRoutes forAdmin={false} navigateHref={routes.adminEvents} />
+        ),
+        children: [
+          {
+            element: <AppbarLayout />,
+            children: [
               {
                 element: (
                   <PrivateRoutes navigateHref={routes.profile} forAuth />
                 ),
                 children: [
                   {
-                    path: routes.events,
-                    element: <Events />,
+                    path: routes.eventNew,
+                    element: <EventNew />,
+                  },
+                  {
+                    path: routes.eventEdit,
+                    element: <EventEdit />,
                   },
                 ],
               },
+              {
+                path: routes.terms,
+                element: <Terms />,
+              },
+              {
+                path: routes.privacy,
+                element: <Privacy />,
+              },
+              {
+                element: <TabbarLayout />,
+                children: [
+                  {
+                    element: <CoordsProvider />,
+                    children: [
+                      {
+                        path: routes.profile,
+                        element: <Profile />,
+                      },
+                      {
+                        path: routes.main,
+                        element: <Main />,
+                      },
+                      {
+                        path: routes.eventsSearch,
+                        element: <EventsSearch />,
+                      },
+                    ],
+                  },
+                  {
+                    element: (
+                      <PrivateRoutes navigateHref={routes.profile} forAuth />
+                    ),
+                    children: [
+                      {
+                        path: routes.events,
+                        element: <Events />,
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                path: routes.event,
+                element: <Event />,
+              },
             ],
-          },
-          {
-            path: routes.event,
-            element: <Event />,
           },
         ],
       },
