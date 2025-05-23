@@ -1,5 +1,5 @@
 import type { Address } from "@/entities/Address";
-import { AddressPicker } from "@/widgets/AddressPicker";
+import { AddressPicker } from "@/features/AddressPicker";
 import type { UseFormReturn } from "react-hook-form";
 
 import {
