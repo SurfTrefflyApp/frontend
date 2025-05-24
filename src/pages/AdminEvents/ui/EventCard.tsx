@@ -62,7 +62,9 @@ export const EventCard = ({
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <figcaption className="font-semibold leading-none flex-1 line-clamp-2 break-words hyphens-auto">
-                <Link to={routes.event.replace(":id", event.id.toString())}>
+                <Link
+                  to={routes.adminEvent.replace(":id", event.id.toString())}
+                >
                   {event.name}
                 </Link>
               </figcaption>

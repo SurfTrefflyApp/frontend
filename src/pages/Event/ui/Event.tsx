@@ -27,6 +27,7 @@ import { EventMap } from "./EventMap";
 import { EventSkeleton } from "./EventSkeleton";
 
 export const Event = () => {
+  console.debug("EVENT PAGE");
   const event = useUnit($event);
   const isAdmin = useUnit($isAdmin);
   const { handleAddressCopy, handleEventLinkCopy, loading } =

@@ -63,34 +63,6 @@ const router = createBrowserRouter([
         path: routes.timeout,
         element: <Timeout />,
       },
-      // Admin routes
-      {
-        element: <AdminRoutes />,
-        children: [
-          {
-            element: <AppbarLayout />,
-            children: [
-              {
-                element: <TabbarLayout />,
-                children: [
-                  {
-                    path: routes.adminUsers,
-                    element: <AdminUsers />,
-                  },
-                  {
-                    path: routes.adminEvents,
-                    element: <AdminEvents />,
-                  },
-                  {
-                    path: routes.event,
-                    element: <Event />,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
       // User routes (admin can't get them)
       {
         element: (
@@ -159,6 +131,34 @@ const router = createBrowserRouter([
               {
                 path: routes.event,
                 element: <Event />,
+              },
+            ],
+          },
+        ],
+      },
+      // Admin routes
+      {
+        element: <AdminRoutes />,
+        children: [
+          {
+            element: <AppbarLayout />,
+            children: [
+              {
+                element: <TabbarLayout />,
+                children: [
+                  {
+                    path: routes.adminUsers,
+                    element: <AdminUsers />,
+                  },
+                  {
+                    path: routes.adminEvents,
+                    element: <AdminEvents />,
+                  },
+                  {
+                    path: routes.adminEvent,
+                    element: <Event />,
+                  },
+                ],
               },
             ],
           },
