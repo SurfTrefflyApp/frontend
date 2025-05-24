@@ -37,7 +37,7 @@ export const StepProvider = ({ children }: PropsWithChildren) => {
   const handleNextClick = () => {
     if (currentStep === 2) {
       navigate(routes.profile);
-      authEvent();
+      authEvent({});
     } else {
       setCurrentStep((prev) => (prev + 1) as StepsKeys);
     }

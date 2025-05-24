@@ -11,7 +11,7 @@ const logoutFx = createEffect(async () => {
   await logout();
 });
 
-export const auth = createEvent<{ isAdmin: boolean }>();
+export const auth = createEvent<{ isAdmin?: boolean }>();
 export const logoutEvent = createEvent();
 export const logoutWithoutApiEvent = createEvent();
 export const startApp = createEvent();
