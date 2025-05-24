@@ -8,7 +8,7 @@ const EventSkeleton = () => {
 
 export const AdminEventsSkeleton = () => {
   return (
-    <div className="h-full w-full flex flex-col gap-6 p-2 pt-4 md:pt-2 mx-auto md:px-20 lg:max-w-1/2">
+    <div className="h-full w-full flex flex-col gap-6 p-2 pt-4 md:pt-2 mx-auto">
       {Array(6)
         .fill(0)
         .map((_, index) => (

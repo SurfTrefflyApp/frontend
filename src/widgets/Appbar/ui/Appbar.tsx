@@ -25,10 +25,16 @@ export const Appbar = () => {
       <nav className="flex items-center gap-10">
         {isAdmin ? (
           <>
-            <Link to={routes.adminEvents} className={linkClass(routes.main)}>
+            <Link
+              to={routes.adminEvents}
+              className={linkClass(routes.adminEvents)}
+            >
               Мероприятия
             </Link>
-            <Link to={routes.adminUsers} className={linkClass(routes.main)}>
+            <Link
+              to={routes.adminUsers}
+              className={linkClass(routes.adminUsers)}
+            >
               Пользователи
             </Link>
             <Exit withConfirm />
