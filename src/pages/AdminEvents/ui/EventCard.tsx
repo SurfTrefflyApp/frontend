@@ -1,12 +1,14 @@
 import type { Event } from "@/entities/Event";
 import { Calendar, MapPin } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 import { DefaultUser } from "@/shared/icons/DefaultUser";
 import { People } from "@/shared/icons/People";
 import { Trash } from "@/shared/icons/Trash";
 import { formatDateWithIntl } from "@/shared/lib/dateUtils";
 import { cn } from "@/shared/lib/utils";
+import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 import { Button } from "@/shared/ui/button";
 
@@ -60,7 +62,9 @@ export const EventCard = ({
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <figcaption className="font-semibold leading-none flex-1 line-clamp-2 break-words hyphens-auto">
-                {event.name}
+                <Link to={routes.event.replace(":id", event.id.toString())}>
+                  {event.name}
+                </Link>
               </figcaption>
               <div className="flex items-center gap-1">
                 <span>

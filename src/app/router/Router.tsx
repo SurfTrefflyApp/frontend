@@ -81,6 +81,10 @@ const router = createBrowserRouter([
                     path: routes.adminEvents,
                     element: <AdminEvents />,
                   },
+                  {
+                    path: routes.event,
+                    element: <Event />,
+                  },
                 ],
               },
             ],

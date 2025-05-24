@@ -3,6 +3,7 @@ import { useUnit } from "effector-react";
 import { Calendar } from "lucide-react";
 import { Link } from "react-router";
 
+import { $isAdmin } from "@/shared/auth/model";
 import { Copy } from "@/shared/icons/Copy";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
 import { Edit } from "@/shared/icons/Edit";
@@ -27,6 +28,7 @@ import { EventSkeleton } from "./EventSkeleton";
 
 export const Event = () => {
   const event = useUnit($event);
+  const isAdmin = useUnit($isAdmin);
   const { handleAddressCopy, handleEventLinkCopy, loading } =
     useEventController();
 
@@ -46,20 +48,24 @@ export const Event = () => {
         className="py-2"
         title={event.name}
         rightContent={
-          <div className="flex items-center gap-4">
-            {event.isOwner && !isDateInPast(event.date) && (
-              <Link to={routes.eventEdit.replace(":id", event.id.toString())}>
-                <Edit className="size-[16px]" />
-              </Link>
-            )}
-            <Button
-              variant="ghost"
-              onClick={handleEventLinkCopy}
-              className="p-0"
-            >
-              <Share />
-            </Button>
-          </div>
+          isAdmin ? (
+            <></>
+          ) : (
+            <div className="flex items-center gap-4">
+              {event.isOwner && !isDateInPast(event.date) && (
+                <Link to={routes.eventEdit.replace(":id", event.id.toString())}>
+                  <Edit className="size-[16px]" />
+                </Link>
+              )}
+              <Button
+                variant="ghost"
+                onClick={handleEventLinkCopy}
+                className="p-0"
+              >
+                <Share />
+              </Button>
+            </div>
+          )
         }
       />
       <main className="p-3 py-6 flex-1 flex flex-col gap-5 lg:max-w-2/4 w-full mx-auto">
@@ -128,7 +134,7 @@ export const Event = () => {
             </>
           )}
         </section>
-        <EventFooter event={event} />
+        {!isAdmin && <EventFooter event={event} />}
       </main>
     </>
   );
