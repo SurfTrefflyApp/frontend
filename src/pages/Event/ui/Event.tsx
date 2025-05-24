@@ -128,7 +128,15 @@ export const Event = () => {
             <>
               <h2 className="text-sm font-semibold mb-2">Организатор:</h2>
               <div className="flex items-center gap-2">
-                <DefaultUser className="size-[50px]" />
+                {event.imageUserUrl ? (
+                  <img
+                    src={event.imageUserUrl}
+                    alt="owner icon"
+                    className="min-h-[50px] min-w-[50px] max-h-[50px] max-w-[50px] rounded-full"
+                  />
+                ) : (
+                  <DefaultUser className="min-h-[50px] min-w-[50px] max-h-[50px] max-w-[50px]" />
+                )}
                 <h3 className="text-sm">{event.ownerUsername ?? "Имя"}</h3>
               </div>
             </>
