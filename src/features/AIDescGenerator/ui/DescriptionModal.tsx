@@ -11,13 +11,10 @@ export const DescriptionModal = ({ open, setOpen }: DescriptionModal) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="[&>button:last-child]:hidden">
         <p className="text-center">
-          Вы можете сформировать описание с помощью искуственного интеллекта.
+          Ты можешь сформировать описание с помощью искусственного интеллекта.
           <br />
-          Заполните название события и, если хотите, его описание, а нейросеть
-          предложит свой вариант.
-          <br />
-          Генерация по описанию происходит только если уже введенное описание
-          превышает 100 символов.
+          Заполни название мероприятия, а нейросеть предложит свой вариант
+          описания.
           <br />
         </p>
         <DialogFooter className="flex flex-row justify-between px-10">

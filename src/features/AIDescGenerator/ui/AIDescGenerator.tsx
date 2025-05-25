@@ -75,7 +75,7 @@ export const AIDescGenerator = ({
         <div className="p-4 flex flex-col gap-4 h-full">
           <p>Перед использованием введите название</p>
           <label>
-            Максимальная длинна (в символах):
+            Максимальная длина (в символах):
             <div className="flex gap-2 mt-1 [&>button]:p-1 [&>button]:px-2 [&>button]:h-fit">
               <Button
                 variant={maxLength === 100 ? "default" : "outline"}
