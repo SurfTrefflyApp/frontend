@@ -73,7 +73,7 @@ export const AIDescGenerator = ({
           }
         />
         <div className="p-4 flex flex-col gap-4 h-full">
-          <p>Перед использованием введите название</p>
+          <p>Перед использованием введи название</p>
           <label>
             Максимальная длина (в символах):
             <div className="flex gap-2 mt-1 [&>button]:p-1 [&>button]:px-2 [&>button]:h-fit">
@@ -106,7 +106,7 @@ export const AIDescGenerator = ({
           <Textarea
             variant="secondary"
             className="flex-1 max-h-full"
-            placeholder="Напишите описание для мероприятия"
+            placeholder="Напиши описание для мероприятия"
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);

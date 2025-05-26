@@ -21,7 +21,7 @@ export const EmailStep = () => {
           Забыли пароль?
         </h1>
         <h2 className="text-xl md:text-2xl">
-          Введи свою почту и мы отправим вам код
+          Введи свою почту и мы отправим тебе код
         </h2>
       </div>
       <Form {...form}>

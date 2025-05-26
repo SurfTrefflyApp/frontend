@@ -26,7 +26,7 @@ export const CodeStep = () => {
           Подтверждение почты
         </h1>
         <h2 className="text-xl md:text-2xl">
-          Мы отправили тебе код подтверждения на твою почту:
+          Мы отправили код подтверждения на твою почту:
           <br />
           <span className="font-semibold">{email}</span>
         </h2>

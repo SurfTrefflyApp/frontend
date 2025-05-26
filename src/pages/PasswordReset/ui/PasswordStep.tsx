@@ -19,7 +19,7 @@ export const PasswordStep = () => {
           Введи новый пароль
         </h1>
         <h2 className="text-xl md:text-2xl">
-          Почта подтверждена, введите новый пароль
+          Почта подтверждена, введи новый пароль
         </h2>
       </div>
       <Form {...form}>
