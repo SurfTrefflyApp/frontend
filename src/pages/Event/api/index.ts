@@ -13,3 +13,9 @@ export function unsubscribe(eventId: number) {
 export function generateInviteToken(eventId: number) {
   return api.get<{ token: string }>(`/events/${eventId}/invite`);
 }
+
+export function createPremiumPayment(eventId: number) {
+  return api.post<{ id: number }>("/premium-payment", {
+    event_id: eventId,
+  });
+}

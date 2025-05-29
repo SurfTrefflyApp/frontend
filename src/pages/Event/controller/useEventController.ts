@@ -11,9 +11,9 @@ import { useEventClipboardController } from "./useEventClipboardController";
 
 export const useEventController = () => {
   const params = useParams();
+  const id = Number(params.id);
   const [searchParams] = useSearchParams();
   const invite = searchParams.get("invite");
-  const id = Number(params.id);
 
   const event = useUnit($event);
   const setEvent = useUnit(setEventEvent);

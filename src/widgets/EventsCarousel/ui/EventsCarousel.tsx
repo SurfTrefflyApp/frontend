@@ -1,5 +1,5 @@
 import type { Event as EventModel } from "@/entities/Event";
-import { EventsSkeleton } from "@/widgets/EventsCarousel/ui/EventsSkeleton";
+import AutoHeight from "embla-carousel-auto-height";
 import Autoplay from "embla-carousel-autoplay";
 
 import { cn } from "@/shared/lib/utils";
@@ -12,6 +12,7 @@ import {
 } from "@/shared/ui/carousel";
 
 import { Event } from "./Event";
+import { PremiumSkeleton } from "./PremiumSkeleton";
 
 interface EventsCarousel {
   events?: EventModel[];
@@ -20,7 +21,7 @@ interface EventsCarousel {
 
 export const EventsCarousel = ({ events = [], isLoading }: EventsCarousel) => {
   if (isLoading) {
-    return <EventsSkeleton />;
+    return <PremiumSkeleton />;
   }
 
   return (
@@ -35,11 +36,19 @@ export const EventsCarousel = ({ events = [], isLoading }: EventsCarousel) => {
           delay: 5000,
           stopOnInteraction: false,
         }),
+        AutoHeight(),
       ]}
     >
-      <CarouselContent>
+      <CarouselContent
+        className={cn({
+          "md:justify-center": events.length < 3,
+        })}
+      >
         {events.map((event) => (
-          <CarouselItem key={event.id}>
+          <CarouselItem
+            key={event.id}
+            className="md:basis-1/2 lg:basis-1/3 lg:max-w-[500px]"
+          >
             <Event event={event} />
           </CarouselItem>
         ))}

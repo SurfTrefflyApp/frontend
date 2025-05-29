@@ -17,4 +17,5 @@ export const routes = {
   adminUsers: "/admin/users",
   adminEvents: "/admin/events",
   adminEvent: "/admin/events/:id",
+  payment: "/payment/:id",
 };

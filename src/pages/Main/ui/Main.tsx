@@ -24,7 +24,7 @@ export const Main = () => {
 
   return (
     <main
-      className="flex-1 md:mx-20 max-w-7xl lg:mx-auto px-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0"
+      className="w-full md:px-20 max-w-7xl lg:mx-auto px-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0 overflow-x-hidden"
       style={{
         WebkitOverflowScrolling: "touch",
         transform: "translateZ(0)",

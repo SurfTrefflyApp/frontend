@@ -20,7 +20,7 @@ export const Appbar = () => {
     }`;
 
   return (
-    <header className="flex justify-between items-center py-4 px-20 top-0 sticky h-appbar-height z-50 bg-background">
+    <header className="flex justify-between items-center gap-2 py-4 px-20 top-0 sticky h-appbar-height z-50 bg-background">
       <Title />
       <nav className="flex items-center gap-10">
         {isAdmin ? (

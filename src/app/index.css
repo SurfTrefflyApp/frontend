@@ -31,6 +31,7 @@
   --primary: #47654d;
   --primary-foreground: oklch(0.985 0 0);
   --primary-container: #c6e9ca;
+  --primary-inverse: #adcfb1;
   --secondary: #556256;
   --secondary-foreground: oklch(0.985 0 0);
   --secondary-container: #d8e6d7;
@@ -120,6 +121,7 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-container: var(--primary-container);
+  --color-primary-inverse: var(--primary-inverse);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary-container: var(--secondary-container);
