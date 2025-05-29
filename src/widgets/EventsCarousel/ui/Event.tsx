@@ -9,12 +9,15 @@ import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 export const Event = ({ event }: { event: EventModel }) => {
   return (
     <Link to={routes.event.replace(":id", event.id.toString())}>
-      <figure className="aspect-video bg-surface-container rounded-3xl p-2 flex flex-col gap-2 hover:opacity-60 active:opacity-60">
+      <figure
+        className="mx-auto aspect-auto bg-surface-container rounded-3xl p-2 flex flex-col gap-2
+      hover:opacity-60 active:opacity-60 h-full"
+      >
         <div className="flex-1">
-          {event?.preview ? (
+          {event?.imageEventUrl ? (
             <img
               className="aspect-video w-full rounded-lg bg-surface-container-highest"
-              src={event.preview}
+              src={event.imageEventUrl}
               alt="Preview"
             />
           ) : (
@@ -24,18 +27,18 @@ export const Event = ({ event }: { event: EventModel }) => {
         <div className="px-4 flex flex-col gap-1">
           <div className="flex items-center gap-2">
             {event.isPremium && <Crown className="text-premium w-[22px]" />}
-            <figcaption className="leading-none font-semibold line-clamp-2">
+            <figcaption className="font-semibold line-clamp-2">
               {event.name}
             </figcaption>
           </div>
           <div className="flex gap-2 items-center">
-            <Calendar className="text-primary w-[22px]" />
+            <Calendar className="text-primary min-w-[22px] max-w-[22px]" />
             <h3 className="leading-none text-sm">
               {formatDateWithIntl(event.date)}
             </h3>
           </div>
           <div className="flex gap-2 items-center">
-            <MapPin className="text-primary w-[22px]" />
+            <MapPin className="text-primary min-w-[22px] max-w-[22px]" />
             <h3 className="leading-none text-sm">{event.address}</h3>
           </div>
         </div>

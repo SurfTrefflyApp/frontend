@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 import { DefaultUser } from "../icons/DefaultUser";
 import { People } from "../icons/People";
-import { formatDateWithIntl } from "../lib/dateUtils";
+import { formatDateToDDMMYYYY } from "../lib/dateUtils";
 import { cn } from "../lib/utils";
 import { routes } from "../router";
 import { EventImagePreview } from "./EventImagePreview";
@@ -60,7 +60,7 @@ export const EventCard = ({
             <div className="flex gap-2 w-full item-start">
               <Calendar className="text-primary w-[20px]" />
               <h4 className="line-clamp-1 w-full">
-                {formatDateWithIntl(event.date)}
+                {formatDateToDDMMYYYY(event.date)}
               </h4>
             </div>
             <div className="flex gap-2 w-full items-center">

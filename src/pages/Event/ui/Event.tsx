@@ -1,6 +1,6 @@
 import { ContentHeader } from "@/widgets/ContentHeader";
 import { useUnit } from "effector-react";
-import { Calendar } from "lucide-react";
+import { Calendar, Crown } from "lucide-react";
 import { Link } from "react-router";
 
 import { $isAdmin } from "@/shared/auth/model";
@@ -27,7 +27,6 @@ import { EventMap } from "./EventMap";
 import { EventSkeleton } from "./EventSkeleton";
 
 export const Event = () => {
-  console.debug("EVENT PAGE");
   const event = useUnit($event);
   const isAdmin = useUnit($isAdmin);
   const { handleAddressCopy, handleEventLinkCopy, loading } =
@@ -90,7 +89,10 @@ export const Event = () => {
           </section>
         )}
         <section>
-          <h1 className="text-xl font-medium mb-1">{event.name}</h1>
+          <div className="flex gap-2 items-center text-xl mb-1">
+            {event.isPremium && <Crown className="text-premium w-[22px]" />}
+            <h1 className="text-xl font-medium">{event.name}</h1>
+          </div>
           <div className="flex gap-2 items-center text-xl">
             <Calendar className="text-primary" size={16} />
             <h2>{formatDateWithIntl(event.date)}</h2>
