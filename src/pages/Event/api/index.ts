@@ -2,6 +2,10 @@ import type { Event } from "@/entities/Event";
 
 import { api } from "@/shared/api";
 
+export function getEvent(eventId: number, invite?: string) {
+  return api.get<Event>(`/events/${eventId}?invite=${invite}`);
+}
+
 export function subscribe(eventId: number) {
   return api.post<Event>(`/events/${eventId}/subscription`);
 }
