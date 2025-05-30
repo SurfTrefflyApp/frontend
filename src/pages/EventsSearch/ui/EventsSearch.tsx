@@ -1,3 +1,5 @@
+import { YMaps } from "@pbe/react-yandex-maps";
+
 import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
 import { useLocalStorage } from "@/shared/lib/useLocalStorage";
 
@@ -19,7 +21,14 @@ export const EventsSearch = () => {
           <EventsSearchList />
         ) : (
           <div className="flex-1 relative -mb-12">
-            <EventsSearchMap />
+            <YMaps
+              query={{
+                lang: "ru_RU",
+                apikey: "445cc2ce-c14b-48d6-b8be-5cfe7ece3c2a",
+              }}
+            >
+              <EventsSearchMap />
+            </YMaps>
           </div>
         )}
         <EventsSearchViewSwitch listView={listView} setListView={setListView} />

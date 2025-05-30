@@ -6,7 +6,7 @@ import { api } from "@/shared/api";
 export const useFetch = <T>(
   url: string,
   shouldFetch = true,
-  onSuccess?: (user: T) => void,
+  onSuccess?: (result: T) => void,
   config?: AxiosRequestConfig,
 ) => {
   const [data, setData] = useState<T | undefined>();

@@ -3,12 +3,11 @@ import { useUnit } from "effector-react";
 import { EventCard } from "@/shared/ui/EventCard";
 import { NotFound } from "@/shared/ui/NotFound";
 
-import { $events, fetchEventsFx } from "../model/events";
+import { $events, $loading } from "../model/events";
 import { EventsSearchListSkeleton } from "./EventsSearchListSkeleton";
 
 export const EventsSearchList = () => {
-  const events = useUnit($events);
-  const loading = useUnit(fetchEventsFx.pending);
+  const [events, loading] = useUnit([$events, $loading]);
 
   if (loading) {
     return <EventsSearchListSkeleton />;
