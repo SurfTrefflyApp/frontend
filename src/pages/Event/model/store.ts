@@ -46,10 +46,13 @@ const $eventId = createStore<number | null>(null).on(
   (_, payload) => payload.eventId,
 );
 
-const $inviteToken = createStore<string | null>(null).on(
-  eventInit,
-  (_, payload) => payload.invite,
-);
+const $inviteToken = createStore<string>("");
+
+sample({
+  clock: eventInit,
+  fn: (payload) => payload.invite ?? "",
+  target: $inviteToken,
+});
 
 sample({
   clock: subscribeEvent,
@@ -93,12 +96,12 @@ sample({
 });
 
 sample({
-  clock: [fetchEventFx.fail, refreshFx.fail],
+  clock: [fetchEventFx.fail],
   target: setErrorEvent,
 });
 
 sample({
-  clock: refreshFx.done,
+  clock: [refreshFx.done, refreshFx.fail],
   source: { eventId: $eventId, invite: $inviteToken },
   fn: (source) => source as FetchPayload,
   target: fetchEventFx,
