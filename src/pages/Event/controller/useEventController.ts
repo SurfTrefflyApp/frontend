@@ -22,8 +22,6 @@ export const useEventController = () => {
   const event = useUnit($event);
   const loading = useUnit($loading);
 
-  console.debug(loading);
-
   useEffect(() => {
     initEvent({ eventId: id, invite: invite ?? undefined });
   }, [id, initEvent, invite]);
