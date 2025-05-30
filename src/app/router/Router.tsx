@@ -26,7 +26,6 @@ import { Welcome } from "@/pages/Welcome";
 
 import { routes } from "@/shared/router";
 
-import { CoordsProvider } from "../providers/CoordsProvider";
 import { AdminRoutes } from "./AdminRoutes";
 import { AppbarLayout } from "./AppbarLayout";
 
@@ -104,21 +103,16 @@ const router = createBrowserRouter([
                 element: <TabbarLayout />,
                 children: [
                   {
-                    element: <CoordsProvider />,
-                    children: [
-                      {
-                        path: routes.profile,
-                        element: <Profile />,
-                      },
-                      {
-                        path: routes.main,
-                        element: <Main />,
-                      },
-                      {
-                        path: routes.eventsSearch,
-                        element: <EventsSearch />,
-                      },
-                    ],
+                    path: routes.profile,
+                    element: <Profile />,
+                  },
+                  {
+                    path: routes.main,
+                    element: <Main />,
+                  },
+                  {
+                    path: routes.eventsSearch,
+                    element: <EventsSearch />,
                   },
                   {
                     element: (
