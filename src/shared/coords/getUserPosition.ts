@@ -1,9 +1,9 @@
-import { createEffect } from "effector";
+export interface Coords {
+  longitude: number | undefined;
+  latitude: number | undefined;
+}
 
-export const getUserPositionFx = createEffect<
-  void,
-  { longitude: number | undefined; latitude: number | undefined }
->(async () => {
+export const getUserPosition = async (): Promise<Coords> => {
   try {
     const position = await new Promise<GeolocationPosition>(
       (resolve, reject) => {
@@ -17,8 +17,7 @@ export const getUserPositionFx = createEffect<
       longitude: position.coords.longitude,
       latitude: position.coords.latitude,
     };
-  } catch (e) {
-    console.debug(e);
+  } catch {
     return { longitude: undefined, latitude: undefined };
   }
-});
+};

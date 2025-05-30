@@ -1,7 +1,7 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
 
 import { setErrorEvent } from "@/shared/api";
-import { getUserPositionFx } from "@/shared/coords/store";
+import { getUserPosition } from "@/shared/coords/getUserPosition";
 
 import { getEvents } from "../api";
 
@@ -12,7 +12,9 @@ interface MainResponse {
   recommended: Event[];
 }
 
-export const fetchEventsFx = createEffect<
+const getUserPositionFx = createEffect(getUserPosition);
+
+const fetchEventsFx = createEffect<
   { longitude: number | undefined; latitude: number | undefined },
   MainResponse,
   Error

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { setErrorEvent } from "@/shared/api";
+import { getUserPosition } from "@/shared/coords/getUserPosition";
 import { createFormDataAppender } from "@/shared/formData/createFormDataAppender";
 import { usePhotoUploader } from "@/shared/lib/usePhotoUploader";
 
@@ -35,6 +36,10 @@ export const useEditController = ({ setOpen }: useEditController) => {
   useEffect(() => {
     form.setValue("username", user?.username || "");
   }, [user?.username, form]);
+
+  useEffect(() => {
+    getUserPosition();
+  }, []);
 
   const onSubmit = async (values: Schema) => {
     try {

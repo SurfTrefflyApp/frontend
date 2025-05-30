@@ -1,7 +1,7 @@
 import type { Tag } from "@/entities/Tag";
 
 import type { APIParams } from "../api";
-import type { FiltersSchema } from "../model/filters";
+import type { FiltersSchema } from "../model/filtersSchema";
 
 export function mapFiltersToAPI(filters: FiltersSchema): APIParams {
   return {

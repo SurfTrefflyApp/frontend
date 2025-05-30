@@ -21,7 +21,7 @@ import {
 } from "@/shared/ui/select";
 
 import type { useFiltersController } from "../controller/useFiltersController";
-import { Time } from "../model/filters";
+import { Time } from "../model/filtersSchema";
 
 export const EventsSearchFilters = ({
   tagsOpen,
