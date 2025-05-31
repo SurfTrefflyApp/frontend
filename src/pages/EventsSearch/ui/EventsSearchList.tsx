@@ -10,6 +10,8 @@ import { EventsSearchViewSwitch } from "./EventsSearchViewSwitch";
 export const EventsSearchList = () => {
   const [events, loading] = useUnit([$events, $loading]);
 
+  console.debug(events.length, loading);
+
   if (loading) {
     return <EventsSearchListSkeleton />;
   }
