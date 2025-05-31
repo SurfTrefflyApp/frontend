@@ -16,11 +16,11 @@ export const EventsSearch = () => {
   return (
     <>
       <EventsSearchHeader />
-      <main className="h-full flex-1 relative flex flex-col">
+      <main className="h-full flex-1 flex flex-col">
         {listView ? (
           <EventsSearchList />
         ) : (
-          <div className="flex-1 relative -mb-12">
+          <div className="flex-1 -mb-12">
             <YMaps
               query={{
                 lang: "ru_RU",

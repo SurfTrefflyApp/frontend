@@ -13,11 +13,13 @@ import { EventCard } from "@/shared/ui/EventCard";
 import { Button } from "@/shared/ui/button";
 
 import { $events, $userCoords } from "../model/events";
+import { EventsUserCoordsInfo } from "./EvetsUserCoordsInfo";
 
 export const EventsSearchMap = () => {
   const events = useUnit($events);
   const userCoords = useUnit($userCoords);
 
+  const [coordsInfoDialogOpen, setCoordsInfoDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [mapLoading, setMapLoading] = useState(true);
   const [mapState, setMapState] = useState({
@@ -59,6 +61,8 @@ export const EventsSearchMap = () => {
     />
   );
 
+  console.debug(userCoords);
+
   return (
     <>
       {mapLoading && <Loader className="mx-auto my-8" />}
@@ -97,19 +101,34 @@ export const EventsSearchMap = () => {
             {placeMarks}
             {userPlacemark}
             <Button
-              className="absolute z-50 p-3! right-2 top-2 bg-primary rounded-xl h-fit"
-              variant="ghost"
+              className="fixed z-50 p-3! right-8 md:right-30 bottom-30 md:bottom-14 h-[48px] w-[48px]"
+              variant="outline"
               onClick={() => {
-                setMapState((prev) => ({
-                  ...prev,
-                  center: [
-                    userCoords.latitude || mapState.center[0],
-                    userCoords.longitude || mapState.center[1],
-                  ],
-                }));
+                if (userCoords.latitude && userCoords.longitude) {
+                  setMapState((prev) => ({
+                    ...prev,
+                    center: [
+                      userCoords.latitude || mapState.center[0],
+                      userCoords.longitude || mapState.center[1],
+                    ],
+                  }));
+                } else {
+                  setCoordsInfoDialogOpen(true);
+                }
               }}
             >
-              <Arrow color="white" className="h-full size-[20px]" />
+              <Arrow color="black" className="h-full size-[20px]" />
+              {(!userCoords.latitude || !userCoords.longitude) && (
+                <div className="absolute inset-0 overflow-hidden rounded-xl">
+                  <div
+                    className="absolute w-[calc(100%*1.414)] h-[2px] bg-secondary top-1/2 left-1/2"
+                    style={{
+                      transform: "translate(-50%, -50%) rotate(45deg)",
+                      transformOrigin: "center",
+                    }}
+                  />
+                </div>
+              )}
             </Button>
           </Map>
         </div>
@@ -135,6 +154,12 @@ export const EventsSearchMap = () => {
             linkClassName="pointer-events-none"
           />
         </AdaptivePopover>
+      )}
+      {coordsInfoDialogOpen && (
+        <EventsUserCoordsInfo
+          open={coordsInfoDialogOpen}
+          setOpen={setCoordsInfoDialogOpen}
+        />
       )}
     </>
   );
