@@ -74,7 +74,10 @@ export const CodeStep = () => {
           Подтвердить
         </Button>
         {retryTime ? (
-          <p className="text-center">{retryTime}</p>
+          <p className="text-center">
+            Запросить новый код через 00:
+            {retryTime < 10 ? "0" + retryTime : retryTime}
+          </p>
         ) : (
           <Button
             variant="ghost"
