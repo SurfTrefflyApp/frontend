@@ -1,15 +1,15 @@
 import { YMaps } from "@pbe/react-yandex-maps";
+import { useUnit } from "effector-react";
 
 import { useStatusBarColor } from "@/shared/dom/useStatusBarColor";
-import { useLocalStorage } from "@/shared/lib/useLocalStorage";
 
+import { $isListView } from "../model/view";
 import { EventsSearchHeader } from "./EventsSearchHeader";
 import { EventsSearchList } from "./EventsSearchList";
 import { EventsSearchMap } from "./EventsSearchMap";
-import { EventsSearchViewSwitch } from "./EventsSearchViewSwitch";
 
 export const EventsSearch = () => {
-  const [listView, setListView] = useLocalStorage("listView", false);
+  const listView = useUnit($isListView);
 
   useStatusBarColor("--surface-container");
 
@@ -31,7 +31,6 @@ export const EventsSearch = () => {
             </YMaps>
           </div>
         )}
-        <EventsSearchViewSwitch listView={listView} setListView={setListView} />
       </main>
     </>
   );

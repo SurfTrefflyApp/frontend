@@ -13,6 +13,7 @@ import { EventCard } from "@/shared/ui/EventCard";
 import { Button } from "@/shared/ui/button";
 
 import { $events, $userCoords, getUserPositionFx } from "../model/events";
+import { EventsSearchViewSwitch } from "./EventsSearchViewSwitch";
 import { EventsUserCoordsInfo } from "./EvetsUserCoordsInfo";
 
 export const EventsSearchMap = () => {
@@ -103,6 +104,7 @@ export const EventsSearchMap = () => {
           >
             {placeMarks}
             {userPlacemark}
+            <EventsSearchViewSwitch />
             <Button
               className="fixed z-50 p-3! right-8 md:right-30 bottom-30 md:bottom-14 h-[48px] w-[48px]"
               variant="outline"
