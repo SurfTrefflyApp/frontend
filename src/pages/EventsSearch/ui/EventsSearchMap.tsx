@@ -101,7 +101,7 @@ export const EventsSearchMap = () => {
             {placeMarks}
             {userPlacemark}
             <Button
-              className="absolute z-50 p-4! right-2 top-2 bg-primary rounded-full h-fit"
+              className="absolute z-50 p-3! right-2 top-2 bg-primary rounded-xl h-fit"
               variant="ghost"
               onClick={() => {
                 if (!mapInstance) {
