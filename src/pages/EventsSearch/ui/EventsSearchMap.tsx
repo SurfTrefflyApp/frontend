@@ -121,7 +121,9 @@ export const EventsSearchMap = () => {
                 }
               }}
             >
-              <Arrow color="black" className="h-full size-[20px]" />
+              {!userCoordsLoading && (
+                <Arrow color="black" className="h-full size-[20px]" />
+              )}
               {!userCoordsLoading &&
                 (!userCoords.latitude || !userCoords.longitude) && (
                   <div className="absolute inset-0 overflow-hidden rounded-xl">
