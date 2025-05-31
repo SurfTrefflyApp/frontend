@@ -7,7 +7,7 @@ import { type Coords, getUserPosition } from "@/shared/coords/getUserPosition";
 import { getEvents } from "../api";
 import { type FiltersSchema, Time } from "./filtersSchema";
 
-const getUserPositionFx = createEffect(getUserPosition);
+export const getUserPositionFx = createEffect(getUserPosition);
 
 export const fetchEventsEvent = createEvent<FiltersSchema>();
 export const pageMounted = createEvent();
