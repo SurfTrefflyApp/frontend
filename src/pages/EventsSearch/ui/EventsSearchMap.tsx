@@ -24,7 +24,6 @@ export const EventsSearchMap = () => {
     center: [51.6606, 39.2006] as [number, number],
     zoom: 11,
   });
-  const [mapInstance, setMapInstance] = useState<ymaps.Map | null>(null);
 
   const placeMarks = useMemo(
     () =>
@@ -69,9 +68,6 @@ export const EventsSearchMap = () => {
           style={{ willChange: "transform", transform: "translateZ(0)" }}
         >
           <Map
-            instanceRef={(ref) => {
-              setMapInstance(ref);
-            }}
             state={mapState}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onBoundsChange={(e: any) => {
@@ -104,14 +100,13 @@ export const EventsSearchMap = () => {
               className="absolute z-50 p-3! right-2 top-2 bg-primary rounded-xl h-fit"
               variant="ghost"
               onClick={() => {
-                if (!mapInstance) {
-                  return;
-                }
-
-                mapInstance.panTo([
-                  userCoords.latitude ?? mapState.center[0],
-                  mapState.center[1],
-                ]);
+                setMapState((prev) => ({
+                  ...prev,
+                  center: [
+                    userCoords.latitude || mapState.center[0],
+                    userCoords.longitude || mapState.center[1],
+                  ],
+                }));
               }}
             >
               <Arrow color="white" className="h-full size-[20px]" />
