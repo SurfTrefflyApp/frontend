@@ -34,7 +34,7 @@ export const $userCoords = createStore<Coords>({
   latitude: undefined,
 }).on(getUserPositionFx.doneData, (_, coords) => coords);
 
-export const $loading = createStore<boolean>(true);
+export const $loading = createStore<boolean>(true).reset(pageUnmounted);
 
 sample({
   clock: pageMounted,
@@ -76,3 +76,5 @@ sample({
   fn: () => false,
   target: $loading,
 });
+
+$loading.watch(console.debug);
