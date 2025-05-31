@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-export const useInterval = (callback: () => void, interval = 1000) => {
-  const [active, setActive] = useState(false);
+export const useInterval = (
+  callback: () => void,
+  interval = 1000,
+  activeByDefault = false,
+) => {
+  const [active, setActive] = useState(activeByDefault);
   const intervalIdRef = useRef<ReturnType<typeof setInterval>>(null);
   const callbackRef = useRef(callback);
 

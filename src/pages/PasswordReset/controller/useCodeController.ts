@@ -13,7 +13,7 @@ export const useCodeController = () => {
   const [code, setCode] = useState("");
   const [codeError, setCodeError] = useState(false);
   const [confirming, setConfirming] = useState(false);
-  const [retryTime, setRetryTime] = useState(0);
+  const [retryTime, setRetryTime] = useState(45);
 
   const { handleNextClick, email } = useStepContext();
   const setError = useUnit(setErrorEvent);
@@ -25,7 +25,7 @@ export const useCodeController = () => {
     }
   };
 
-  const { pause, resume } = useInterval(handleTimerTick);
+  const { pause, resume } = useInterval(handleTimerTick, 1000, true);
 
   const handleConfirm = async () => {
     try {

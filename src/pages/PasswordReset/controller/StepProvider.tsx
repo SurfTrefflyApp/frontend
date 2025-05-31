@@ -1,8 +1,6 @@
-import { useUnit } from "effector-react";
 import { type PropsWithChildren, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { auth } from "@/shared/auth";
 import { routes } from "@/shared/router";
 
 import { CodeStep } from "../ui/CodeStep";
@@ -22,8 +20,6 @@ export const StepProvider = ({ children }: PropsWithChildren) => {
   const [email, setEmail] = useState("");
   const [currentStep, setCurrentStep] = useState<StepsKeys>(0);
 
-  const authEvent = useUnit(auth);
-
   const navigate = useNavigate();
 
   const handleBackClick = () => {
@@ -37,7 +33,6 @@ export const StepProvider = ({ children }: PropsWithChildren) => {
   const handleNextClick = () => {
     if (currentStep === 2) {
       navigate(routes.profile);
-      authEvent({});
     } else {
       setCurrentStep((prev) => (prev + 1) as StepsKeys);
     }
