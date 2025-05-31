@@ -22,6 +22,8 @@ export const Main = () => {
     return <NotFound />;
   }
 
+  if (!data) return;
+
   return (
     <main
       className="w-full md:px-20 max-w-7xl lg:mx-auto px-2 pb-4 gap-8 [&>*]:mb-4 [&>*:last-child]:mb-0 overflow-x-hidden"

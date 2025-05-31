@@ -1,3 +1,4 @@
+import type { Event } from "@/entities/Event";
 import { createEffect, createEvent, createStore, sample } from "effector";
 
 import { setErrorEvent } from "@/shared/api";
