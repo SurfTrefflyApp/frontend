@@ -14,7 +14,7 @@ export const EventsSearchViewSwitch = ({
       onClick={() => {
         setListView(!listView);
       }}
-      className="sticky left-8 md:left-30 bottom-28 w-fit"
+      className="fixed left-8 md:left-30 bottom-30 md:bottom-14 w-fit"
       variant="secondary"
     >
       {listView ? "Карта" : "Список"}
