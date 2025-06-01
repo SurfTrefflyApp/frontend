@@ -103,7 +103,7 @@ export const EventsSearchMap = () => {
             }}
           >
             {placeMarks}
-            {userPlacemark}
+            {userCoords.latitude && userCoords.longitude && userPlacemark}
             <EventsSearchViewSwitch />
             <Button
               className="fixed z-50 p-3! right-8 md:right-30 bottom-30 md:bottom-14 h-[48px] w-[48px]"
