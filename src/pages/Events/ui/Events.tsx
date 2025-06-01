@@ -12,57 +12,61 @@ export const Events = () => {
     useSwipeController();
 
   return (
-    <main className="h-full flex flex-col overflow-auto no-scrollbar">
+    <>
       <ContentHeader
         withBackArrow={false}
         title="Мероприятия"
         className="md:hidden"
       />
-      <Tabs
-        defaultValue="upcoming"
-        className="gap-10 flex-1"
-        value={activeTab}
-        onValueChange={setActiveTab}
-      >
-        <TabsList className="w-full flex justify-evenly pt-8">
-          <TabsTrigger value="upcoming" className="w-fit">
-            Предстоящие
-          </TabsTrigger>
-          <TabsTrigger value="past">Прошедшие</TabsTrigger>
-        </TabsList>
-        <div className="p-2 flex-1 md:mx-auto lg:w-2/4 flex">
-          <motion.div
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            onDragEnd={handleDragEnd}
-            animate={controls}
-            className="flex w-full md:hidden"
-            style={{ x: 0 }}
-          >
-            <EventsTabs />
-          </motion.div>
-          <div className="flex-1 w-full hidden md:flex">
-            <EventsTabs />
+      <main className="h-full flex-1 flex flex-col overflow-auto no-scrollbar">
+        <Tabs
+          defaultValue="upcoming"
+          className="gap-10 flex-1"
+          value={activeTab}
+          onValueChange={setActiveTab}
+        >
+          <TabsList className="w-full flex justify-evenly pt-8">
+            <TabsTrigger
+              value="upcoming"
+              className="w-fit"
+              defaultValue={"upcoming"}
+            >
+              Предстоящие
+            </TabsTrigger>
+            <TabsTrigger value="past">Прошедшие</TabsTrigger>
+          </TabsList>
+          <div className="p-2 flex-1 md:mx-auto lg:w-2/4 flex">
+            <motion.div
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={handleDragEnd}
+              animate={controls}
+              className="flex w-full md:hidden"
+              style={{ x: 0 }}
+            >
+              <div className="h-fit w-full flex [&:has(.error)]:h-full">
+                <EventsTabs />
+              </div>
+            </motion.div>
+            <div className="w-full hidden md:flex">
+              <div className="h-fit w-full [&:has(.error)]:h-full">
+                <EventsTabs />
+              </div>
+            </div>
           </div>
-        </div>
-      </Tabs>
-    </main>
+        </Tabs>
+      </main>
+    </>
   );
 };
 
 export const EventsTabs = () => {
   return (
     <>
-      <TabsContent
-        value="upcoming"
-        className="grid grid-flow-row auto-rows-fr gap-4"
-      >
+      <TabsContent value="upcoming" asChild>
         <EventsUpcoming />
       </TabsContent>
-      <TabsContent
-        value="past"
-        className="grid grid-flow-row auto-rows-fr gap-4"
-      >
+      <TabsContent value="past" asChild>
         <EventsPast />
       </TabsContent>
     </>

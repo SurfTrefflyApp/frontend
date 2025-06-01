@@ -1,4 +1,4 @@
-import { TagsPicker } from "@/widgets/TagsPicker";
+import { TagsPicker } from "@/features/TagsPicker";
 import { Search } from "lucide-react";
 
 import { Edit } from "@/shared/icons/Edit";
@@ -21,7 +21,7 @@ import {
 } from "@/shared/ui/select";
 
 import type { useFiltersController } from "../controller/useFiltersController";
-import { Time } from "../model/filters";
+import { Time } from "../model/filtersSchema";
 
 export const EventsSearchFilters = ({
   tagsOpen,

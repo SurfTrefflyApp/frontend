@@ -28,7 +28,7 @@ export const ErrorLayout = ({
   return (
     <div
       className={cn(
-        "grid grid-rows-3 h-full items-center justify-center p-4",
+        "grid grid-rows-[1fr_2fr_1fr] max-h-dvh h-full items-center justify-center p-4",
         containerClassName,
       )}
     >

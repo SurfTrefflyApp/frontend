@@ -22,6 +22,7 @@ export function DateTimePicker({
 }) {
   const [open, setOpen] = React.useState(false);
   const [inputValue, setInputValue] = React.useState(value ?? "");
+  const [previousValue, setPreviousValue] = React.useState<string>();
 
   const parsedValue = value
     ? parse(value, "dd.MM.yyyy HH:mm", new Date())
@@ -33,24 +34,40 @@ export function DateTimePicker({
     }
   }, [value]);
 
+  const validateInput = (val: string) => {
+    if (val === "__.__.____ __:__" || !val.trim()) {
+      onError("Поле не может быть пустым");
+      return false;
+    }
+
+    const parsed = parse(val, "dd.MM.yyyy HH:mm", new Date(), { locale: ru });
+    if (isNaN(parsed.getTime())) {
+      onError("Некорректный формат даты");
+      return false;
+    }
+
+    onError("");
+    return true;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setInputValue(val);
-    const parsed = parse(val, "dd.MM.yyyy HH:mm", new Date(), { locale: ru });
-    if (!isNaN(parsed.getTime())) {
+    setPreviousValue(val);
+
+    if (!previousValue || previousValue === val) {
+      return;
+    }
+
+    if (validateInput(val)) {
+      const parsed = parse(val, "dd.MM.yyyy HH:mm", new Date(), {
+        locale: ru,
+      });
       onChange(format(parsed, "dd.MM.yyyy HH:mm"));
-      onError("");
-    } else {
-      if (val === "__.__.____ __:__") {
-        onError("Поле не может быть пустым");
-      } else {
-        onError("Некорректный формат даты");
-      }
     }
   };
 
   const handleDateSelect = (date: Date | undefined) => {
-    console.debug(date);
     if (!date) return;
     if (parsedValue) {
       date.setHours(parsedValue.getHours());

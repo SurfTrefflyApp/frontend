@@ -1,5 +1,6 @@
 .toast[data-sonner-toast][data-styled="true"] {
-  background: #e3e3df;
+  background: var(--color-primary);
+  color: var(--color-surface-container);
   border: none;
   border-radius: 20px;
   padding: 16px 20px;

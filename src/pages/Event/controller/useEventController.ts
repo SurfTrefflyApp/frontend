@@ -1,64 +1,47 @@
-import type { Event } from "@/entities/Event";
 import { useUnit } from "effector-react";
-import { useLocation, useParams } from "react-router";
-import { toast } from "sonner";
+import { useEffect, useLayoutEffect } from "react";
+import { useLocation, useParams, useSearchParams } from "react-router";
 
 import { setErrorEvent } from "@/shared/api";
-import { useRefresh } from "@/shared/auth";
-import { useFetch } from "@/shared/lib/useFetch";
 
-import { $event, setEventEvent } from "../model/store";
+import { $event, $loading, eventInit, eventReset } from "../model/store";
+import { useEventClipboardController } from "./useEventClipboardController";
 
 export const useEventController = () => {
-  const location = useLocation();
   const params = useParams();
   const id = Number(params.id);
+  const [searchParams] = useSearchParams();
+  const invite = searchParams.get("invite");
 
-  const event = useUnit($event);
-  const setEvent = useUnit(setEventEvent);
-
-  const { refreshed, refreshing } = useRefresh();
-
-  const { loading } = useFetch<Event>(
-    `/events/${id}`,
-    refreshed && !refreshing,
-    setEvent,
-  );
+  const location = useLocation();
 
   const setError = useUnit(setErrorEvent);
 
-  const handleCopy = async (text: string, toastTitle: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      toast(toastTitle, {
-        classNames: {
-          title: "text-center",
-          content: "w-full",
-          toast: "w-fit! mx-auto left-0 right-0",
-        },
-      });
-    } catch (error) {
-      setError(error);
-    }
-  };
+  const initEvent = useUnit(eventInit);
+  const resetEvent = useUnit(eventReset);
+  const event = useUnit($event);
+  const loading = useUnit($loading);
 
-  const handleAddressCopy = () => {
-    if (!event?.address) {
-      return;
-    }
+  useEffect(() => {
+    initEvent({ eventId: id, invite: invite ?? undefined });
+  }, [id, initEvent, invite]);
 
-    handleCopy(event.address, "Адрес скопирован");
-  };
+  const { handleAddressCopy, handleEventLinkCopy } =
+    useEventClipboardController({ event, setError });
 
-  const handleEventLinkCopy = () => {
-    const fullUrl = window.location.origin + location.pathname;
+  useEffect(() => {
+    return () => {
+      resetEvent();
+    };
+  }, [resetEvent]);
 
-    handleCopy(fullUrl, "Ссылка скопирована");
-  };
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return {
     handleAddressCopy,
     handleEventLinkCopy,
-    loading: refreshing || loading,
+    loading: loading,
   };
 };

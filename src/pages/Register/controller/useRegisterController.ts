@@ -10,12 +10,8 @@ import useFormPersist from "@/shared/lib/useFormPersist";
 import { routes } from "@/shared/router";
 
 import { register } from "../api/register";
-import type {
-  RegisterSchema,
-  RegisterServerErrors} from "../model/formSchema";
-import {
-  formSchema,
-} from "../model/formSchema";
+import type { RegisterSchema, RegisterServerErrors } from "../model/formSchema";
+import { formSchema } from "../model/formSchema";
 
 export const useRegisterController = () => {
   const authEvent = useUnit(auth);
@@ -51,7 +47,7 @@ export const useRegisterController = () => {
   const onSubmit = async (values: RegisterSchema) => {
     return register(values)
       .then(() => {
-        authEvent();
+        authEvent({});
         clear();
       })
       .then(() => {

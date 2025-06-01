@@ -20,6 +20,10 @@ export const EventsUpcoming = () => {
   }
 
   return (
-    <>{events?.map((event) => <EventCard key={event.id} event={event} />)}</>
+    <div className="grid grid-flow-row auto-rows-fr gap-4">
+      {events?.map((event) => (
+        <EventCard key={event.id} event={event} containerClassName="h-full" />
+      ))}
+    </div>
   );
 };

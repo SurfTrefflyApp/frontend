@@ -1,5 +1,5 @@
 import type { User } from "@/entities/User";
-import { Exit } from "@/widgets/Exit";
+import { Exit } from "@/features/Exit";
 import { useUnit } from "effector-react";
 import { useState } from "react";
 import { Link } from "react-router";
@@ -42,8 +42,8 @@ export const Profile = () => {
           )}
         </div>
       </div>
-      <main className="mx-auto flex flex-col gap-4 h-full max-w-4xl">
-        <div className="w-full flex flex-col md:flex-row gap-8 md:justify-center md:items-center relative">
+      <main className="md:mx-auto flex flex-col gap-4 h-full max-w-4xl flex-1 pb-4">
+        <div className="w-full flex flex-col md:flex-row gap-8 md:justify-center md:items-center md:pr-2 relative">
           <ProfileHeader
             isAuth={isAuth}
             user={user}
@@ -56,7 +56,7 @@ export const Profile = () => {
           <ProfileEvents />
         ) : (
           <div className="flex flex-col gap-4 mb-4">
-            <p className="text-center text-xl font-medium">
+            <p className="text-center text-xl font-medium px-2">
               Войди в аккаунт или зарегистрируйся, чтобы участвовать в
               мероприятиях, получать персональные рекомендации и напоминания о
               предстоящих мероприятиях

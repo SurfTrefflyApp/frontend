@@ -1,5 +1,5 @@
 import type { Address } from "@/entities/Address";
-import { AddressPicker } from "@/widgets/AddressPicker";
+import { AddressPicker } from "@/features/AddressPicker";
 import type { UseFormReturn } from "react-hook-form";
 
 import {
@@ -18,7 +18,6 @@ interface EventNewAddress {
 }
 
 export const EventNewAddress = ({ form, defaultAddress }: EventNewAddress) => {
-  console.debug(form.getValues("location"));
   return (
     <FormField
       control={form.control}

@@ -1,9 +1,11 @@
-import { ErrorPagesProvider } from "@/app/providers/ErrorPagesProvider";
-import { AppLayout } from "@/app/router/AppLayout";
+import { ErrorProvider } from "@/app/providers/ErrorProvider";
 import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
+import { TabbarLayout } from "@/app/router/TabbarLayout";
 import { RouterProvider, createBrowserRouter } from "react-router";
 
+import { AdminEvents } from "@/pages/AdminEvents";
+import { AdminUsers } from "@/pages/AdminUsers";
 import { Error } from "@/pages/Error";
 import { Event } from "@/pages/Event";
 import { EventEdit } from "@/pages/EventEdit";
@@ -13,6 +15,8 @@ import { EventsSearch } from "@/pages/EventsSearch";
 import { Login } from "@/pages/Login";
 import { Main } from "@/pages/Main";
 import { NotFound } from "@/pages/NotFound";
+import { PasswordReset } from "@/pages/PasswordReset";
+import { Payment } from "@/pages/Payment";
 import { Privacy } from "@/pages/Privacy";
 import { Profile } from "@/pages/Profile";
 import { Register } from "@/pages/Register";
@@ -22,15 +26,15 @@ import { Welcome } from "@/pages/Welcome";
 
 import { routes } from "@/shared/router";
 
-import { CoordsProvider } from "../providers/CoordsProvider";
+import { AdminRoutes } from "./AdminRoutes";
 import { AppbarLayout } from "./AppbarLayout";
 
 const router = createBrowserRouter([
   {
     element: (
-      <ErrorPagesProvider>
+      <ErrorProvider>
         <AppLoader />
-      </ErrorPagesProvider>
+      </ErrorProvider>
     ),
     errorElement: <Error />,
     children: [
@@ -51,7 +55,7 @@ const router = createBrowserRouter([
           },
           {
             path: routes.passwordReset,
-            element: <>Reset</>,
+            element: <PasswordReset />,
           },
         ],
       },
@@ -59,35 +63,44 @@ const router = createBrowserRouter([
         path: routes.timeout,
         element: <Timeout />,
       },
+      // User routes (admin can't get them)
       {
-        element: <AppbarLayout />,
+        element: (
+          <AdminRoutes forAdmin={false} navigateHref={routes.adminEvents} />
+        ),
         children: [
           {
-            element: <PrivateRoutes navigateHref={routes.profile} forAuth />,
+            element: <AppbarLayout />,
             children: [
               {
-                path: routes.eventNew,
-                element: <EventNew />,
+                element: (
+                  <PrivateRoutes navigateHref={routes.profile} forAuth />
+                ),
+                children: [
+                  {
+                    path: routes.eventNew,
+                    element: <EventNew />,
+                  },
+                  {
+                    path: routes.eventEdit,
+                    element: <EventEdit />,
+                  },
+                  {
+                    path: routes.payment,
+                    element: <Payment />,
+                  },
+                ],
               },
               {
-                path: routes.eventEdit,
-                element: <EventEdit />,
+                path: routes.terms,
+                element: <Terms />,
               },
-            ],
-          },
-          {
-            path: routes.terms,
-            element: <Terms />,
-          },
-          {
-            path: routes.privacy,
-            element: <Privacy />,
-          },
-          {
-            element: <AppLayout />,
-            children: [
               {
-                element: <CoordsProvider />,
+                path: routes.privacy,
+                element: <Privacy />,
+              },
+              {
+                element: <TabbarLayout />,
                 children: [
                   {
                     path: routes.profile,
@@ -101,24 +114,52 @@ const router = createBrowserRouter([
                     path: routes.eventsSearch,
                     element: <EventsSearch />,
                   },
+                  {
+                    element: (
+                      <PrivateRoutes navigateHref={routes.profile} forAuth />
+                    ),
+                    children: [
+                      {
+                        path: routes.events,
+                        element: <Events />,
+                      },
+                    ],
+                  },
                 ],
               },
               {
-                element: (
-                  <PrivateRoutes navigateHref={routes.profile} forAuth />
-                ),
+                path: routes.event,
+                element: <Event />,
+              },
+            ],
+          },
+        ],
+      },
+      // Admin routes
+      {
+        element: <AdminRoutes />,
+        children: [
+          {
+            element: <AppbarLayout />,
+            children: [
+              {
+                element: <TabbarLayout />,
                 children: [
                   {
-                    path: routes.events,
-                    element: <Events />,
+                    path: routes.adminUsers,
+                    element: <AdminUsers />,
+                  },
+                  {
+                    path: routes.adminEvents,
+                    element: <AdminEvents />,
+                  },
+                  {
+                    path: routes.adminEvent,
+                    element: <Event />,
                   },
                 ],
               },
             ],
-          },
-          {
-            path: routes.event,
-            element: <Event />,
           },
         ],
       },

@@ -14,4 +14,8 @@ export const routes = {
   eventEdit: "/events/:id/edit",
   event: "/events/:id",
   eventNew: "/events/new",
+  adminUsers: "/admin/users",
+  adminEvents: "/admin/events",
+  adminEvent: "/admin/events/:id",
+  payment: "/payment/:id",
 };

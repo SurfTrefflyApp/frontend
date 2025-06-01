@@ -1,9 +1,11 @@
 import type { Address } from "@/entities/Address";
+import { AIDescGenerator } from "@/features/AIDescGenerator";
 import { EventNewAddress } from "@/widgets/EventForm/ui/EventNewAddress";
 import { EventNewTags } from "@/widgets/EventForm/ui/EventNewTags";
 import { type ReactNode } from "react";
 import type { UseFormReturn } from "react-hook-form";
 
+import { Star } from "@/shared/icons/Star";
 import { Upload } from "@/shared/icons/Upload";
 import { DateTimePicker } from "@/shared/ui/DateTimePicker";
 import { FileUploadButton } from "@/shared/ui/FileUploadButton";
@@ -20,6 +22,7 @@ import {
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/textarea";
 
+import { useAIGeneratorController } from "../controller/useAIGeneratorController";
 import { useEventFormController } from "../controller/useEventFormController";
 import type { EventSchema } from "../model/formSchema";
 
@@ -43,6 +46,7 @@ export const EventForm = ({
     form,
     defaultPreviewURL,
   });
+  const { isGeneratorOpen, setIsGeneratorOpen } = useAIGeneratorController();
 
   return (
     <Form {...form} formState={formState}>
@@ -52,7 +56,7 @@ export const EventForm = ({
       >
         <FileUploadButton
           variant="ghost"
-          className="mb-2 p-0 flex-1 aspect-video w-full overflow-hidden flex relative [& > *]:["
+          className="mb-2 p-0 flex-1 aspect-video w-full overflow-hidden flex relative"
           handleChange={handleFileChange}
         >
           {previewUrl ? (
@@ -148,7 +152,31 @@ export const EventForm = ({
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Описание</FormLabel>
+              <div className="flex justify-between items-center">
+                <FormLabel>Описание</FormLabel>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="text-sm"
+                  onClick={() => {
+                    setIsGeneratorOpen(true);
+                  }}
+                >
+                  Помощь от ИИ <Star />
+                </Button>
+              </div>
+              {isGeneratorOpen && (
+                <AIDescGenerator
+                  open={isGeneratorOpen}
+                  setOpen={setIsGeneratorOpen}
+                  eventName={form.getValues("title")}
+                  onUse={(description) => {
+                    form.setValue("description", description);
+                    setIsGeneratorOpen(false);
+                  }}
+                />
+              )}
               <FormControl>
                 <Textarea
                   id="description"

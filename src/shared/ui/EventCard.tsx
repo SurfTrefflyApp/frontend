@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 import { DefaultUser } from "../icons/DefaultUser";
 import { People } from "../icons/People";
-import { formatDateWithIntl } from "../lib/dateUtils";
+import { formatDateToDDMMYYYY } from "../lib/dateUtils";
 import { cn } from "../lib/utils";
 import { routes } from "../router";
 import { EventImagePreview } from "./EventImagePreview";
@@ -23,7 +23,7 @@ export const EventCard = ({
   return (
     <Link
       to={routes.event.replace(":id", event.id.toString())}
-      className={cn(linkClassName)}
+      className={cn("hover:brightness-70", linkClassName)}
     >
       <figure
         className={cn(
@@ -60,7 +60,7 @@ export const EventCard = ({
             <div className="flex gap-2 w-full item-start">
               <Calendar className="text-primary w-[20px]" />
               <h4 className="line-clamp-1 w-full">
-                {formatDateWithIntl(event.date)}
+                {formatDateToDDMMYYYY(event.date)}
               </h4>
             </div>
             <div className="flex gap-2 w-full items-center">
@@ -71,7 +71,7 @@ export const EventCard = ({
               {event.imageUserUrl ? (
                 <img
                   src={event.imageUserUrl}
-                  className="w-[32px] h-[32px] rounded-full"
+                  className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full"
                 />
               ) : (
                 <DefaultUser className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full shadow-md" />

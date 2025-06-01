@@ -1,8 +1,9 @@
 import { ContentHeader } from "@/widgets/ContentHeader";
 import { useUnit } from "effector-react";
-import { Calendar } from "lucide-react";
+import { Calendar, Crown } from "lucide-react";
 import { Link } from "react-router";
 
+import { $isAdmin } from "@/shared/auth/model";
 import { Copy } from "@/shared/icons/Copy";
 import { DefaultUser } from "@/shared/icons/DefaultUser";
 import { Edit } from "@/shared/icons/Edit";
@@ -27,6 +28,7 @@ import { EventSkeleton } from "./EventSkeleton";
 
 export const Event = () => {
   const event = useUnit($event);
+  const isAdmin = useUnit($isAdmin);
   const { handleAddressCopy, handleEventLinkCopy, loading } =
     useEventController();
 
@@ -41,28 +43,32 @@ export const Event = () => {
   const isPrivate = event.isPrivate;
 
   return (
-    <div className="overflow-y-auto no-scrollbar">
+    <>
       <ContentHeader
         className="py-2"
         title={event.name}
         rightContent={
-          <div className="flex items-center gap-4">
-            {event.isOwner && !isDateInPast(event.date) && (
-              <Link to={routes.eventEdit.replace(":id", event.id.toString())}>
-                <Edit className="size-[16px]" />
-              </Link>
-            )}
-            <Button
-              variant="ghost"
-              onClick={handleEventLinkCopy}
-              className="p-0"
-            >
-              <Share />
-            </Button>
-          </div>
+          isAdmin ? (
+            <></>
+          ) : (
+            <div className="flex items-center gap-4">
+              {event.isOwner && !isDateInPast(event.date) && (
+                <Link to={routes.eventEdit.replace(":id", event.id.toString())}>
+                  <Edit className="size-[16px]" />
+                </Link>
+              )}
+              <Button
+                variant="ghost"
+                onClick={handleEventLinkCopy}
+                className="p-0"
+              >
+                <Share />
+              </Button>
+            </div>
+          )
         }
       />
-      <main className="p-3 py-6 flex flex-col gap-5 lg:max-w-2/4 w-full mx-auto">
+      <main className="p-3 py-6 flex-1 flex flex-col gap-5 lg:max-w-2/4 w-full mx-auto">
         {event.imageEventUrl ? (
           <img
             src={event.imageEventUrl}
@@ -83,7 +89,10 @@ export const Event = () => {
           </section>
         )}
         <section>
-          <h1 className="text-xl font-medium mb-1">{event.name}</h1>
+          <div className="flex gap-2 items-center text-xl mb-1">
+            {event.isPremium && <Crown className="text-premium w-[22px]" />}
+            <h1 className="text-xl font-medium">{event.name}</h1>
+          </div>
           <div className="flex gap-2 items-center text-xl">
             <Calendar className="text-primary" size={16} />
             <h2>{formatDateWithIntl(event.date)}</h2>
@@ -122,14 +131,22 @@ export const Event = () => {
             <>
               <h2 className="text-sm font-semibold mb-2">Организатор:</h2>
               <div className="flex items-center gap-2">
-                <DefaultUser className="size-[50px]" />
+                {event.imageUserUrl ? (
+                  <img
+                    src={event.imageUserUrl}
+                    alt="owner icon"
+                    className="min-h-[50px] min-w-[50px] max-h-[50px] max-w-[50px] rounded-full"
+                  />
+                ) : (
+                  <DefaultUser className="min-h-[50px] min-w-[50px] max-h-[50px] max-w-[50px]" />
+                )}
                 <h3 className="text-sm">{event.ownerUsername ?? "Имя"}</h3>
               </div>
             </>
           )}
         </section>
-        <EventFooter event={event} />
+        {!isAdmin && <EventFooter event={event} />}
       </main>
-    </div>
+    </>
   );
 };

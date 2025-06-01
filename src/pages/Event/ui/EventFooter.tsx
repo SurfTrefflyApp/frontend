@@ -8,6 +8,7 @@ import { isDateInPast } from "@/shared/lib/dateUtils";
 import { routes } from "@/shared/router";
 import { Button } from "@/shared/ui/button";
 
+import { usePremiumController } from "../controller/usePremiumController";
 import { subscribeEvent, subscribeFx } from "../model/store";
 import { EventUnsubscribeConfirm } from "./EventUnsubsribeConfirm";
 
@@ -19,6 +20,8 @@ export const EventFooter = ({ event }: EventFooter) => {
   const isAuth = useUnit($isAuth);
   const subscribe = useUnit(subscribeEvent);
   const subscribing = useUnit(subscribeFx.pending);
+
+  const { handlePremiumClick, loading } = usePremiumController(event.id);
 
   const getFooterContent = (): ReactNode => {
     if (isDateInPast(event.date)) {
@@ -37,6 +40,14 @@ export const EventFooter = ({ event }: EventFooter) => {
           </Link>{" "}
           в аккаунт
         </p>
+      );
+    }
+
+    if (event.isOwner && !event.isPremium) {
+      return (
+        <Button onClick={handlePremiumClick} loading={loading}>
+          Сделать премиальным
+        </Button>
       );
     }
 

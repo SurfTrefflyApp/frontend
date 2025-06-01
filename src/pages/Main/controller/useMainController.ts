@@ -1,16 +1,19 @@
-import type { Event } from "@/entities/Event";
+import { useUnit } from "effector-react";
+import { useEffect } from "react";
 
-import { useFetch } from "@/shared/lib/useFetch";
-
-interface MainResponse {
-  latest: Event[];
-  popular: Event[];
-  premium: Event[];
-  recommended: Event[];
-}
+import { $events, $loading, pageMount, pageUnmount } from "../model/store";
 
 export const useMainController = () => {
-  const { data, loading } = useFetch<MainResponse>("/events/home");
+  const [events, loading] = useUnit([$events, $loading]);
+  const [mountPage, unmountPage] = useUnit([pageMount, pageUnmount]);
 
-  return { data, loading: loading };
+  useEffect(() => {
+    mountPage();
+
+    return () => {
+      unmountPage();
+    };
+  }, [mountPage, unmountPage]);
+
+  return { data: events, loading: loading };
 };

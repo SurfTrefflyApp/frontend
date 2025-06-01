@@ -1,20 +1,15 @@
+import { useUnit } from "effector-react";
+
 import { Button } from "@/shared/ui/button";
 
-interface EventsSearchViewSwitch {
-  listView: boolean;
-  setListView: (state: boolean) => void;
-}
+import { $isListView, viewToggled } from "../model/view";
 
-export const EventsSearchViewSwitch = ({
-  listView,
-  setListView,
-}: EventsSearchViewSwitch) => {
+export const EventsSearchViewSwitch = () => {
+  const [listView, toggleView] = useUnit([$isListView, viewToggled]);
   return (
     <Button
-      onClick={() => {
-        setListView(!listView);
-      }}
-      className="fixed left-8 md:left-30 bottom-28"
+      onClick={toggleView}
+      className="fixed left-8 md:left-30 bottom-30 md:bottom-14 w-fit z-50"
       variant="secondary"
     >
       {listView ? "Карта" : "Список"}

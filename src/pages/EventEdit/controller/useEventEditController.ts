@@ -48,7 +48,10 @@ export const useEventEditController = () => {
       try {
         const mappedValues = mapDataToServer(values);
         await updateEvent(event.id, mappedValues);
-        navigate(routes.event.replace(":id", event.id.toString()));
+        navigate(routes.event.replace(":id", event.id.toString()), {
+          replace: true,
+          state: { skipPage: true },
+        });
       } catch (error) {
         setError(error);
       }

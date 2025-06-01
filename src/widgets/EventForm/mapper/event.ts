@@ -43,7 +43,6 @@ export function mapDataToServer(values: EventSchema): FormData {
     createFormDataAppender<ServerEventSchemaWithoutTags>();
   const formData = appendEventForm(mappedObject);
   values.tags.forEach(({ id }) => {
-    console.debug(id);
     formData.append("tags", id.toString());
   });
 
