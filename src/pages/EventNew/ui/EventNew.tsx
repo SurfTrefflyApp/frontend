@@ -16,10 +16,7 @@ export const EventNew = () => {
           form={form}
           onSubmit={onSubmit}
           formFooter={
-            <Button
-              loading={form.formState.isSubmitting}
-              disabled={!form.formState.isValid}
-            >
+            <Button loading={form.formState.isSubmitting} disabled>
               Создать мероприятие
             </Button>
           }

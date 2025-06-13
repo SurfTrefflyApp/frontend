@@ -2,7 +2,6 @@ import type { Event } from "@/entities/Event";
 import { Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router";
 
-import { DefaultUser } from "../icons/DefaultUser";
 import { People } from "../icons/People";
 import { formatDateToDDMMYYYY } from "../lib/dateUtils";
 import { cn } from "../lib/utils";
@@ -27,11 +26,11 @@ export const EventCard = ({
     >
       <figure
         className={cn(
-          "w-full gap-1 bg-surface-container p-3 rounded-2xl grid grid-rows-auto",
+          "w-full gap-1 bg-surface-container p-3 rounded-2xl",
           containerClassName,
         )}
       >
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-col gap-4">
           <div>
             {event.imageEventUrl ? (
               <img
@@ -67,22 +66,9 @@ export const EventCard = ({
               <MapPin className="text-primary w-[20px]" />
               <h4 className="line-clamp-1 w-full">{event.address}</h4>
             </div>
-            <div className="flex gap-2 w-full items-center mb-2">
-              {event.imageUserUrl ? (
-                <img
-                  src={event.imageUserUrl}
-                  className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full"
-                />
-              ) : (
-                <DefaultUser className="min-w-[32px] min-h-[32px] max-w-[32px] max-h-[32px] rounded-full shadow-md" />
-              )}
-              <h4 className="line-clamp-1 w-full">{event.ownerUsername}</h4>
-            </div>
-            <div className="flex">
-              <p className="line-clamp-3 break-words hyphens-auto">
-                {event.description}
-              </p>
-            </div>
+            <p className="line-clamp-3 break-words hyphens-auto mt-1">
+              {event.description}
+            </p>
           </div>
         </div>
       </figure>

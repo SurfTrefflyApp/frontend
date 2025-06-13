@@ -1,5 +1,6 @@
 import type { Event as EventModel } from "@/entities/Event";
 import { EventsSkeleton } from "@/widgets/EventsHorizontalList/ui/EventsSkeleton";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { useMediaQuery } from "react-responsive";
 
 import { mdBreakpoint } from "@/shared/consts/breakpoints";
@@ -42,7 +43,9 @@ export const EventsHorizontalList = ({
         className="w-full"
         opts={{
           dragFree: true,
+          loop: true,
         }}
+        plugins={[WheelGesturesPlugin()]}
       >
         <CarouselContent>
           {events.length ? (
@@ -51,7 +54,7 @@ export const EventsHorizontalList = ({
                 {isDesktopOrLaptop ? (
                   <EventCard
                     event={event}
-                    containerClassName="w-90 md:w-120 h-full"
+                    containerClassName="w-70 md:w-90 h-full"
                   />
                 ) : (
                   <EventCardMini event={event} />

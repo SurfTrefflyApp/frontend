@@ -2,6 +2,8 @@ import type { Address } from "@/entities/Address";
 import { AIDescGenerator } from "@/features/AIDescGenerator";
 import { EventNewAddress } from "@/widgets/EventForm/ui/EventNewAddress";
 import { EventNewTags } from "@/widgets/EventForm/ui/EventNewTags";
+import { DialogTrigger } from "@radix-ui/react-dialog";
+import { Info } from "lucide-react";
 import { type ReactNode } from "react";
 import type { UseFormReturn } from "react-hook-form";
 
@@ -9,8 +11,13 @@ import { Star } from "@/shared/icons/Star";
 import { Upload } from "@/shared/icons/Upload";
 import { DateTimePicker } from "@/shared/ui/DateTimePicker";
 import { FileUploadButton } from "@/shared/ui/FileUploadButton";
-import { InfoIconWithTooltip } from "@/shared/ui/InfoIconWithTooltip";
 import { Button } from "@/shared/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+} from "@/shared/ui/dialog";
 import {
   Form,
   FormControl,
@@ -206,7 +213,28 @@ export const EventForm = ({
             <FormItem>
               <div className="flex items-center gap-2">
                 <FormLabel>Тип мероприятия</FormLabel>
-                <InfoIconWithTooltip
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" type="button">
+                      <Info className="h-5 w-5 text-foreground" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <p className="text-sm text-center mt-4">
+                      Приватные мероприятия не отображаются при поиске.
+                      <br />
+                      Участников можно пригласить по специальной ссылке
+                    </p>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button type="button" size="sm">
+                          OK
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+                {/* <InfoIconWithTooltip
                   content={
                     <p className="text-sm text-center">
                       Приватные мероприятия не отображаются при поиске.
@@ -214,7 +242,7 @@ export const EventForm = ({
                       Участников можно пригласить по специальной ссылке
                     </p>
                   }
-                />
+                /> */}
               </div>
               <FormControl>
                 <div className="flex justify-between gap-3">
