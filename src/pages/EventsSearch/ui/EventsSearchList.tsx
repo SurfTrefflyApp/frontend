@@ -10,8 +10,6 @@ import { EventsSearchViewSwitch } from "./EventsSearchViewSwitch";
 export const EventsSearchList = () => {
   const [events, loading] = useUnit([$events, $loading]);
 
-  console.debug(events.length, loading);
-
   if (loading) {
     return <EventsSearchListSkeleton />;
   }
@@ -21,7 +19,7 @@ export const EventsSearchList = () => {
   }
 
   return (
-    <div className="lg:max-w-2/4 mx-auto grid grid-flow-row auto-rows-fr gap-4 p-2 mt-2 -mb-10">
+    <div className="lg:max-w-2/4 mx-auto grid grid-flow-row auto-rows-fr grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2 mt-2 -mb-10">
       {events.map((event) => (
         <EventCard key={event.id} event={event} containerClassName="h-full" />
       ))}

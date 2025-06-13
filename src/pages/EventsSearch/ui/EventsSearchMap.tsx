@@ -65,8 +65,6 @@ export const EventsSearchMap = () => {
     />
   );
 
-  console.debug(userCoords);
-
   return (
     <>
       {mapLoading && <Loader className="mx-auto my-8" />}
