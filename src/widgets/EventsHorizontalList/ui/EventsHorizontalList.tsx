@@ -54,7 +54,7 @@ export const EventsHorizontalList = ({
                 {isDesktopOrLaptop ? (
                   <EventCard
                     event={event}
-                    containerClassName="w-90 md:w-120 h-full"
+                    containerClassName="w-70 md:w-90 h-full"
                   />
                 ) : (
                   <EventCardMini event={event} />
