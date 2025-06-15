@@ -44,7 +44,7 @@ export const EventNewTags = ({ form }: EventNewTags) => {
               setOpen={setTagsPickerOpen}
               selectedTags={field.value as TagModel[]}
               onSave={handleSave}
-              maxSelectedCount={3}
+              maxSelectedCount={4}
             />
           )}
           <div className="flex items-center justify-between">

@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { routes } from "@/shared/router";
 import { EventImagePreview } from "@/shared/ui/EventImagePreview";
 
-import { formatDateToDDMMYYYY } from "../lib/dateUtils";
+import { formatDateToDDMMYYYY } from "../../../shared/lib/dateUtils";
 
 export const EventCardMini = ({ event }: { event: EventModel }) => {
   return (
