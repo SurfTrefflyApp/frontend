@@ -1,12 +1,12 @@
 import type { Event as EventModel } from "@/entities/Event";
+import { EventCardMini } from "@/entities/Event";
+import { EventCard } from "@/entities/Event";
 import { EventsSkeleton } from "@/widgets/EventsHorizontalList/ui/EventsSkeleton";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { useMediaQuery } from "react-responsive";
 
 import { mdBreakpoint } from "@/shared/consts/breakpoints";
 import { cn } from "@/shared/lib/utils";
-import { EventCard } from "@/shared/ui/EventCard";
-import { EventCardMini } from "@/shared/ui/EventCardMini";
 import {
   Carousel,
   CarouselContent,

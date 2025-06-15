@@ -1,4 +1,5 @@
 import type { Event } from "@/entities/Event";
+import { EventCard } from "@/entities/Event";
 import { Map, Placemark } from "@pbe/react-yandex-maps";
 import { useUnit } from "effector-react";
 import { Loader } from "lucide-react";
@@ -9,7 +10,6 @@ import { Arrow } from "@/shared/icons/Arrow";
 import Pin from "@/shared/icons/pin.svg";
 import { routes } from "@/shared/router";
 import { AdaptivePopover } from "@/shared/ui/AdaptivePopover";
-import { EventCard } from "@/shared/ui/EventCard";
 import { Button } from "@/shared/ui/button";
 
 import { $events, $userCoords, getUserPositionFx } from "../model/events";

@@ -34,7 +34,7 @@ export const Main = () => {
         <EventsCarousel events={data?.premium} isLoading={loading} />
       </div>
       <EventsHorizontalList
-        title="Популярные мероприятия"
+        title="Популярные события"
         events={data?.popular}
         isLoading={loading}
       />
