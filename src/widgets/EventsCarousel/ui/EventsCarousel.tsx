@@ -1,6 +1,7 @@
 import type { Event as EventModel } from "@/entities/Event";
 import AutoHeight from "embla-carousel-auto-height";
 import Autoplay from "embla-carousel-autoplay";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
 import { cn } from "@/shared/lib/utils";
 import {
@@ -37,6 +38,7 @@ export const EventsCarousel = ({ events = [], isLoading }: EventsCarousel) => {
           stopOnInteraction: false,
         }),
         AutoHeight(),
+        WheelGesturesPlugin(),
       ]}
     >
       <CarouselContent

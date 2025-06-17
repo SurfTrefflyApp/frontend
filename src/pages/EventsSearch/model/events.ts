@@ -76,5 +76,3 @@ sample({
   fn: () => false,
   target: $loading,
 });
-
-$loading.watch(console.debug);

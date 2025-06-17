@@ -1,5 +1,5 @@
+import { AppLoader } from "@/app/providers/AppLoader";
 import { ErrorProvider } from "@/app/providers/ErrorProvider";
-import { AppLoader } from "@/app/router/AppLoader";
 import { PrivateRoutes } from "@/app/router/PrivateRoutes";
 import { TabbarLayout } from "@/app/router/TabbarLayout";
 import { RouterProvider, createBrowserRouter } from "react-router";
